@@ -1,8 +1,9 @@
 # AirBnB Clone
 
-## API Documentation
+## Database Schemas
+  ![Alt text](/Database-Schemas.png)
 
-## Data schemas are shown at the end. 
+## API Documentation
 
 ## USER AUTHENTICATION/AUTHORIZATION
 
@@ -1478,6 +1479,4 @@ Return spots filtered by query parameters.
     }
     ```
 
-* Schemas 
 
-![Alt text](backend/images/schemas.png)
