@@ -12,6 +12,8 @@ app.use(morgan('dev'))
 app.use(cookieParser());
 app.use(express.json());
 const routes = require('./routes')
+
+
 // security middlewares
 if(!isProduction) {
     app.use(cors());
@@ -35,5 +37,6 @@ app.use(
     // console.log ('')
     );
     app.use(routes)
+   
   module.exports = app;
 
