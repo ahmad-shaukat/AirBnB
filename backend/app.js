@@ -11,23 +11,29 @@ const app = express()
 app.use(morgan('dev')) 
 app.use(cookieParser());
 app.use(express.json());
+const routes = require('./routes')
 // security middlewares
 if(!isProduction) {
     app.use(cors());
 }
 app.use(
     helmet.crossOriginResourcePolicy({
-      policy: "cross-origin"
+        policy: "cross-origin"
     })
   );
 
-app.use(
+  app.use(
+    // console.log ('runi')
     csurf({
       cookie: {
         secure: isProduction,
         sameSite: isProduction && "Lax",
         httpOnly: true
       }
+      //   console.log
     })
-  );
+    // console.log ('')
+    );
+    app.use(routes)
+  module.exports = app;
 
