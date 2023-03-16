@@ -32,7 +32,7 @@ module.exports = {
         allowNull: false
       },
       lastName: {
-        type: sequelize.STRING(30),
+        type: Sequelize.STRING(30),
         allowNull: false
       },
       hashedPassword: {
