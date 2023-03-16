@@ -26,16 +26,16 @@ app.use(
   );
 
   app.use(
-    // console.log ('runi')
+    
     csurf({
       cookie: {
         secure: isProduction,
         sameSite: isProduction && "Lax",
         httpOnly: true
       }
-      //   console.log
+      
     })
-    // console.log ('')
+    
     );
     app.use(routes)
 
