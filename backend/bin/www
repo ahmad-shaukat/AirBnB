@@ -15,10 +15,7 @@ db.sequelize
   .then(() => {
     console.log('Database connection success! Sequelize is ready to use...');
 
-    // Start listening for connections
-    // console.log (port)
-    // // console.log (db)
-    // // console.log (isProduction)
+
     app.listen(port, () => console.log(`Listening on port ${port}...`));
   })
   .catch((err) => {
