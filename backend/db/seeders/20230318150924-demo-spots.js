@@ -38,7 +38,7 @@ module.exports = {
       description: "Famous Hollywood landmark",
       price: 50
     }
-   ] )
+   ], {} )
   },
 
   async down (queryInterface, Sequelize) {
