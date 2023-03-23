@@ -2,39 +2,14 @@
 const express = require('express');
 const { check } = require('express-validator');
 const { restoreUser } = require('../../utils/auth');
-const { Spot, Review, SpotImage, User, sequelize } = require('../../db/models')
+const { Spot, Review, SpotImage, User, sequelize, ReviewImage } = require('../../db/models')
 const router = express.Router();
 const { Sequelize, fn, literal, col, EmptyResultError } = require('sequelize');
 const app = require('../../app');
 const spot = require('../../db/models/spot');
-const { validationResult } = require('express-validator')
-// const { handleValidationErrors } = require('../../utils/validation');
-// const { validationResult } = require('express-validator');
+const { validationResult } = require('express-validator');
+const reviewimage = require('../../db/models/reviewimage');
 
-
-// const handleValidationErrors = (req, _res, next) => {
-//   const validationErrors = validationResult(req);
-
-//   if (!validationErrors.isEmpty()) { 
-
-//     const errors = {};
-//     validationErrors
-//       .array()
-//       .forEach(error => errors[error.param] = error.msg);
-
-//     const err = Error('Validation Error');
-//     err.errors = errors;
-//     err.status = 400;
-//     // err.title = 'sdfasf'
-//     // err.message = "Validation Error";
-//     err.statusCode = 400
-//     delete err.stack
-//     delete err.title
-
-//     next(err);
-//   }
-//   next();
-// };
 const handleValidationErrors = (req, res, next) => {
   const validationErrors = validationResult(req);
 
@@ -51,11 +26,11 @@ const handleValidationErrors = (req, res, next) => {
       "errors": errors
     })
   }
+  next()
   
-
 };
 
-
+//-----------------validations for spot----------------//
 const ValidationSpot = [
   check('address')
     .exists({ checkFalsy: true })
@@ -87,43 +62,54 @@ const ValidationSpot = [
   handleValidationErrors
 ]
 
+//---------------------validations for review-------------------//
 
+const reviewValidations = [
+  check('review')
+    .exists({checkFalsy: true})
+    .withMessage('Review text is required'),
+  check('stars')
+    .exists({checkFalsy: true})
+    .isIn([1,2,3,4,5])
+    .withMessage('Stars must be an integer from 1 to 5'),
+    handleValidationErrors
+]
 
-router.get('/:spotId', restoreUser, async (req, res) => {
-  let spotId = req.params.spotId
-  let checkSpot = await Spot.findByPk(spotId)
-  if (!checkSpot) {
-    return res.status(404).json({
-      "message": "Spot couldn't be found",
-      "statusCode": 404
-    })
-  }
-  let spot = await Spot.findByPk((spotId), {
-    include: [{
-      model: SpotImage,
-      attributes: ['id', 'url', 'preview']
-    },
-    {
-      model: Review,
-      attributes: [],
-      // duplicating: false
-    },
-    {
-      model: User,
-      attributes: ['id', 'firstName', 'lastName'],
-      as: 'Owner'
-    }
-    ],
-    attributes: {
-      include: [[Sequelize.fn('COUNT', Sequelize.col('Reviews.id')), 'numReviews'], [Sequelize.fn('AVG', Sequelize.col('Reviews.stars')), 'avgStarRating']]
+// router.get('/:spotId', restoreUser, async (req, res) => {
+//   let spotId = req.params.spotId
+//   let checkSpot = await Spot.findByPk(spotId)
+//   if (!checkSpot) {
+//     return res.status(404).json({
+//       "message": "Spot couldn't be found",
+//       "statusCode": 404
+//     })
+//   }
+//   let spot = await Spot.findByPk((spotId), {
+//     include: [{
+//       model: SpotImage,
+//       attributes: ['id', 'url', 'preview']
+//     },
+//     {
+//       model: Review,
+//       attributes: [],
+//       // duplicating: false
+//     },
+//     {
+//       model: User,
+//       attributes: ['id', 'firstName', 'lastName'],
+//       as: 'Owner'
+//     }
+//     ],
+//     attributes: {
+//       include: [[Sequelize.fn('COUNT', Sequelize.col('Reviews.id')), 'numReviews'], [Sequelize.fn('AVG', Sequelize.col('Reviews.stars')), 'avgStarRating']]
 
-    }
+//     }
 
-  })
+//   })
 
-  console.log(spot)
-  res.json(spot)
-})
+//   console.log(spot)
+//   res.json(spot)
+// })
 
 
 // get all the spots 
@@ -283,7 +269,7 @@ router.delete('/:spotId', restoreUser, async (req, res) => {
       "statusCode": 404
     })
   }
-  // await spot.destroy()
+  await spot.destroy()
   res.status(200).json({
     "message": "Successfully deleted",
     "statusCode": 200
@@ -308,14 +294,78 @@ router.post('/:spotId/images', restoreUser, async (req, res) => {
   let newSpotImage = await SpotImage.create({
     spotId, url, preview
   })
-  // ['createdAt', 'updatedAt'].forEach(prop => delete newSpotImage.dataValues[prop])
-  // console.log (newSpotImage.createdAt, '------')
-  // console.log(newSpotImage.dataValues['updatedAt'])
+
   delete newSpotImage.dataValues.updatedAt
   delete newSpotImage.dataValues.createdAt
   res.status(200), res.json(
     newSpotImage
   )
+})
+
+
+// create a review for a spot based on spots id
+router.post('/:spotId/reviews', restoreUser, async(req, res) => {
+  const {Op} = require('sequelize')
+  let userId = req.user.dataValues.id
+  const spotId = req.params.spotId
+  const spotCheck = await Spot.findByPk(spotId)
+  if (!spotCheck) {
+    return res.status(404).json({
+      "message": "Spot couldn't be found",
+      "statusCode": 404
+    })
+  }
+  const UserSpotCheck = await Spot.findByPk(spotId, {
+    include: {
+      model: Review, 
+      where: {
+        userId: {
+          [Op.eq]:userId
+        }
+      }
+    }
+  })
+  if (UserSpotCheck) {
+    return res.status(403).json({
+      "message": "User already has a review for this spot",
+      "statusCode": 403
+    })
+  } 
+  const {review, stars} = req.body
+  const newReview = await Review.create({
+    userId, spotId, review, stars
+  })
+
+  
+  // console.log (req.user.dataValues)
+  res.json(newReview)
+})
+router.get('/:spotId/reviews', restoreUser, async(req, res) => {
+  let spotId = req.params.spotId
+  let spot = await Spot.findByPk(spotId)
+  if (!spot) {
+    return res.status(404).json({
+      "message": "Spot couldn't be found",
+      "statusCode": 404
+    })
+  }
+  let reviews = await Review.findAll({
+    where: {
+      spotId
+    },
+    include:[
+      {
+        model: User,
+        attributes: ['id', 'firstName', 'lastName']
+      },
+      {
+        model: ReviewImage,
+        attributes:['id', 'url']
+      }
+
+    ]
+  })
+  res.json(reviews)
 })
 
 
