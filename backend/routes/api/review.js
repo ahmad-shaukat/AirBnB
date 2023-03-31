@@ -75,9 +75,9 @@ router.get('/current', restoreUser, async (req, res) => {
                 attributes: ['id', 'url']
             }
         ],
-        group: ['Spot.id']
+        
     });
-    res.json(allReviews);
+    res.json({Reviews: allReviews});
 });
 
 // get all reviews by spot id this is in the spot route file
@@ -94,6 +94,7 @@ router.get('/current', restoreUser, async (req, res) => {
 
 router.post('/:reviewId/images', restoreUser, async (req, res) => {
     const reviewId = req.params.reviewId
+    const userId = req.user.dataValues.id
     const { url } = req.body
     const review = await Review.findByPk(reviewId)
     if (!review) {
@@ -102,6 +103,16 @@ router.post('/:reviewId/images', restoreUser, async (req, res) => {
             "statusCode": 404
         })
     }
+    const reviewUserId = review.dataValues.userId
+
+  
+    if (userId !== reviewUserId) {
+      return res.status(403).json({
+        "message": "Access denied for current User",
+        "statusCode": 403
+      })
+    }
+
     const reviewImages = await Review.findByPk(reviewId, {
         attributes: [],
         include: {
