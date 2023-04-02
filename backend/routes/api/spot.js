@@ -166,10 +166,10 @@ router.get('/current', restoreUser, async (req, res) => {
       'createdAt',
       'updatedAt',
       [
-        fn('AVG', literal('stars')),
+        fn('AVG', literal('Reviews.stars')),
         'avgRating'
       ],
-      [col('url'), 'previewImage']
+      [col('SpotImages.url'), 'previewImage']
     ],
     include: [
       {
