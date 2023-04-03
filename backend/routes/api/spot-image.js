@@ -17,7 +17,6 @@ router.delete('/:imageId', restoreUser, async(req, res) => {
     const deleteImage = await SpotImage.findByPk(imageId, {
         include: {
             model: Spot,
-            as: 'previewImage',
             attributes: ['ownerId']
         },
     })
