@@ -109,14 +109,14 @@ const bookingValidations = [
 //--------------------------------------query validations--------------------
 
 const queryValidations = [
-  check('page')
-    .exists({ checkFalsy: true })
-    .isInt({ min: 1 })
-    .withMessage("Page must be greater than or equal to 1"),
-  check('size')
-    .exists({ checkFalsy: true })
-    .isInt({ min: 1 })
-    .withMessage("Size must be greater than or equal to 1"),
+  // check('page')
+  //   .exists({ checkFalsy: true })
+  //   .isInt({ min: 1 })
+  //   .withMessage("Page must be greater than or equal to 1"),
+  // check('size')
+  //   .exists({ checkFalsy: true })
+  //   .isInt({ min: 1 })
+  //   .withMessage("Size must be greater than or equal to 1"),
   check('maxLat')
     .optional()
     .isDecimal()
@@ -421,8 +421,11 @@ async (req, res) => {
 
 
 router.get('/', restoreUser, queryValidations, async (req, res) => {
-  const { page, size, maxLat, minLat, minLng, maxLng, minPrice, maxPrice } = req.query
-
+  let { page, size, maxLat, minLat, minLng, maxLng, minPrice, maxPrice } = req.query
+  if (!page || page<1) page = 1
+  if (!size || size<1) size = 20
+  
+  
 
   const limit = parseInt(size);
 

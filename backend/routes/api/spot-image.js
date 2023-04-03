@@ -26,7 +26,8 @@ router.delete('/:imageId', restoreUser, async(req, res) => {
             "statusCode": 404
         })
     }
-    const spotImageSpotOwnerId = deleteImage.dataValues.previewImage.dataValues.ownerId
+    // console.log (deleteImage.dataValues.Spot.)
+    const spotImageSpotOwnerId = deleteImage.dataValues.Spot.dataValues.ownerId
   
     if (spotImageSpotOwnerId === currentUser) {
         await deleteImage.destroy()

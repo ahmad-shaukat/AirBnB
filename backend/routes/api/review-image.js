@@ -20,7 +20,10 @@ router.delete('/:imageId', restoreUser, async(req, res) => {
             "statusCode": 404
         })
     }
-    const reviewUserId = deleteReviewImage.dataValues.reviewId;
+    // console.log (reviewUserId)
+    // console.log(currentUser)
+    // console.log(deleteReviewImage.dataValues.Review.userId)
+    const reviewUserId = deleteReviewImage.dataValues.Review.userId;
 
     if (reviewUserId === currentUser) {
         await deleteReviewImage.destroy()
