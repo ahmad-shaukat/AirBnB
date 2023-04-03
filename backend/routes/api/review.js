@@ -10,23 +10,23 @@ const { validationResult } = require('express-validator')
 
 const handleValidationErrors = (req, res, next) => {
     const validationErrors = validationResult(req);
-  
+
     if (!validationErrors.isEmpty()) {
-  
-      const errors = {};
-      validationErrors
-        .array()
-        .forEach(error => errors[error.param] = error.msg);
-  
-      return res.status(400).json({
-        "message": 'Validation Error',
-        "statusCode": 400,
-        "errors": errors
-      })
+
+        const errors = {};
+        validationErrors
+            .array()
+            .forEach(error => errors[error.param] = error.msg);
+
+        return res.status(400).json({
+            "message": 'Validation Error',
+            "statusCode": 400,
+            "errors": errors
+        })
     }
     next()
-    
-  };
+
+};
 
 
 const reviewEditValidations = [
@@ -43,42 +43,102 @@ const reviewEditValidations = [
 
 
 
-// get reviews of the current user
+// get reviews of the current user without aggragate functions
 
 
-router.get('/current', restoreUser, async (req, res) => {
-    const userId = req.user.dataValues.id;
-    console.log(userId, '-----');
-    const allReviews = await Review.findAll({
-        where: {
-            userId: userId
-        },
-        include: [
-            {
-                model: User,
-                attributes: ['id', 'firstName', 'lastName']
-            },
-            {
-                model: Spot,
-                attributes: [
-                    'id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price',
-                    [
-                        sequelize.literal(
-                            `(SELECT url FROM "SpotImages" WHERE "SpotImages"."spotId" = "Spot"."id" LIMIT 1)`
-                        ),
-                        'previewImage'
-                    ]
-                ]
-            },
-            {
-                model: ReviewImage,
-                attributes: ['id', 'url']
-            }
-        ],
-        
-    });
-    res.json({Reviews: allReviews});
-});
+router.get('/current',
+    restoreUser,
+    async (req, res) => {
+
+        const userId = req.user.dataValues.id
+       
+
+        const allReviews = await Review.findAll({
+            where: { userId},
+            include: [Spot, ReviewImage, User]
+        })
+       
+
+        const allSpotImages = await SpotImage.findAll({})
+       
+
+        const resultObj = { "Reviews": [] }
+
+
+
+        allReviews.forEach(reviews => {
+            const key = "previewImage";
+          
+            const spotImages = []
+
+            allSpotImages.forEach(images => {  
+   
+                if (reviews.Spot.dataValues.id = images.dataValues.spotId) {
+                    spotImages.push(images.dataValues.url)
+                }
+            })
+            
+            reviews.Spot.dataValues['previewImage'] = spotImages[0]
+
+            reviews.ReviewImages.forEach(ele3 => {
+               
+
+                delete ele3.dataValues.reviewId
+                delete ele3.dataValues.updatedAt
+                delete ele3.dataValues.createdAt
+            })
+
+            delete reviews.Spot.dataValues.createdAt
+            delete reviews.Spot.dataValues.updatedAt
+            delete reviews.User.dataValues.user
+
+            resultObj.Reviews.push(reviews)
+        })
+
+        res.status(200).json(resultObj)
+    })
+
+
+
+
+
+
+
+
+
+// router.get('/current', restoreUser, async (req, res) => {
+//     const userId = req.user.dataValues.id;
+//     console.log(userId, '-----');
+//     const allReviews = await Review.findAll({
+//         where: {
+//             userId: userId
+//         },
+//         include: [
+//             {
+//                 model: User,
+//                 attributes: ['id', 'firstName', 'lastName']
+//             },
+//             {
+//                 model: Spot,
+//                 attributes: [
+//                     'id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price',
+//                     [
+//                         sequelize.literal(
+//                             `(SELECT url FROM "SpotImages" WHERE "SpotImages"."spotId" = "Spot"."id" LIMIT 1)`
+//                         ),
+//                         'previewImage'
+//                     ]
+//                 ]
+//             },
+//             {
+//                 model: ReviewImage,
+//                 attributes: ['id', 'url']
+//             }
+//         ],
+
+//     });
+//     res.json({Reviews: allReviews});
+// });
 
 // get all reviews by spot id this is in the spot route file
 
@@ -105,12 +165,12 @@ router.post('/:reviewId/images', restoreUser, async (req, res) => {
     }
     const reviewUserId = review.dataValues.userId
 
-  
+
     if (userId !== reviewUserId) {
-      return res.status(403).json({
-        "message": "Access denied for current User",
-        "statusCode": 403
-      })
+        return res.status(403).json({
+            "message": "Access denied for current User",
+            "statusCode": 403
+        })
     }
 
     const reviewImages = await Review.findByPk(reviewId, {
@@ -151,10 +211,10 @@ router.put('/:reviewId', restoreUser, reviewEditValidations, async (req, res) =>
     const editReview = await Review.findByPk(reivewId)
     if (!editReview) {
         return res.status(404).json({
-          "message": "Review couldn't be found",
-          "statusCode": 404
+            "message": "Review couldn't be found",
+            "statusCode": 404
         })
-      }
+    }
     editReview.set({
         review, stars, updatedAt: sequelize.literal('CURRENT_TIMESTAMP')
     }, { fields: ['body', 'stars', 'updatedAt'] })
@@ -168,16 +228,16 @@ router.delete('/:reviewId', restoreUser, async (req, res) => {
     let deleteReview = await Review.findByPk(reviewId)
     if (!deleteReview) {
         return res.status(404).json({
-          "message": "Review couldn't be found",
-          "statusCode": 404
+            "message": "Review couldn't be found",
+            "statusCode": 404
         })
-      }
+    }
     await deleteReview.destroy()
     res.status(200).json({
         "message": "Successfully deleted",
         "statusCode": 200
     })
 
-} )
+})
 
 module.exports = router
