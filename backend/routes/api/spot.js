@@ -272,44 +272,110 @@ router.get('/current',
 
 
 
-router.get('/:spotId', restoreUser, async (req, res) => {
-  let spotId = req.params.spotId
-  let checkSpot = await Spot.findByPk(spotId)
-  if (!checkSpot) {
-    return res.status(404).json({
-      "message": "Spot couldn't be found",
-      "statusCode": 404
+// router.get('/:spotId', restoreUser, async (req, res) => {
+//   let spotId = req.params.spotId
+//   let checkSpot = await Spot.findByPk(spotId)
+//   if (!checkSpot) {
+//     return res.status(404).json({
+//       "message": "Spot couldn't be found",
+//       "statusCode": 404
+//     })
+//   }
+//   let spot = await Spot.findByPk((spotId), {
+//     include: [{
+//       model: SpotImage,
+//       attributes: ['id', 'url', 'preview'],
+
+//       limit: 10000
+
+//     },
+//     {
+//       model: Review,
+//       attributes: [],
+//       // duplicating: false
+//     },
+//     {
+//       model: User,
+//       attributes: ['id', 'firstName', 'lastName'],
+//       as: 'Owner'
+//     }
+//     ],
+//     attributes: {
+//       include: [[Sequelize.fn('COUNT', Sequelize.col('Reviews.id')), 'numReviews'], [Sequelize.fn('AVG', Sequelize.col('Reviews.stars')), 'avgStarRating']]
+
+//     }
+
+//   })
+
+//   group
+
+
+//   console.log(spot)
+//   res.json(spot)
+// })
+
+// get detailed spot from spot id done without aggregate functions
+router.get('/:spotId',
+restoreUser,
+async (req, res) => {
+    let id = req.params.spotId
+
+   
+    const spot = await Spot.findOne({
+        where: {id:id},
+        include: [SpotImage, Review, User]
     })
-  }
-  let spot = await Spot.findByPk((spotId), {
-    include: [{
-      model: SpotImage,
-      attributes: ['id', 'url', 'preview'],
 
-      limit: 10000
 
-    },
-    {
-      model: Review,
-      attributes: [],
-      // duplicating: false
-    },
-    {
-      model: User,
-      attributes: ['id', 'firstName', 'lastName'],
-      as: 'Owner'
-    }
-    ],
-    attributes: {
-      include: [[Sequelize.fn('COUNT', Sequelize.col('Reviews.id')), 'numReviews'], [Sequelize.fn('AVG', Sequelize.col('Reviews.stars')), 'avgStarRating']]
-
+    if(!spot){
+        return res.status(404).json({
+            "message": "Spot couldn't be found",
+            "statusCode": 404
+        })
     }
 
-  })
 
+    let key = "numReviews"
+    let key1 = "avgStarRating"
+    let key3 = "Owner"
 
-  console.log(spot)
-  res.json(spot)
+    let totalReviews = 0
+    let avgRating = 0
+    let reviewArr = spot.Reviews   
+    reviewArr.forEach( reviews => {
+
+        avgRating += reviews.stars
+        totalReviews++
+    })
+
+    spot.dataValues['avgStarRating'] = avgRating/totalReviews
+
+    spot.dataValues['numReviews'] = totalReviews 
+  
+    delete spot.dataValues.Reviews;
+
+    
+    const allSpotImages = spot.dataValues.SpotImages
+    
+    allSpotImages.forEach( images=>{
+  
+        delete images.dataValues.createdAt
+        delete images.dataValues.updatedAt
+        delete images.dataValues.spotId
+    })
+
+    const Owner = {};
+    Owner.id = spot.dataValues.User.dataValues.id;
+    Owner.firstName = spot.dataValues.User.dataValues.firstName;
+    Owner.lastName = spot.dataValues.User.dataValues.lastName;
+  
+    spot.dataValues.Owner = Owner;
+
+   
+    delete spot.dataValues.User
+  
+
+    res.status(200).json(spot)
 })
 
 
