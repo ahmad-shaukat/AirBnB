@@ -181,7 +181,7 @@ router.get('/current', restoreUser, async (req, res) => {
         attributes: []
       }
     ],
-    group: ['Spot.id']
+    // group: ['Spot.id']
   });
   allSpots.forEach(spot => {
     if (spot.dataValues.avgRating === null) {
