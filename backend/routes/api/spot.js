@@ -453,23 +453,18 @@ router.get('/', restoreUser, queryValidations, async (req, res) => {
       'price',
       'createdAt',
       'updatedAt',
-      [literal('(SELECT AVG(stars) FROM reviews WHERE reviews.spotId = Spot.id)'), 'avgRating'],
-      [
-        Sequelize.literal('(SELECT url FROM "SpotImages" WHERE "SpotImages"."spotId" = "Spot"."id" LIMIT 1)'),
-        'previewImage'
-      ],
     ],
     include: [
       {
         model: Review,
-        attributes: []
+       
       },
       {
         model: SpotImage,
-        attributes: []
+        
       }
     ],
-    group: ['Spot.id'],
+    
     where: {
 
     },
@@ -515,6 +510,42 @@ router.get('/', restoreUser, queryValidations, async (req, res) => {
 
 
   const allSpots = await Spot.findAll(options);
+  console.log (allSpots)
+  allSpots.forEach(spots => {         
+    const spotImages = []
+  
+
+    let allSpotImages = spots.dataValues.SpotImages 
+    const allReviews = spots.dataValues.Reviews 
+
+
+    let reviewSum = 0;
+    let reviewCount = 0;
+    allReviews.forEach(review => {
+      
+      reviewSum += review.dataValues.stars;
+      reviewCount++;
+    })
+
+    spots.dataValues['avgRating'] = reviewSum / reviewCount
+
+    allSpotImages.forEach(img => {       
+      spotImages.push(img.dataValues.url)
+    })
+   
+    let url= spotImages[0]
+   
+
+   
+    spots.dataValues['previewImage'] = url
+
+    
+    delete spots.dataValues.SpotImages
+    delete spots.dataValues.Reviews
+
+    
+    // spotObj.Spots.push(spots.dataValues)
+  })
 
 
   allSpots.forEach(spot => {
