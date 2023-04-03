@@ -173,16 +173,16 @@ router.delete ('/:bookingId', restoreUser, async(req, res) => {
         }
     })
     // console.log(deleteBooking.dataValues.startDate)
-    const bookingStartDate = deleteBooking.dataValues.startDate
-    console.log (currentDate)
-    console.log (bookingStartDate>=currentDate)
-    console.log (bookingStartDate)
+    // console.log (currentDate)
+    // console.log (bookingStartDate>=currentDate)
+    // console.log (bookingStartDate)
     if (!deleteBooking) {
-        return res.status(404).json({
-            "message": "Booking couldn't be found",
-            "statusCode": 404
-        })
+      return res.status(404).json({
+        "message": "Booking couldn't be found",
+        "statusCode": 404
+      })
     }
+    const bookingStartDate = deleteBooking.dataValues.startDate
     const spotId = deleteBooking.dataValues.spotId
     const userBookingId = deleteBooking.dataValues.userId
     const spotOwnerId = deleteBooking.Spot.dataValues.ownerId
