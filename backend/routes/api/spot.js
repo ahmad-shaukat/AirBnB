@@ -33,6 +33,7 @@ const handleValidationErrors = (req, res, next) => {
 };
 
 //-----------------validations for spot----------------//
+//sdfkj;slfjl;sdfj
 const ValidationSpot = [
   check('address')
     .exists({ checkFalsy: true })
