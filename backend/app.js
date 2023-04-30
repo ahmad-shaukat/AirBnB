@@ -1,5 +1,6 @@
 const express = require('express');
 require('express-async-errors');
+
 const morgan = require('morgan');
 const cors = require('cors');
 const csurf = require('csurf');
@@ -11,8 +12,9 @@ const {ValidationError} = require('sequelize');
 const app = express()
 app.use(morgan('dev')) 
 app.use(cookieParser());
-app.use(express.json());
 const routes = require('./routes')
+app.use(express.json());
+
 
 
 // security middlewares
