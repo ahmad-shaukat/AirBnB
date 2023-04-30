@@ -1,12 +1,15 @@
 import Cookies from 'js-cookie'
-export async function csrfFetch(url, options = {}) {
+// export async function csrfFetch(url, options = {}) {
+    export const csrfFetch = async (url, options = {}) => {
+
+    options.method = options.method || 'GET'
     options.headers = options.headers || {} // set options.headers to empty object if there are no headers
-    options.method = options.method || 'GET'// set options.headers to an empty object if there is no method
+    // set options.headers to an empty object if there is no method
 
 
 
     if (options.method.toUpperCase() !== 'GET') {
-        options.headers['Content-Type'] = options.headers || 'application/json';  // if the options.method is not 'GET', then set the "Content-Type" header to
+        options.headers['Content-Type'] = options.headers['Content-Type'] || 'application/json';  // if the options.method is not 'GET', then set the "Content-Type" header to
         // "application/json", and set the "XSRF-TOKEN" header to the value of the 
         // "XSRF-TOKEN" cookie
         options.headers['XSRF-TOKEN'] = Cookies.get('XSRF-TOKEN')
