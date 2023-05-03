@@ -1,55 +1,76 @@
-import React, { useState } from "react"
-import { useRef } from "react";
-import { useEffect } from "react"
-import { useDispatch } from "react-redux"
-import * as sessionActions from '../../store/session'
-import "./Navigation.css"
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { useState, useEffect, useRef } from "react";
+import { useDispatch } from 'react-redux';
+import * as sessionActions from '../../store/session';
+import OpenModalMenuItem from './OpenModalMenuItem';
+import LoginFormModal from '../LoginFormModal';
+import SignupFormModal from '../SignupFormModal';
 
 function ProfileButton({ user }) {
-    const [showMenu, setShowMenu] = useState(false)
-    console.log(showMenu)
-    const dispatch = useDispatch()
-    const ulRef = useRef()
+  const dispatch = useDispatch();
+  const [showMenu, setShowMenu] = useState(false);
+  const ulRef = useRef();
 
-    useEffect(() => {
-        if (!showMenu) return;
-        const closeMenu = (e) => {
-            if (!ulRef.current.contains(e.target)) {
-              setShowMenu(false);
-            }
-          };
+  const openMenu = () => {
+    if (showMenu) return;
+    setShowMenu(true);
+  };
 
-        document.addEventListener('click', closeMenu)
-        return () => document.removeEventListener('click', closeMenu)
-    }, [showMenu])
+  useEffect(() => {
+    if (!showMenu) return;
 
-    const openMenu = () => {
-        if (showMenu) return;
-        setShowMenu(true)
-    }
+    const closeMenu = (e) => {
+      if (!ulRef.current.contains(e.target)) {
+        setShowMenu(false);
+      }
+    };
 
-    const ulDropDown = "profile-dropdown" + (showMenu ? "" : " hidden")
-    console.log(ulDropDown)
-    
+    document.addEventListener('click', closeMenu);
 
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showMenu]);
 
-    const logout = (e) => {
-        e.preventDefault()
-        dispatch(sessionActions.logout())
+  const closeMenu = () => setShowMenu(false);
 
-    }
-    return (
-        <>
-            <button onClick={openMenu}><i class="fa-solid fa-user"></i></button>
-            <ul className={ulDropDown} ref={ulRef}>
-                <li>{user.username}</li>
-                <li>{user.firstName} {user.lastName}</li>
-                <li>{user.email}</li>
-                <li><button onClick={logout}>Log Out</button></li>
-            </ul>
-        </>
-    )
+  const logout = (e) => {
+    e.preventDefault();
+    dispatch(sessionActions.logout());
+    closeMenu();
+  };
+
+  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+
+  return (
+    <>
+      <button onClick={openMenu}>
+        <i className="fas fa-user-circle" />
+      </button>
+      <ul className={ulClassName} ref={ulRef}>
+        {user ? (
+          <>
+            <li>{user.username}</li>
+            <li>{user.firstName} {user.lastName}</li>
+            <li>{user.email}</li>
+            <li>
+              <button onClick={logout}>Log Out</button>
+            </li>
+          </>
+        ) : (
+          <>
+            <OpenModalMenuItem
+              itemText="Log In"
+              onItemClick={closeMenu}
+              modalComponent={<LoginFormModal />}
+            />
+            <OpenModalMenuItem
+              itemText="Sign Up"
+              onItemClick={closeMenu}
+              modalComponent={<SignupFormModal />}
+            />
+          </>
+        )}
+      </ul>
+    </>
+  );
 }
 
-export default ProfileButton
+export default ProfileButton;
