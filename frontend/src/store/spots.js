@@ -1,10 +1,12 @@
 const LOAD = 'spots/LOAD'
 const ADD_ONE = 'spots/ADD_ONE'
+const CREATE_SPOT = 'spots/CREATE_ONE'
 
 const initalState = {
     list:[],
     
 }
+
 
 
 // action for all the spots 
@@ -37,6 +39,8 @@ export const getSingleSpot = (id) => async dispatch => {
     dispatch(addOneSpot(spot))
   }
 }
+
+// thunk for adding new spot 
 
 
 
