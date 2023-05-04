@@ -34,7 +34,7 @@ const SpotBrowser = () => {
 
                 
                     <div key={spot.id}>
-                        <NavLink to={'/'}>
+                        <NavLink to={`/spots/${spot.id}`}>
                             <p>Image goes here</p>
                             <div>
                                 <p>{spot.city}, {spot.state}</p>
