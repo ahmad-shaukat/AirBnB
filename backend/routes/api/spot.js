@@ -1,7 +1,7 @@
 // restore user is global for all incoming requests
 const express = require('express');
 const { check } = require('express-validator');
-const { restoreUser } = require('../../utils/auth');
+const { restoreUser, requireAuth } = require('../../utils/auth');
 const { Spot, Review, SpotImage, User, sequelize, ReviewImage, Booking } = require('../../db/models')
 const router = express.Router();
 const { Sequelize, fn, literal, col, EmptyResultError } = require('sequelize');
@@ -13,7 +13,9 @@ const { validationResult } = require('express-validator');
 
 //-------------------------Error Handeler for validations-----------
 const handleValidationErrors = (req, res, next) => {
+
   const validationErrors = validationResult(req);
+  console.log (validationErrors)
 
   if (!validationErrors.isEmpty()) {
 
@@ -595,10 +597,13 @@ router.get('/', restoreUser, queryValidations, async (req, res) => {
 // add new spot on current user
 
 
-router.post('/', restoreUser, ValidationSpot, async (req, res) => {
+router.post('/', requireAuth, ValidationSpot, async (req, res) => {
+  console.log (res.body)
   let { address, city, state, country, lat, lng, name, description, price } = req.body
   let ownerId = req.user.dataValues.id
   // console.log (userId)
+  console.log (typeof lat, '-------------------')
+
   const newSpot = await Spot.create({
     ownerId, address, city, state, country, lat, lng, name, description, price,
   })

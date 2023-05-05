@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import spotsReducer, { getAllSpots } from '../../store/spots'
 import { useDispatch } from 'react-redux'
+// impot {}
 
 const SpotBrowser = () => {
 
@@ -29,10 +30,10 @@ const SpotBrowser = () => {
 
 
         return (
-            allSpots.map((spot) => (
 
+            <>
+                {allSpots.map((spot) => (
 
-                
                     <div key={spot.id}>
                         <NavLink to={`/spots/${spot.id}`}>
                             <p>Image goes here</p>
@@ -47,15 +48,21 @@ const SpotBrowser = () => {
                         <p>---------------------</p>
 
                     </div>
-                
 
-            ))
+
+                ))}
+
+            </>
+
+
+
+
         )
     }
 
     return (
         <>
-            <h1>Error</h1>
+            <h1>Loading</h1>
         </>
 
     )

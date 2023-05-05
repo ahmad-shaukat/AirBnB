@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { NavLink } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem';
@@ -53,6 +54,9 @@ function ProfileButton({ user }) {
             <li>
               <button onClick={logout}>Log Out</button>
             </li>
+            <NavLink to={'/spots/add/newspot'}>
+               Add New Spot 
+            </NavLink> 
           </>
         ) : (
           <>

@@ -90,7 +90,7 @@ const SpotDetail = () => {
         )
     }
     return (
-        <h1>Hello</h1>
+        <h1>Loading</h1>
     )
 }
 
