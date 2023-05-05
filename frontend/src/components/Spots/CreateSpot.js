@@ -62,7 +62,7 @@ const CreateSpotForm = () => {
 
     return (
         <>
-        <h1></h1>
+        <h1>Create New Spot</h1>
         {<form onSubmit={handleSubmit}>
             <input 
             type='text'
