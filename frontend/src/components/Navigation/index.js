@@ -5,7 +5,7 @@ import ProfileButton from './ProfileButton';
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
-  console.log (isLoaded)
+  // console.log (isLoaded) 
   const sessionUser = useSelector(state => state.session.user);
   // console.log (session)
 

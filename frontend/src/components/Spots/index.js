@@ -17,7 +17,7 @@ const SpotBrowser = () => {
     // console.log (allSpots)
     useEffect(() => {
 
-        console.log('in the effect')
+        // console.log('in the effect')
         dispatch(getAllSpots())
 
     }, [dispatch])
@@ -26,7 +26,7 @@ const SpotBrowser = () => {
         for (let items of allSpots) {
             if (!items['avgRating']) items['avgRaing'] = 'New'
         }
-        console.log(allSpots, '---------')
+        // console.log(allSpots, '---------')
 
 
         return (

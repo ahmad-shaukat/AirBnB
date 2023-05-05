@@ -2,6 +2,7 @@ import { csrfFetch } from "./csrf"
 const LOAD = 'spots/LOAD'
 const ADD_ONE = 'spots/ADD_ONE'
 const CREATE_SPOT = 'spots/CREATE_SPOT'
+const GET_USER_SPOTS = 'spots/GET_USER_SPOTS'
 
 const initalState = {
     list:[],
@@ -28,6 +29,13 @@ const addOneSpot = spot => ({
 const createSpot = spot => ({
   type:CREATE_SPOT,
   spot
+})
+
+// action for getting all the spots that belong to the user
+
+const getUserSpots = list => ({
+  type: GET_USER_SPOTS,
+  list
 })
 
 // thunk for getting all spots 
@@ -65,6 +73,16 @@ export const CreateSpot = (spot) => async dispatch => {
   }
 }
 
+// Thunk for getting all spots that belongs to user
+
+export const UserSpots = () => async dispatch => {
+  const response = await fetch('/api/spots/current')
+  if (response.ok) {
+    const userSpots = await response.json()
+    dispatch(getUserSpots(userSpots))
+  }
+}
+
 
 
 
@@ -72,7 +90,7 @@ export const CreateSpot = (spot) => async dispatch => {
 const spotsReducer = (state = initalState, action) => {
     switch(action.type) {
         case LOAD: 
-        console.log (action.list.Spots)
+        // console.log (action.list.Spots)
         const allSpots= {};
         action.list.Spots.forEach(spot => {
           allSpots[spot.id] = spot;
@@ -98,6 +116,18 @@ const spotsReducer = (state = initalState, action) => {
               ...state[action.spot.id], ...action.spot
             }
           }
+        case GET_USER_SPOTS:
+          console.log (action.list)
+          const userSpots = {}
+          action.list.Spots.forEach(spot => {
+            userSpots[spot.id] = spot
+          });
+          return {
+            ...userSpots,
+            ...state,
+            list:(action.list)
+          }
+        
         default:
       return state;
     }

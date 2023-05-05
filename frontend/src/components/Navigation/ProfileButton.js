@@ -57,6 +57,9 @@ function ProfileButton({ user }) {
             <NavLink to={'/spots/add/newspot'}>
                Add New Spot 
             </NavLink> 
+            <NavLink to={'/spots/current'}>
+              Manage Spots 
+            </NavLink>
           </>
         ) : (
           <>
