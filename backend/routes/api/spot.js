@@ -613,7 +613,7 @@ router.post('/', requireAuth, ValidationSpot, async (req, res) => {
 
 // edit a spot 
 
-router.put('/:spotId', restoreUser, ValidationSpot, async (req, res) => {
+router.put('/:spotId', requireAuth, ValidationSpot, async (req, res) => {
   let { address, city, state, country, lat, lng, name, description, price } = req.body
   let spotId = req.params.spotId
   let userId = req.user.dataValues.id

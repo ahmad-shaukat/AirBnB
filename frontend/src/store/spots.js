@@ -3,6 +3,7 @@ const LOAD = 'spots/LOAD'
 const ADD_ONE = 'spots/ADD_ONE'
 const CREATE_SPOT = 'spots/CREATE_SPOT'
 const GET_USER_SPOTS = 'spots/GET_USER_SPOTS'
+const EDIT_SPOT = 'spots/EDIT_SPOT'
 
 const initalState = {
     list:[],
@@ -36,6 +37,12 @@ const createSpot = spot => ({
 const getUserSpots = list => ({
   type: GET_USER_SPOTS,
   list
+})
+
+//action for editing spot
+const editSpot = spot => ({
+  type:EDIT_SPOT,
+  spot
 })
 
 // thunk for getting all spots 
@@ -83,6 +90,22 @@ export const UserSpots = () => async dispatch => {
   }
 }
 
+// Thunk for editing the spot
+export const EditSpot = (spot, id) => async dispatch => {
+  const response = await csrfFetch(`/api/spots/${id}`, {
+    method:'PUT',
+    headers: {
+      'Content-Type':'application/json',
+    }, 
+    body: JSON.stringify(spot)
+  })
+  if (response.ok) {
+    const editSpot = await response.json()
+    dispatch(addOneSpot(editSpot))
+    return editSpot
+  }
+}
+
 
 
 
@@ -117,7 +140,7 @@ const spotsReducer = (state = initalState, action) => {
             }
           }
         case GET_USER_SPOTS:
-          console.log (action.list)
+          // console.log (action.list)
           const userSpots = {}
           action.list.Spots.forEach(spot => {
             userSpots[spot.id] = spot
@@ -127,7 +150,12 @@ const spotsReducer = (state = initalState, action) => {
             ...state,
             list:(action.list)
           }
-        
+        case EDIT_SPOT:
+          console.log (action.spot)
+          const newState = {}
+          newState = {...state}
+          newState[action.spot.id] = action.pokemon
+          return newState
         default:
       return state;
     }
