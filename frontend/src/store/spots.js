@@ -166,26 +166,32 @@ const spotsReducer = (state = initalState, action) => {
           return newState
         }
         case GET_USER_SPOTS:
-          // console.log (action.list)
-          const userSpots = {}
+          console.log (action.list, '-------------------')
+          const userSpots = {...state}
           action.list.Spots.forEach(spot => {
             userSpots[spot.id] = spot
           });
-          return {
-            ...userSpots,
-            ...state,
-            list:(action.list)
-          }
+          userSpots.list = action.list
+          return userSpots
+
         case EDIT_SPOT:
-          console.log (action.spot)
+          // console.log (action.spot)
           const newState = {}
           newState = {...state}
           newState[action.spot.id] = action.pokemon
           return newState
         case REMOVE_SPOT:
-          const removeSpotState = {...state};
-          delete removeSpotState[action.spotId];
-          return removeSpotState
+          console.log (state)
+          console.log (state.list.Spots)
+          let newList = []
+          state.list.Spots.forEach(spot => {
+            if (spot.id !== action.spotId) {
+              newList.push(spot)
+            }
+          })
+          let deletState = {...state}
+          deletState.list = newList
+          return deletState
         
           default:   
       return state;

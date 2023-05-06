@@ -12,9 +12,9 @@ const ManageSpotsFunction = () => {
     const [editSpot, setEditSpot] = useState(null)
     const dispatch = useDispatch()
     const userSpots = useSelector(state => {
-        return state.spots.list
-    }).Spots
-    console.log(userSpots)
+        return state.spots.list.Spots
+    })
+    console.log(userSpots, '---------------------')
     useEffect(() => {
         console.log('hello')
         setShowEditSpotForm(false)
@@ -33,7 +33,8 @@ const ManageSpotsFunction = () => {
             <EditSpotForm spot={editSpot} spotId={editSpotId} hideForm={() => setShowEditSpotForm(false)} />
         )
     } else {
-        content = (
+        if (userSpots) {
+            content = (
             <>
                 <h1>Manage Spots</h1>
     
@@ -57,7 +58,12 @@ const ManageSpotsFunction = () => {
                 ))}
             </>
         )
+        }
+        
     }
+if (!userSpots) {
+    <h1>No spots</h1>
+}
 
 
 
