@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import spotsReducer, { getAllSpots } from '../../store/spots'
 import { useDispatch } from 'react-redux'
+// impot {}
 
 const SpotBrowser = () => {
 
@@ -16,7 +17,7 @@ const SpotBrowser = () => {
     // console.log (allSpots)
     useEffect(() => {
 
-        console.log('in the effect')
+        // console.log('in the effect')
         dispatch(getAllSpots())
 
     }, [dispatch])
@@ -25,16 +26,16 @@ const SpotBrowser = () => {
         for (let items of allSpots) {
             if (!items['avgRating']) items['avgRaing'] = 'New'
         }
-        console.log(allSpots, '---------')
+        // console.log(allSpots, '---------')
 
 
         return (
-            allSpots.map((spot) => (
 
+            <>
+                {allSpots.map((spot) => (
 
-                
                     <div key={spot.id}>
-                        <NavLink to={'/'}>
+                        <NavLink to={`/spots/${spot.id}`}>
                             <p>Image goes here</p>
                             <div>
                                 <p>{spot.city}, {spot.state}</p>
@@ -47,15 +48,21 @@ const SpotBrowser = () => {
                         <p>---------------------</p>
 
                     </div>
-                
 
-            ))
+
+                ))}
+
+            </>
+
+
+
+
         )
     }
 
     return (
         <>
-            <h1>Error</h1>
+            <h1>Loading</h1>
         </>
 
     )

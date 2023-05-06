@@ -5,7 +5,9 @@ import ProfileButton from './ProfileButton';
 import './Navigation.css';
 
 function Navigation({ isLoaded }){
+  // console.log (isLoaded) 
   const sessionUser = useSelector(state => state.session.user);
+  // console.log (session)
 
   return (
     <ul>
@@ -13,9 +15,13 @@ function Navigation({ isLoaded }){
         <NavLink exact to="/">Home</NavLink>
       </li>
       {isLoaded && (
+        <>
         <li>
           <ProfileButton user={sessionUser} />
         </li>
+        
+        </>
+        
       )}
     </ul>
   );

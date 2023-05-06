@@ -6,6 +6,9 @@ import * as sessionActions from "./store/session";
 import SignupFormPage from "./components/SignupFormModal";
 import Navigation from './components/Navigation'
 import SpotBrowser from "./components/Spots";
+import SpotDetail from "./components/Spots/SpotDetail";
+import CreateSpotForm from "./components/Spots/CreateSpot";
+import ManageSpotsFunction from "./components/Spots/ManageSpots";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,6 +22,9 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && <Switch>
         <Route exact path='/'><SpotBrowser /></Route>
+        <Route exact path = '/spots/current'> <ManageSpotsFunction /> </Route>
+        <Route exact path ='/spots/add/newspot'> <CreateSpotForm /></Route> 
+        <Route exact path='/spots/:spotId'> <SpotDetail /></Route>
         </Switch>}
     </>
   );
