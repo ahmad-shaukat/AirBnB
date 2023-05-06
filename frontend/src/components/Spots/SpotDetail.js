@@ -10,7 +10,11 @@ import { SpotReviews } from '../../store/reviews'
 const SpotDetail = () => {
     const dispatch = useDispatch()
     const { spotId } = useParams()
+    console.log (spotId)
+    
+    // const spot = useSelector(state => state.spots[spotId])
     const spot = useSelector(state => state.spots[spotId])
+    console.log (spot)
     const reviews = useSelector(state => state.reviews.list.Reviews)
     // console.log(reviews[0].id, '---------------------------reviews')
 
@@ -23,6 +27,7 @@ const SpotDetail = () => {
         dispatch(getSingleSpot(spotId))
         dispatch(SpotReviews(spotId))
     }, [dispatch])
+    console.log (spot, spot.Owner)
 
     if (spot && spot.Owner) {
         let allSpotReviews;

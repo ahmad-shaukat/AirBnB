@@ -48,10 +48,11 @@ const CreateSpotForm = () => {
             price
 
         }
-        console.log (spot)
+        // console.log (spot)
         try {
                let createdSpot = await dispatch(CreateSpot(spot))
         if (createdSpot) {
+            console.log (createdSpot.id, '----------------------')
             history.push(`/spots/${createdSpot.id}`)
         }
         } catch (error) {

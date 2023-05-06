@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { UserSpots } from "../../store/spots";
 import EditSpotForm from './EditSpot';
+import { RemoveSpot } from '../../store/spots';
 
 const ManageSpotsFunction = () => {
     // const [showEditSpotForm, setShowEditSpotForm] = useState(false)
@@ -11,8 +12,8 @@ const ManageSpotsFunction = () => {
     const [editSpot, setEditSpot] = useState(null)
     const dispatch = useDispatch()
     const userSpots = useSelector(state => {
-        return state.spots.list.Spots
-    })
+        return state.spots.list
+    }).Spots
     console.log(userSpots)
     useEffect(() => {
         console.log('hello')
@@ -21,6 +22,10 @@ const ManageSpotsFunction = () => {
 
 
     }, [dispatch])
+    const onDeleteHandle = (spotId) => {
+        
+        dispatch(RemoveSpot(spotId))
+    } 
     let content = null
 
     if (editSpotId && editSpot && showEditSpotForm) {
@@ -40,7 +45,7 @@ const ManageSpotsFunction = () => {
                             <h5>stars {spot.avgRating}</h5>
                             <h5>${spot.price} night</h5>
                         </NavLink>
-                        <button type='button'>Delete</button>
+                        <button type='button' onClick={() => onDeleteHandle(spot.id)}>Delete</button>
                         {/* <EditSpotForm spot={editSpot} spotId={editSpotId} /> */}
                         <button onClick={() => {
                             setEditSpot(spot)

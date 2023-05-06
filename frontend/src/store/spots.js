@@ -4,6 +4,7 @@ const ADD_ONE = 'spots/ADD_ONE'
 const CREATE_SPOT = 'spots/CREATE_SPOT'
 const GET_USER_SPOTS = 'spots/GET_USER_SPOTS'
 const EDIT_SPOT = 'spots/EDIT_SPOT'
+const REMOVE_SPOT = 'spots/REMOVE_SPOT'
 
 const initalState = {
     list:[],
@@ -43,6 +44,12 @@ const getUserSpots = list => ({
 const editSpot = spot => ({
   type:EDIT_SPOT,
   spot
+})
+
+//action for removing spot
+const remove = (spotId) => ({
+  type:REMOVE_SPOT,
+  spotId
 })
 
 // thunk for getting all spots 
@@ -106,6 +113,19 @@ export const EditSpot = (spot, id) => async dispatch => {
   }
 }
 
+// Thunk for removing spot
+export const RemoveSpot = (spotId) => async dispatch => {
+  const response = await csrfFetch(`/api/spots/${spotId}`, {
+    method:'DELETE',
+    headers:{
+      'Content-Type':'application/json'
+    }
+  })
+  if (response.ok) {
+    dispatch(remove(spotId))
+  }
+}
+
 
 
 
@@ -129,9 +149,11 @@ const spotsReducer = (state = initalState, action) => {
               ...state, 
               [action.spot.id]:action.spot
             }
-            const spotList = newState.list.map(id =>newState[id]);
+            console.log (newState)
+            const spotList = newState.spots.map(id =>newState[id]);
             spotList.push(action.spot)
             newState.list = spotList
+            console.log (newState)
             return newState
           }
           return {
@@ -139,6 +161,10 @@ const spotsReducer = (state = initalState, action) => {
               ...state[action.spot.id], ...action.spot
             }
           }
+        case CREATE_SPOT: {
+          const newState = {...state, [action.spot.id]:action.spot}
+          return newState
+        }
         case GET_USER_SPOTS:
           // console.log (action.list)
           const userSpots = {}
@@ -156,7 +182,12 @@ const spotsReducer = (state = initalState, action) => {
           newState = {...state}
           newState[action.spot.id] = action.pokemon
           return newState
-        default:
+        case REMOVE_SPOT:
+          const removeSpotState = {...state};
+          delete removeSpotState[action.spotId];
+          return removeSpotState
+        
+          default:   
       return state;
     }
 }
