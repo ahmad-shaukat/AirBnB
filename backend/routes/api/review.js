@@ -1,6 +1,6 @@
 const express = require('express');
 const { check } = require('express-validator');
-const { restoreUser } = require('../../utils/auth');
+const { restoreUser, requireAuth } = require('../../utils/auth');
 const { Spot, Review, SpotImage, User, ReviewImage, sequelize } = require('../../db/models')
 const router = express.Router();
 const { Sequelize, fn, literal, col, EmptyResultError } = require('sequelize');
@@ -223,7 +223,7 @@ router.put('/:reviewId', restoreUser, reviewEditValidations, async (req, res) =>
 })
 
 
-router.delete('/:reviewId', restoreUser, async (req, res) => {
+router.delete('/:reviewId',requireAuth , async (req, res) => {
     let reviewId = req.params.reviewId
     let deleteReview = await Review.findByPk(reviewId)
     if (!deleteReview) {

@@ -23,18 +23,21 @@ function LoginFormModal() {
     return dispatch(sessionActions.login({ credential, password }))
       .then(closeModal)
       .catch(async (res) => {
+        
         const data = await res.json();
+        console.log (errors)
         if (data && data.errors) setErrors(data.errors);
         console.log (errors, '--------------')
+        
        
       });
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul>
+     {Object.keys(errors).map((key) => (
+                    <li key={key}>{errors[key]}</li>
+                ))}
       <label>
         Username or Email
         <input

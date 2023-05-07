@@ -728,7 +728,8 @@ router.post('/:spotId/images', restoreUser, async (req, res) => {
 
 
 // create a review for a spot based on spots id
-router.post('/:spotId/reviews', restoreUser, reviewValidations, async (req, res) => {
+router.post('/:spotId/reviews', requireAuth, reviewValidations, async (req, res) => {
+  console.log (req.param, '---------params------------')
   const { Op } = require('sequelize')
   let userId = req.user.dataValues.id
   const spotId = Number(req.params.spotId)
