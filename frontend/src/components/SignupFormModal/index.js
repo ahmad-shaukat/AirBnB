@@ -9,7 +9,7 @@ import { Redirect } from "react-router-dom";
 const SignupFormPage = () => {
     const dispatch = useDispatch()
     const sessionUser = useSelector((state) => state.session.user)
-    const [userName, setUsername] = useState('')
+    const [userName, setUserName] = useState('')
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
@@ -81,7 +81,7 @@ const SignupFormPage = () => {
             </div>
             <div>
                 <label>Username:
-                    <input type="text" name="userName" onChange={(e) => setUsername(e.target.value)}></input>
+                    <input type="text" name="userName" onChange={(e) => setUserName(e.target.value)}></input>
                 </label>
             </div>
             <div>

@@ -9,7 +9,7 @@ function SignupFormPage() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
+  const [userName, setUserName] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [password, setPassword] = useState("");
@@ -27,7 +27,7 @@ function SignupFormPage() {
       return dispatch(
         sessionActions.signup({
           email,
-          username,
+          userName,
           firstName,
           lastName,
           password,
@@ -64,12 +64,12 @@ function SignupFormPage() {
           Username
           <input
             type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
             required
           />
         </label>
-        {errors.username && <p>{errors.username}</p>}
+        {errors.userName && <p>{errors.userName}</p>}
         <label>
           First Name
           <input

@@ -14,40 +14,40 @@ module.exports = {
         email: 'demo@user.io',
         firstName: 'demo',
         lastName: 'user',
-        username: 'Demo-lition',
+        userName: 'Demo-lition',
         hashedPassword: bcrypt.hashSync('password')
       },
       {
         email: 'user1@user.io',
         firstName: 'user',
         lastName: 'fake',
-        username: 'FakeUser1',
+        userName: 'FakeUser1',
         hashedPassword: bcrypt.hashSync('password2')
       },
       {
         email: 'user2@user.io',
-        username: 'FakeUser2',
+        userName: 'FakeUser2',
         firstName: 'user2',
         lastName: 'fake2',
         hashedPassword: bcrypt.hashSync('password3')
       },
       {
         email: 'user3@user.io',
-        username: 'FakeUser3',
+        userName: 'FakeUser3',
         firstName: 'user3',
         lastName: 'fake3',
         hashedPassword: bcrypt.hashSync('password4')
       },
       {
         email: 'user4@user.io',
-        username: 'FakeUser4',
+        userName: 'FakeUser4',
         firstName: 'user4',
         lastName: 'fake4',
         hashedPassword: bcrypt.hashSync('password5')
       },
       {
         email: 'user5@user.io',
-        username: 'FakeUser5',
+        userName: 'FakeUser5',
         firstName: 'user5',
         lastName: 'fake5',
         hashedPassword: bcrypt.hashSync('password6')
