@@ -22,17 +22,55 @@ const SpotDetail = () => {
     const [errors, setErrors] = useState([]);
     const [deleteReviewId, setDeleteReviewId] = useState(null)
 
-    
+
     // these Two function handle the opeaning and closing of Review Form.
-    
+
     const dispatch = useDispatch()
     const { spotId } = useParams()
-    
+
     const current = useSelector(state => state.session.user)
     const spot = useSelector(state => state.spots[spotId])
-    
-    
+
+
     const reviews = useSelector(state => state.reviews.list.Reviews)
+
+
+    let showReview = false
+
+
+    if (reviews) {
+        // console.log(reviews.length, '-------------------------------------------')
+        // console.log (current)
+
+        if (reviews.length) {
+            // console.log(reviews.length, '---------this is the length--------')
+            if (reviews.length > 0) {
+                showReview = true
+            }
+        }
+    }
+
+
+    // if (reviews.length < 0) {
+    //     showReview = true
+
+    // }
+    let showFirstReviewButton = false
+
+    if (current) {
+        // console.log (current.id, '------------------userId------')
+        if (current.id !== spot.ownerId) {
+            showFirstReviewButton = true
+        }
+    }
+    // console.log (spot.ownerId, '---------------spotOwnerId----------------')
+
+
+
+
+
+    // console.log(reviews, '---------------')
+    // console.log (typeof reviews)
     useEffect(() => {
         dispatch(getSingleSpot(spotId))
         dispatch(SpotReviews(spotId))
@@ -57,8 +95,8 @@ const SpotDetail = () => {
         // console.log(payload, '-------------------this is payload')
 
         try {
-            let newCreatedReview = await 
-            dispatch(CreateReview(payload, spotId))
+            let newCreatedReview = await
+                dispatch(CreateReview(payload, spotId))
             dispatch(getSingleSpot(spotId))
             dispatch(SpotReviews(spotId))
             handleCloseModal()
@@ -90,7 +128,7 @@ const SpotDetail = () => {
 
 
     let content = null
-   
+
     // Modal for delete 
 
 
@@ -132,13 +170,17 @@ const SpotDetail = () => {
         // here we check if the current user ownes the spot and if not do they already have a review for this spot. if any correct the post review button will stay hidden. 
         for (let key in reviews) {
 
-            if (current.id === reviews[key].User.id || current.id === spot.ownerId) {
+            if (current.id === reviews[key].User.id) {
+                console.log (current.id, '------------------userId')
                 // console.log(reviews[key].User.id, '----reviews user Id------')
                 content = null
 
             }
 
 
+        }
+        if (current.id === spot.ownerId) {
+            content = null
         }
 
     }
@@ -152,6 +194,7 @@ const SpotDetail = () => {
 
     if (spot && spot.Owner) {
         let allSpotReviews;
+        let showRating
         if (reviews) {
             const allSpotReviews = [...reviews]
         } else {
@@ -159,12 +202,24 @@ const SpotDetail = () => {
         }
         let reviewWord = ''
         function reviewPlural() {
+
             const totalReviews = spot.numReviews
             if (totalReviews > 1) { reviewWord = `· ${totalReviews} Reviews` }
             if (totalReviews === 1) { reviewWord = ' · 1 Review' }
 
-            if (!totalReviews || totalReviews === 0) { reviewWord = 'There are no reviews yet for this spot' }
+            if (!totalReviews || totalReviews === 0) {
+                reviewWord = 'New'
+            }
+
+            if (spot.avgRating > 1) {
+                showRating = spot.avgRating.toFixed(1)
+            }
+            if (spot.avgRating = 'New') {
+                showRating = ''
+            }
+
         }
+
 
 
         reviewPlural()
@@ -175,15 +230,18 @@ const SpotDetail = () => {
                     <h1>{spot.name}</h1>
                     <h2>Location: {spot.city}, {spot.state}, {spot.country}</h2>
                     <div>
-                        <div><img src={imageUrl} /></div>
+                        <div><img src={spot.previewImage} /></div>
                         <div style={{ display: 'inline-block', width: '30%' }}>
-                            <img src={imageUrl} alt="Small Image 1" style={{ maxWidth: '200px', maxHeight: '200px' }} />
+                            <img src={spot.previewImage} alt="Small Image 1" style={{ maxWidth: '200px', maxHeight: '200px' }} />
                         </div>
                         <div style={{ display: 'inline-block', width: '30%', height: '10%' }}>
-                            <img src={imageUrl} alt="Small Image 2" style={{ maxWidth: '200px', maxHeight: '200px' }} />
+                            <img src={spot.previewImage} alt="Small Image 2" style={{ maxWidth: '200px', maxHeight: '200px' }} />
                         </div>
                         <div style={{ display: 'inline-block', width: '30%', height: '10%' }}>
-                            <img src={imageUrl} alt="Small Image 3" style={{ maxWidth: '200px', maxHeight: '200px' }} />
+                            <img src={spot.previewImage} alt="Small Image 3" style={{ maxWidth: '200px', maxHeight: '200px' }} />
+                        </div>
+                        <div style={{ display: 'inline-block', width: '30%', height: '10%' }}>
+                            <img src={spot.previewImage} alt="Small Image 3" style={{ maxWidth: '200px', maxHeight: '200px' }} />
                         </div>
 
                     </div>
@@ -191,25 +249,28 @@ const SpotDetail = () => {
                     <p>{spot.description}</p>
                     <div>
                         <p>${spot.price} night</p>
+                        <p>stars {showRating}</p>
                         <p>{reviewWord}</p>
-                        <p>stars {Math.ceil(spot.avgStarRating * 100) / 100}</p>
                         <button onClick={comingSoon}>Reserve</button>
                     </div>
-                    <p>-------------------------Reviews-----------------------------</p>
+                    <p>-------------------------Reviews and Rating Info-----------------------------</p>
 
 
                 </div>
                 <div>
                     <p>${spot.price} night</p>
                     <p>{reviewWord}</p>
-                    <p>stars {spot.avgStarRating}</p>
+                    <p>stars {showRating}</p>
                 </div>
 
+                <p>------------------------------Reviews--------------------------------------------</p>
+
                 {content}
-               
 
 
-                {reviews ? (
+
+
+                {showReview ? (
                     // console.log (reviews[0])
                     reviews
                         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
@@ -218,68 +279,72 @@ const SpotDetail = () => {
                             const date = new Date(review.createdAt);
                             const options = { month: 'long', year: 'numeric' };
                             const formattedDate = date.toLocaleString('en-US', options);
-                            console.log (reviewToBeDelete, '----------this is before-----')
+                            // console.log (reviewToBeDelete, '----------this is before-----')
                             // console.log (review, '-------------------------')
                             if (current && current.id === review.User.id) {
                                 reviewToBeDelete = review.id
                                 // console.log (reviewUserId, '-------------')
                                 let thisIs = review.User.id
                                 // console.log (thisIs)
-                                
-                                   
-                                function onDeleteHandle () {
+
+
+                                function onDeleteHandle() {
                                     // setDeleteReviewId(review.id)
                                     // console.log (deleteReviewId, '-------------')
                                     // console.log (thisIs, '---this is user----')
-                                     dispatch(DeleteReview(reviewToBeDelete))
-                                     dispatch(getSingleSpot(spotId))
-                                     dispatch(SpotReviews(spotId))
-                                     handleCloseModal()
+                                    dispatch(DeleteReview(reviewToBeDelete))
+                                    dispatch(getSingleSpot(spotId))
+                                    dispatch(SpotReviews(spotId))
+                                    handleCloseModal()
 
                                 }
-                                
+
                                 // console.log (review.User.id, '---------------------------')  console.log ('hello')       
                                 // reviewToBeDelete = review.User.id
                                 // console.log (reviewToBeDelete, '--------this is after----')
                                 // setDeleteReviewId(review.User.id)
-                                   deleteReview =  <>
-                                   <div>
-                                       <button onClick={handleShowModal}>Delete</button>
-                                       <DeleteReviewModal show={showModal} handleClose={handleCloseModal}>
-                                           <>
-                               
-                                               <h1>Confirm Delete</h1>
-                               
-                                               <h5>Are you sure you want to delete this review</h5>
-                               
-                                               <button style={{backgroundColor: 'red', color: 'white'}} onClick={onDeleteHandle}>Delete</button>
-                                           </>
-                                       </DeleteReviewModal>
-                                   </div>
-                               </>
-                            }
-                            
-                            return (
-                                <> 
-                                
-                                
-                                 <div key={review.id}>
-                                    <h3>{review.User.firstName}</h3>
-                                    <p>{formattedDate}</p>
-                                    <p>{review.review}</p>
+                                deleteReview = <>
                                     <div>
-                                    {deleteReview}
+                                        <button onClick={handleShowModal}>Delete</button>
+                                        <DeleteReviewModal show={showModal} handleClose={handleCloseModal}>
+                                            <>
+
+                                                <h1>Confirm Delete</h1>
+
+                                                <h5>Are you sure you want to delete this review</h5>
+
+                                                <button style={{ backgroundColor: 'red', color: 'white' }} onClick={onDeleteHandle}>Delete</button>
+                                            </>
+                                        </DeleteReviewModal>
                                     </div>
-                                </div>
-                                
                                 </>
-                               
-                               );
-                               
-                            })
-                            ) : (
-                                <p>No review found</p>
-                                )}
+                            }
+
+                            return (
+                                <>
+
+
+                                    <div key={review.id}>
+                                        <h3>{review.User.firstName}</h3>
+                                        <p>{formattedDate}</p>
+                                        <p>{review.review}</p>
+                                        <div>
+                                            {deleteReview}
+                                        </div>
+                                    </div>
+
+                                </>
+
+                            );
+
+                        })
+                ) : (<>
+                    {showFirstReviewButton ? (
+                        <p>Be the first to post a review</p>
+                    ) : null}
+                    
+                </>
+                )}
             </>
 
 
