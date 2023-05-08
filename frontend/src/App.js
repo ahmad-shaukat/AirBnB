@@ -9,7 +9,7 @@ import SpotBrowser from "./components/Spots";
 import SpotDetail from "./components/Spots/SpotDetail";
 import CreateSpotForm from "./components/Spots/CreateSpot";
 import ManageSpotsFunction from "./components/Spots/ManageSpots";
-import MainComponent from "./components/PostReview";
+import MainComponent from "./components/Modals";
 
 function App() {
   const dispatch = useDispatch();

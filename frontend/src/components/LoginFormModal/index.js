@@ -32,8 +32,13 @@ function LoginFormModal() {
        
       });
   }
+  const demoHandle = (e) => {
+    e.preventDefault()
+    return dispatch(sessionActions.login({credential:'Demo-lition', password:'password'})).then(closeModal)
+  }
 
   return (
+    <>
     <form onSubmit={handleSubmit}>
      {Object.keys(errors).map((key) => (
                     <li key={key}>{errors[key]}</li>
@@ -57,7 +62,13 @@ function LoginFormModal() {
         />
       </label>
       <button type="submit">Log In</button>
+      
     </form>
+    <div>
+      <button type = 'button' style={{background:'green'}} onClick={demoHandle}>DemoUser</button>
+
+    </div>
+    </>
   );
 }
 

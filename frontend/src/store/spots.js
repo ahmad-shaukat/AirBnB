@@ -58,6 +58,7 @@ export const getAllSpots = () => async dispatch => {
   if (response.ok) {
     const list = await response.json()
     dispatch(load(list))
+    // console.log(list, '-----------this is list---')
   }
 }
 
@@ -88,7 +89,7 @@ export const CreateSpot = (newSpot) => async dispatch => {
       let imageInfo = {}
       if (newSpot.images[i].length > 0) {
         imageInfo.url = newSpot.images[i]
-        if (i == 0) {
+        if (i === 0) {
           imageInfo.preview = true
           
         } else {
@@ -112,7 +113,7 @@ export const CreateSpot = (newSpot) => async dispatch => {
 // Thunk for getting all spots that belongs to user
 
 export const UserSpots = () => async dispatch => {
-  const response = await fetch('/api/spots/current')
+  const response = await csrfFetch('/api/spots/current')
   if (response.ok) {
     const userSpots = await response.json()
     dispatch(getUserSpots(userSpots))
@@ -155,7 +156,7 @@ export const RemoveSpot = (spotId) => async dispatch => {
 const spotsReducer = (state = initalState, action) => {
   switch (action.type) {
     case LOAD:
-      // console.log (action.list.Spots)
+      console.log (action.list, '----------------list of spots-----')
       const allSpots = {};
       action.list.Spots.forEach(spot => {
         allSpots[spot.id] = spot;
@@ -165,24 +166,13 @@ const spotsReducer = (state = initalState, action) => {
         ...state,
         list: (action.list)
       }
-    case ADD_ONE:
-      if (!state[action.spot.id]) {
-        const newState = {
-          ...state,
-          [action.spot.id]: action.spot
-        }
-        console.log(newState)
-        const spotList = newState.spots.map(id => newState[id]);
-        spotList.push(action.spot)
-        newState.list = spotList
-        console.log(newState)
-        return newState
-      }
-      return {
-        ...state, [action.spot.id]: {
-          ...state[action.spot.id], ...action.spot
-        }
-      }
+    case ADD_ONE:{
+      const singleSpotState = {}
+    singleSpotState[action.spot.id] = action.spot
+    console.log (singleSpotState, '---------------------')
+    return singleSpotState
+    }
+      
     case CREATE_SPOT: {
       const newState = { ...state, [action.spot.id]: action.spot }
       return newState

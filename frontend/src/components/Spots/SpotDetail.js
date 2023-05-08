@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { getSingleSpot } from '../../store/spots'
 import { SpotReviews } from '../../store/reviews'
-import PostReviewModal from '../PostReview/PostReviewModal'
+import PostReviewModal from '../Modals/PostReviewModal'
 import { CreateReview } from '../../store/reviews'
-import DeleteReviewModal from '../PostReview/DeleteReview'
+import DeleteReviewModal from '../Modals/DeleteReview'
 import { DeleteReview } from '../../store/reviews'
 // import { set } from '../../../../backend/app'
 // import AddReviewModal from '../PostReview'
@@ -30,45 +30,34 @@ const SpotDetail = () => {
     const { spotId } = useParams()
 
     const current = useSelector(state => state.session.user)
+    const detailState = useSelector(state => state)
+    // console.log (detailState, '----------------------detail state')
     const spot = useSelector(state => state.spots[spotId])
+    console.log (spot, '------------this is spot')
 
 
     const reviews = useSelector(state => state.reviews.list.Reviews)
 
 
+    useEffect(() => {
+        dispatch(getSingleSpot(spotId))
+        dispatch(SpotReviews(spotId))
+    }, [dispatch])
     let showReview = false
-    console.log(spot, '-----------------------')
-    // getting all the spot images 
-    // if (spot) {
-    //     let allSpotImages = []
-    //     for (let images of spot.SpotImages) {
-    // console.log (images)
-
-    //     }
-
-    // }
-
-
+    
     if (reviews) {
-        // console.log(reviews.length, '-------------------------------------------')
-        // console.log (current)
 
         if (reviews.length) {
-            // console.log(reviews.length, '---------this is the length--------')
             if (reviews.length > 0) {
                 showReview = true
             }
         }
     }
 
-
-    // if (reviews.length < 0) {
-    //     showReview = true
-
-    // }
     let showFirstReviewButton = false
+    // console.log (spot)
 
-    if (current) {
+    if (current && spot) {
         // console.log (current.id, '------------------userId------')
         if (current.id !== spot.ownerId) {
             showFirstReviewButton = true
@@ -82,10 +71,6 @@ const SpotDetail = () => {
 
     // console.log(reviews, '---------------')
     // console.log (typeof reviews)
-    useEffect(() => {
-        dispatch(getSingleSpot(spotId))
-        dispatch(SpotReviews(spotId))
-    }, [dispatch])
     const handleShowModal = () => {
         setShowModal(true);
     }
@@ -146,7 +131,7 @@ const SpotDetail = () => {
 
 
     // here we add Modal to the current as a default value if a user is logged in
-    if (current) {
+    if (current && spot) {
         content = <>
             <div>
                 <button onClick={handleShowModal}>Post your review</button>
@@ -182,7 +167,7 @@ const SpotDetail = () => {
         for (let key in reviews) {
 
             if (current.id === reviews[key].User.id) {
-                console.log(current.id, '------------------userId')
+                // console.log(current.id, '------------------userId')
                 // console.log(reviews[key].User.id, '----reviews user Id------')
                 content = null
 

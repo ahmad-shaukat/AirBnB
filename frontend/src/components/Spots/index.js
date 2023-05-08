@@ -10,8 +10,13 @@ const SpotBrowser = () => {
 
     const dispatch = useDispatch()
     const allSpots = useSelector(state => {
-        return state.spots.list.Spots;
+
+        
+        return state.spots?.list?.Spots;
+
+        
     });
+    
 
     // console.log (typeof allSpots)
     // console.log (allSpots)
@@ -21,13 +26,18 @@ const SpotBrowser = () => {
         dispatch(getAllSpots())
 
     }, [dispatch])
+    // let allSpots;
+    
+    // if (spots && spots.Spots)  {
+    //     let allSpots = spots.Spots
+    // }
 
     if (allSpots) {
         for (let items of allSpots) {
             
             if (!items['avgRating']) items['avgRating'] = 'New'
         }
-        console.log(allSpots, '---------')
+        
 
 
         return (
