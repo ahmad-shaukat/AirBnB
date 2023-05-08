@@ -10,6 +10,7 @@ import DeleteReviewModal from '../PostReview/DeleteReview'
 import { DeleteReview } from '../../store/reviews'
 // import { set } from '../../../../backend/app'
 // import AddReviewModal from '../PostReview'
+// const 
 
 
 //reviews plural
@@ -36,6 +37,16 @@ const SpotDetail = () => {
 
 
     let showReview = false
+    console.log(spot, '-----------------------')
+    // getting all the spot images 
+    // if (spot) {
+    //     let allSpotImages = []
+    //     for (let images of spot.SpotImages) {
+    // console.log (images)
+
+    //     }
+
+    // }
 
 
     if (reviews) {
@@ -171,7 +182,7 @@ const SpotDetail = () => {
         for (let key in reviews) {
 
             if (current.id === reviews[key].User.id) {
-                console.log (current.id, '------------------userId')
+                console.log(current.id, '------------------userId')
                 // console.log(reviews[key].User.id, '----reviews user Id------')
                 content = null
 
@@ -230,19 +241,23 @@ const SpotDetail = () => {
                     <h1>{spot.name}</h1>
                     <h2>Location: {spot.city}, {spot.state}, {spot.country}</h2>
                     <div>
-                        <div><img src={spot.previewImage} /></div>
-                        <div style={{ display: 'inline-block', width: '30%' }}>
-                            <img src={spot.previewImage} alt="Small Image 1" style={{ maxWidth: '200px', maxHeight: '200px' }} />
-                        </div>
-                        <div style={{ display: 'inline-block', width: '30%', height: '10%' }}>
-                            <img src={spot.previewImage} alt="Small Image 2" style={{ maxWidth: '200px', maxHeight: '200px' }} />
-                        </div>
-                        <div style={{ display: 'inline-block', width: '30%', height: '10%' }}>
-                            <img src={spot.previewImage} alt="Small Image 3" style={{ maxWidth: '200px', maxHeight: '200px' }} />
-                        </div>
-                        <div style={{ display: 'inline-block', width: '30%', height: '10%' }}>
-                            <img src={spot.previewImage} alt="Small Image 3" style={{ maxWidth: '200px', maxHeight: '200px' }} />
-                        </div>
+                        {spot.SpotImages.map((image, index) => {
+                            if (image.url && image.preview) {
+                                return (
+
+                                    <img src={image.url} />
+                                )
+                            }
+                            // Only show images if they have a URL
+                            if (image.url && !image.preview) {
+                                return (
+
+                                    <img src={image.url}></img>
+                                );
+                            } else {
+                                return null;
+                            }
+                        })}
 
                     </div>
                     <h3>Hosted by: {spot.Owner.firstName}, {spot.Owner.lastName}</h3>
@@ -342,7 +357,7 @@ const SpotDetail = () => {
                     {showFirstReviewButton ? (
                         <p>Be the first to post a review</p>
                     ) : null}
-                    
+
                 </>
                 )}
             </>

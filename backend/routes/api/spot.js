@@ -691,7 +691,7 @@ router.delete('/:spotId', requireAuth, async (req, res) => {
 
 
 
-router.post('/:spotId/images', restoreUser, async (req, res) => {
+router.post('/:spotId/images', requireAuth, async (req, res) => {
   let { url, preview } = req.body
   // console.log (req.user)
   const userId = req.user.dataValues.id

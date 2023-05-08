@@ -27,7 +27,7 @@ const SpotBrowser = () => {
             
             if (!items['avgRating']) items['avgRating'] = 'New'
         }
-        // console.log(allSpots, '---------')
+        console.log(allSpots, '---------')
 
 
         return (
@@ -38,6 +38,8 @@ const SpotBrowser = () => {
 
                     <div key={spot.id}>
                         <NavLink to={`/spots/${spot.id}`}>
+                            
+                            
                             <img src={spot.previewImage} />
                             <div>
                                 <p>{spot.city}, {spot.state}</p>

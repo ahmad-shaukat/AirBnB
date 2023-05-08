@@ -25,6 +25,7 @@ const ManageSpotsFunction = () => {
     const onDeleteHandle = (spotId) => {
         
         dispatch(RemoveSpot(spotId))
+        dispatch(UserSpots())
     } 
     let content = null
 
@@ -74,32 +75,7 @@ if (userSpots) {
             {content}
         </div>
         // <>
-        //     <h1>Manage Spots</h1>
-
-        //     {userSpots.map((spot) => (
-        //         <NavLink to={`/spots/${spot.id}`}>
-
-        //             <div key={spot.key}>
-        //                 <h4>Image goes Here</h4>
-        //                 <h5>{spot.city}, {spot.state}</h5>
-        //                 <h5>stars {spot.avgRating}</h5>
-        //                 <h5>${spot.price} night</h5>
-        //                 <button type='button'>Delete</button>
-        //                 <NavLink>
-        //                     <EditSpotForm spot={spot} />
-        //                     <button onClick={() => {
-        //                         setEditSpot(spot)
-        //                         setEditSpotId(spot.id)
-        //                     }} >Edit</button>
-        //                 </NavLink>
-
-        //             </div>
-        //         </NavLink>
-
-        //     ))
-
-        //     }
-        // </>\
+ 
     )
 
 } else {
