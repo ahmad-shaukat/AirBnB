@@ -48,10 +48,8 @@ const EditSpotForm = ({ spot, hideForm  }) => {
             lat,
             name
         }
-        console.log (payload)
         let updatedSpot = await 
         dispatch(EditSpot(payload, spot.id))
-        console.log ('after the dispatch')
         if (updatedSpot) {
             history.push(`/spots/${spot.id}`)
             hideForm();

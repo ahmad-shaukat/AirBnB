@@ -45,7 +45,6 @@ const ManageSpotsFunction = () => {
         )
     } else {
         if (userSpots) {
-            console.log (userSpots, '-----------------')
             content = (
             <>
                 <h1>Manage Spots</h1>

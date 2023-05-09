@@ -15,7 +15,7 @@ const { validationResult } = require('express-validator');
 const handleValidationErrors = (req, res, next) => {
 
   const validationErrors = validationResult(req);
-  console.log (validationErrors)
+  // console.log (validationErrors)
 
   if (!validationErrors.isEmpty()) {
 
@@ -238,7 +238,7 @@ router.get('/', restoreUser, queryValidations, async (req, res) => {
 
 
   const allSpots = await Spot.findAll(options);
-  console.log (allSpots)
+  // console.log (allSpots)
   allSpots.forEach(spots => {         
     const spotImages = []
   
@@ -389,7 +389,7 @@ router.get('/current',
       spotObj.Spots.push(spots.dataValues)
     })
     res.status(200).json(spotObj)
-    console.log (spotObj)
+    // console.log (spotObj)
   })
 
 
@@ -599,11 +599,11 @@ async (req, res) => {
 
 
 router.post('/', requireAuth, ValidationSpot, async (req, res) => {
-  console.log (res.body)
+  // console.log (res.body)
   let { address, city, state, country, lat, lng, name, description, price } = req.body
   let ownerId = req.user.dataValues.id
   // console.log (userId)
-  console.log (typeof lat, '-------------------')
+  // console.log (typeof lat, '-------------------')
 
   const newSpot = await Spot.create({
     ownerId, address, city, state, country, lat, lng, name, description, price,
@@ -730,7 +730,7 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
 
 // create a review for a spot based on spots id
 router.post('/:spotId/reviews', requireAuth, reviewValidations, async (req, res) => {
-  console.log (req.param, '---------params------------')
+  // console.log (req.param, '---------params------------')
   const { Op } = require('sequelize')
   let userId = req.user.dataValues.id
   const spotId = Number(req.params.spotId)
