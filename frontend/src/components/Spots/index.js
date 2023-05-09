@@ -10,8 +10,13 @@ const SpotBrowser = () => {
 
     const dispatch = useDispatch()
     const allSpots = useSelector(state => {
-        return state.spots.list.Spots;
+
+        
+        return state.spots?.list?.Spots;
+
+        
     });
+    
 
     // console.log (typeof allSpots)
     // console.log (allSpots)
@@ -21,31 +26,40 @@ const SpotBrowser = () => {
         dispatch(getAllSpots())
 
     }, [dispatch])
+    // let allSpots;
+    
+    // if (spots && spots.Spots)  {
+    //     let allSpots = spots.Spots
+    // }
 
     if (allSpots) {
         for (let items of allSpots) {
-            if (!items['avgRating']) items['avgRaing'] = 'New'
+            
+            if (!items['avgRating']) items['avgRating'] = 'New'
         }
-        // console.log(allSpots, '---------')
+        
 
 
         return (
 
             <>
                 {allSpots.map((spot) => (
+                    // console.log (spot, '-------------------')
 
                     <div key={spot.id}>
                         <NavLink to={`/spots/${spot.id}`}>
-                            <p>Image goes here</p>
+                            
+                            
+                            <img src={spot.previewImage} />
                             <div>
                                 <p>{spot.city}, {spot.state}</p>
                                 <p></p>
 
-                                <p>Price: {spot.price} Night</p>
+                                <p>${spot.price} Night</p>
                                 <p>Average Rating: {spot.avgRating}</p>
                             </div>
                         </NavLink>
-                        <p>---------------------</p>
+                        
 
                     </div>
 

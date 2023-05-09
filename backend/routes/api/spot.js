@@ -56,14 +56,14 @@ const ValidationSpot = [
     .exists({ checkFalsy: true })
     .withMessage('Longitude is required'),
   check('name')
-    .exists({ checkFalsy: true })
-    .withMessage('Name is required'),
+  .exists({ checkFalsy: true })
+  .withMessage('Name is required'),
   check('description')
-    .exists({ checkFalsy: true })
-    .withMessage('Description is required'),
+  .exists({ checkFalsy: true })
+  .withMessage('Description is required'),
   check('price')
-    .exists({ checkFalsy: true })
-    .withMessage('Price is required'),
+  .exists({ checkFalsy: true })
+  .withMessage('Price is required'),
   handleValidationErrors
 ]
 
@@ -71,12 +71,12 @@ const ValidationSpot = [
 
 const reviewValidations = [
   check('review')
-    .exists({ checkFalsy: true })
-    .withMessage('Review text is required'),
+  .exists({ checkFalsy: true })
+  .withMessage('Review text is required'),
   check('stars')
-    .exists({ checkFalsy: true })
-    .isIn([1, 2, 3, 4, 5])
-    .withMessage('Stars must be an integer from 1 to 5'),
+  .exists({ checkFalsy: true })
+  .isIn([1, 2, 3, 4, 5])
+  .withMessage('Stars must be an integer from 1 to 5'),
   handleValidationErrors
 ]
 
@@ -148,9 +148,151 @@ const queryValidations = [
 ]
 
 
+router.get('/', restoreUser, queryValidations, async (req, res) => {
+  let { page, size, maxLat, minLat, minLng, maxLng, minPrice, maxPrice } = req.query
+  if (!page || page<1) page = 1
+  if (!size || size<1) size = 20
+  
+  
+
+  const limit = parseInt(size);
+
+  const offset = Number((parseInt(page) - 1) * limit)
+
+
+
+  const { Op } = require('sequelize')
+
+
+  const options = {
+
+
+    attributes: [
+      'id',
+      'ownerId',
+      'address',
+      'city',
+      'state',
+      'country',
+      'lat',
+      'lng',
+      'name',
+      'description',
+      'price',
+      'createdAt',
+      'updatedAt',
+    ],
+    include: [
+      {
+        model: Review,
+       
+      },
+      {
+        model: SpotImage,
+        
+      }
+    ],
+    
+    where: {
+
+    },
+    // limit: limit,
+    // offset: offset,
+
+  };
+  console.log(options.where)
+
+
+  if (minLat) {
+    options.where.lat = {
+      [Op.gte]: parseFloat(maxLat)
+    }
+  };
+  if (maxLat) {
+    options.where.lat = {
+      ...options.where.lat, [Op.lte]: parseFloat(maxLat)
+    }
+  };
+  if (minLng) {
+    options.where.lng = {
+      [Op.gte]: parseFloat(minLng)
+    }
+  };
+  if (maxLng) {
+    options.where.lng = {
+      ...options.where.lng, [Op.lte]: parseFloat(maxLng)
+    }
+  };
+  if (minPrice) {
+    options.where.price = {
+      [Op.gte]: Number(minPrice)
+    }
+    // console.log (options.where)
+  };
+  if (maxPrice) {
+    options.where.price = {
+      ...options.where.price, [Op.lte]: parseInt(maxPrice)
+    }
+  }
+
+
+
+  const allSpots = await Spot.findAll(options);
+  console.log (allSpots)
+  allSpots.forEach(spots => {         
+    const spotImages = []
+  
+
+    let allSpotImages = spots.dataValues.SpotImages 
+    const allReviews = spots.dataValues.Reviews 
+
+
+    let reviewSum = 0;
+    let reviewCount = 0;
+    allReviews.forEach(review => {
+      
+      reviewSum += review.dataValues.stars;
+      reviewCount++;
+    })
+
+    spots.dataValues['avgRating'] = reviewSum / reviewCount
+
+    allSpotImages.forEach(img => {       
+      spotImages.push(img.dataValues.url)
+    })
+   
+    let url= spotImages[0]
+   
+
+   
+    spots.dataValues['previewImage'] = url
+
+    
+    delete spots.dataValues.SpotImages
+    delete spots.dataValues.Reviews
+
+    
+    // spotObj.Spots.push(spots.dataValues)
+  })
+
+
+  allSpots.forEach(spot => {
+    if (spot.dataValues.avgRating === null) {
+      spot.dataValues.avgRating = 0;
+    }
+  });
+
+  res.status(200).json({
+    "Spots": allSpots,
+    // page,
+    // size
+  })
+
+})
+
 // router.get('/current', restoreUser, async (req, res) => {
-//   console.log(req.user.dataValues.id)
-//   const allSpots = await Spot.findAll({
+  //   console.log(req.user.dataValues.id)
+  //   const allSpots = await Spot.findAll({
 //     where: {
 //       ownerId: req.user.dataValues.id
 //     },
@@ -247,6 +389,7 @@ router.get('/current',
       spotObj.Spots.push(spots.dataValues)
     })
     res.status(200).json(spotObj)
+    console.log (spotObj)
   })
 
 
@@ -423,148 +566,6 @@ async (req, res) => {
 
 
 
-router.get('/', restoreUser, queryValidations, async (req, res) => {
-  let { page, size, maxLat, minLat, minLng, maxLng, minPrice, maxPrice } = req.query
-  if (!page || page<1) page = 1
-  if (!size || size<1) size = 20
-  
-  
-
-  const limit = parseInt(size);
-
-  const offset = Number((parseInt(page) - 1) * limit)
-
-
-
-  const { Op } = require('sequelize')
-
-
-  const options = {
-
-
-    attributes: [
-      'id',
-      'ownerId',
-      'address',
-      'city',
-      'state',
-      'country',
-      'lat',
-      'lng',
-      'name',
-      'description',
-      'price',
-      'createdAt',
-      'updatedAt',
-    ],
-    include: [
-      {
-        model: Review,
-       
-      },
-      {
-        model: SpotImage,
-        
-      }
-    ],
-    
-    where: {
-
-    },
-    limit: limit,
-    offset: offset,
-
-  };
-  console.log(options.where)
-
-
-  if (minLat) {
-    options.where.lat = {
-      [Op.gte]: parseFloat(maxLat)
-    }
-  };
-  if (maxLat) {
-    options.where.lat = {
-      ...options.where.lat, [Op.lte]: parseFloat(maxLat)
-    }
-  };
-  if (minLng) {
-    options.where.lng = {
-      [Op.gte]: parseFloat(minLng)
-    }
-  };
-  if (maxLng) {
-    options.where.lng = {
-      ...options.where.lng, [Op.lte]: parseFloat(maxLng)
-    }
-  };
-  if (minPrice) {
-    options.where.price = {
-      [Op.gte]: Number(minPrice)
-    }
-    // console.log (options.where)
-  };
-  if (maxPrice) {
-    options.where.price = {
-      ...options.where.price, [Op.lte]: parseInt(maxPrice)
-    }
-  }
-
-
-
-  const allSpots = await Spot.findAll(options);
-  console.log (allSpots)
-  allSpots.forEach(spots => {         
-    const spotImages = []
-  
-
-    let allSpotImages = spots.dataValues.SpotImages 
-    const allReviews = spots.dataValues.Reviews 
-
-
-    let reviewSum = 0;
-    let reviewCount = 0;
-    allReviews.forEach(review => {
-      
-      reviewSum += review.dataValues.stars;
-      reviewCount++;
-    })
-
-    spots.dataValues['avgRating'] = reviewSum / reviewCount
-
-    allSpotImages.forEach(img => {       
-      spotImages.push(img.dataValues.url)
-    })
-   
-    let url= spotImages[0]
-   
-
-   
-    spots.dataValues['previewImage'] = url
-
-    
-    delete spots.dataValues.SpotImages
-    delete spots.dataValues.Reviews
-
-    
-    // spotObj.Spots.push(spots.dataValues)
-  })
-
-
-  allSpots.forEach(spot => {
-    if (spot.dataValues.avgRating === null) {
-      spot.dataValues.avgRating = 0;
-    }
-  });
-
-  res.status(200).json({
-    "Spots": allSpots,
-    page,
-    size
-  })
-
-})
-
 
 
 
@@ -691,7 +692,7 @@ router.delete('/:spotId', requireAuth, async (req, res) => {
 
 
 
-router.post('/:spotId/images', restoreUser, async (req, res) => {
+router.post('/:spotId/images', requireAuth, async (req, res) => {
   let { url, preview } = req.body
   // console.log (req.user)
   const userId = req.user.dataValues.id
@@ -728,7 +729,8 @@ router.post('/:spotId/images', restoreUser, async (req, res) => {
 
 
 // create a review for a spot based on spots id
-router.post('/:spotId/reviews', restoreUser, reviewValidations, async (req, res) => {
+router.post('/:spotId/reviews', requireAuth, reviewValidations, async (req, res) => {
+  console.log (req.param, '---------params------------')
   const { Op } = require('sequelize')
   let userId = req.user.dataValues.id
   const spotId = Number(req.params.spotId)

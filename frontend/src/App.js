@@ -9,6 +9,7 @@ import SpotBrowser from "./components/Spots";
 import SpotDetail from "./components/Spots/SpotDetail";
 import CreateSpotForm from "./components/Spots/CreateSpot";
 import ManageSpotsFunction from "./components/Spots/ManageSpots";
+import MainComponent from "./components/Modals";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ function App() {
         <Route exact path = '/spots/current'> <ManageSpotsFunction /> </Route>
         <Route exact path ='/spots/add/newspot'> <CreateSpotForm /></Route> 
         <Route exact path='/spots/:spotId'> <SpotDetail /></Route>
+        <Route exact path='/hello/test'> <MainComponent/></Route>
         </Switch>}
     </>
   );

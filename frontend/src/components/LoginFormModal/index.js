@@ -23,16 +23,26 @@ function LoginFormModal() {
     return dispatch(sessionActions.login({ credential, password }))
       .then(closeModal)
       .catch(async (res) => {
+        
         const data = await res.json();
+        console.log (errors)
         if (data && data.errors) setErrors(data.errors);
+        console.log (errors, '--------------')
+        
+       
       });
+  }
+  const demoHandle = (e) => {
+    e.preventDefault()
+    return dispatch(sessionActions.login({credential:'Demo-lition', password:'password'})).then(closeModal)
   }
 
   return (
+    <>
     <form onSubmit={handleSubmit}>
-      <ul>
-        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-      </ul>
+     {Object.keys(errors).map((key) => (
+                    <li key={key}>{errors[key]}</li>
+                ))}
       <label>
         Username or Email
         <input
@@ -52,7 +62,13 @@ function LoginFormModal() {
         />
       </label>
       <button type="submit">Log In</button>
+      
     </form>
+    <div>
+      <button type = 'button' style={{background:'green'}} onClick={demoHandle}>DemoUser</button>
+
+    </div>
+    </>
   );
 }
 
