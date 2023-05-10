@@ -4,3 +4,29 @@
 .hidden {
     display: none;
 }
+.nav-ul {
+    /* background-color: teal; */
+    color: black;
+    list-style: none;
+    /* background-color: red; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav-li {
+    /* background-color: black; */
+    color: white;
+
+
+}
+a {
+    color: black;
+}
+.nav-logo {
+    width: 50px;
+   
+}
+.profile-button {
+    margin-right: 50px;
+    background-color: red;
+}
