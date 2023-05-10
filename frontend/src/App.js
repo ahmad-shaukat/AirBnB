@@ -5,11 +5,12 @@ import LoginFormPage from "./components/LoginFormModal";
 import * as sessionActions from "./store/session";
 import SignupFormPage from "./components/SignupFormModal";
 import Navigation from './components/Navigation'
-import SpotBrowser from "./components/Spots";
+import SpotBrowser from "./components/landingPage";
 import SpotDetail from "./components/Spots/SpotDetail";
 import CreateSpotForm from "./components/Spots/CreateSpot";
 import ManageSpotsFunction from "./components/Spots/ManageSpots";
 import MainComponent from "./components/Modals";
+import './app.css'
 
 function App() {
   const dispatch = useDispatch();
@@ -20,7 +21,12 @@ function App() {
 
   return (
     <>
+    <div className="container">
+    <div className="nav" >
       <Navigation isLoaded={isLoaded} />
+    </div>
+
+    <div className="main">
       {isLoaded && <Switch>
         <Route exact path='/'><SpotBrowser /></Route>
         <Route exact path = '/spots/current'> <ManageSpotsFunction /> </Route>
@@ -28,6 +34,8 @@ function App() {
         <Route exact path='/spots/:spotId'> <SpotDetail /></Route>
         <Route exact path='/hello/test'> <MainComponent/></Route>
         </Switch>}
+    </div>
+    </div>
     </>
   );
 }

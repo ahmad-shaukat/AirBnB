@@ -15,69 +15,223 @@ module.exports = {
    return queryInterface.bulkInsert(options, [
     {
       spotId: 1,
-      url: 'https://ap.rdcpix.com/71065b8309dca02ca88a392e3035c28fl-m2971680444od-w1024_h768_x2.webp',
+      url: 'https://a0.muscache.com/im/pictures/miso/Hosting-47025046/original/4d713a1e-ab4c-4d70-905f-d24b4042189f.jpeg?im_w=1200',
       preview: true,
     },
     {
       spotId: 1,
-      url: 'https://ap.rdcpix.com/71065b8309dca02ca88a392e3035c28fl-m3254423481od-w1024_h768_x2.webp',
+      url: 'https://a0.muscache.com/im/pictures/miso/Hosting-47025046/original/7f98dcc6-18f9-4cf6-8f83-798c20f1ba7f.jpeg?im_w=1440',
       preview: false
     },
     {
       spotId: 1,
-      url: 'https://ap.rdcpix.com/71065b8309dca02ca88a392e3035c28fl-m3142368695od-w1024_h768_x2.webp',
+      url: 'https://a0.muscache.com/im/pictures/miso/Hosting-47025046/original/fa670b4e-cb55-470b-a84c-ffc4b9422710.jpeg?im_w=1440',
       preview: false
     },
     {
       spotId: 1,
-      url: 'https://ap.rdcpix.com/71065b8309dca02ca88a392e3035c28fl-m902964867od-w1024_h768_x2.webp',
+      url: 'https://a0.muscache.com/im/pictures/miso/Hosting-47025046/original/fb0b52c5-ffbf-400d-b41a-bb656eb47468.jpeg?im_w=1440',
       preview: false
     },
     {
       spotId: 1,
-      url: 'https://ap.rdcpix.com/71065b8309dca02ca88a392e3035c28fl-m3898867252od-w1024_h768_x2.webp',
+      url: 'https://a0.muscache.com/im/pictures/miso/Hosting-47025046/original/b6beeabe-6cb5-4020-a55f-0609c5c980a2.jpeg?im_w=1440',
       preview: false
     },
     {
       spotId: 2,
-      url: 'https://ap.rdcpix.com/e61b5caf93d4766e7f1660ee37022583l-m142010183od-w1024_h768_x2.webp',
+      url: 'https://a0.muscache.com/im/pictures/miso/Hosting-635437605163910390/original/eaf8887f-410f-41e4-be1b-88c2a74fbfcf.jpeg?im_w=1200',
       preview: true
     },
     {
       spotId: 2,
-      url: 'https://ap.rdcpix.com/e61b5caf93d4766e7f1660ee37022583l-m3303046956od-w1024_h768_x2.webp',
+      url: 'https://a0.muscache.com/im/pictures/miso/Hosting-635437605163910390/original/e22d9d0e-fa0b-48e1-9d35-ab7c3463b357.jpeg?im_w=1440',
       preview: false
     },
     {
       spotId: 2,
-      url: 'https://ap.rdcpix.com/e61b5caf93d4766e7f1660ee37022583l-m62318033od-w1024_h768_x2.webp',
+      url: 'https://a0.muscache.com/im/pictures/miso/Hosting-635437605163910390/original/0db5cffd-7f0d-4e13-bd59-39cb9861cdaa.jpeg?im_w=1440',
       preview: false
     },
     {
       spotId: 2,
-      url: 'https://ap.rdcpix.com/e61b5caf93d4766e7f1660ee37022583l-m940958021od-w1024_h768_x2.webp',
+      url: 'https://a0.muscache.com/im/pictures/miso/Hosting-635437605163910390/original/5a6ee29b-2c64-440a-aee6-481d4d8d1bd5.jpeg?im_w=1440',
       preview: false
     },
     {
       spotId: 2,
-      url: 'https://ap.rdcpix.com/e61b5caf93d4766e7f1660ee37022583l-m1461957993od-w1024_h768_x2.webp',
+      url: 'https://a0.muscache.com/im/pictures/miso/Hosting-635437605163910390/original/5d53f571-dc5c-449a-b333-22ed2afef829.jpeg?im_w=1440',
       preview: false
     }, 
     {
       spotId: 3,
-      url: 'https://ap.rdcpix.com/8ddd0dbe57db5198880c17a5929ec1eal-m226850825od-w1024_h768_x2.webp',
+      url: 'https://a0.muscache.com/im/pictures/b8a5f60d-2bda-4050-bc9e-55af012d6eb4.jpg?im_w=1200',
       preview: true
     }, 
     {
       spotId: 3,
-      url: 'https://ap.rdcpix.com/8ddd0dbe57db5198880c17a5929ec1eal-m2173261106od-w1024_h768_x2.webp',
+      url: 'https://a0.muscache.com/im/pictures/7053c1c6-c63e-4717-9fbf-84c3205a94a8.jpg?im_w=1440',
       preview: false
     }, 
     {
       spotId: 3,
-      url: 'https://ap.rdcpix.com/8ddd0dbe57db5198880c17a5929ec1eal-m1042314132od-w1024_h768_x2.webp',
+      url: 'https://a0.muscache.com/im/pictures/8b3d230e-a42e-4d25-b428-ee13d332dc8e.jpg?im_w=1440',
       preview: false
+    },
+    {
+      spotId: 3,
+      url: 'https://a0.muscache.com/im/pictures/miso/Hosting-8167664/original/76436a03-e2a7-454a-ba2c-9b4c021653ac.jpeg?im_w=1440',
+      preview: false
+    },
+    {
+      spotId: 4,
+      url: 'https://a0.muscache.com/im/pictures/miso/Hosting-42654284/original/c87c0f17-3159-4619-b408-2a368618d7a9.jpeg?im_w=1200',
+      preview: true
     }, 
+    {
+      spotId: 4,
+      url: 'https://a0.muscache.com/im/pictures/miso/Hosting-42654284/original/5f8e35c8-96ad-4cf9-a27c-7797abf9f97a.jpeg?im_w=1440', 
+      preview: false
+    },
+    {
+      spotId: 4,
+      url: 'https://a0.muscache.com/im/pictures/miso/Hosting-42654284/original/a1fe3784-b00a-4b2f-903f-e3a38b3ff66e.jpeg?im_w=1440', 
+      preview: false
+    },
+    {
+      spotId: 4,
+      url: 'https://a0.muscache.com/im/pictures/miso/Hosting-42654284/original/f17521b0-f947-4793-b6b4-4a8b19a85eec.jpeg?im_w=1440', 
+      preview: false
+    },
+    {
+      spotId: 4,
+      url: 'https://a0.muscache.com/im/pictures/06061e56-1c28-46f6-8be0-f6bfa514068c.jpg?im_w=1440', 
+      preview: false
+    },
+    {
+      spotId: 5,
+      url: 'https://ap.rdcpix.com/48c9911bf74a48c6734b9f3fbdf677abl-m1607154818od-w1024_h768_x2.webp', 
+      preview: true
+    },
+    {
+      spotId: 5,
+      url: 'https://ap.rdcpix.com/48c9911bf74a48c6734b9f3fbdf677abl-m2935903856od-w1024_h768_x2.webp', 
+      preview: false
+    },
+    {
+      spotId: 5,
+      url: 'https://ap.rdcpix.com/48c9911bf74a48c6734b9f3fbdf677abl-m2935903856od-w1024_h768_x2.webp', 
+      preview: false
+    },
+    {
+      spotId: 5,
+      url: 'https://ap.rdcpix.com/48c9911bf74a48c6734b9f3fbdf677abl-m2935903856od-w1024_h768_x2.webp', 
+      preview: false
+    },
+    {
+      spotId: 5,
+      url: 'https://ap.rdcpix.com/48c9911bf74a48c6734b9f3fbdf677abl-m2935903856od-w1024_h768_x2.webp', 
+      preview: false
+    },
+    {spotId: 6,
+      url: 'https://ap.rdcpix.com/03ac58ca286aaf8dd5b4deba9550cd84l-m618037773od-w1024_h768_x2.webp',
+      preview: true
+    }, 
+    {
+      spotId: 6,
+      url: 'https://ap.rdcpix.com/03ac58ca286aaf8dd5b4deba9550cd84l-m1695050502od-w1024_h768_x2.webp', 
+      preview: false
+    },
+    {
+      spotId: 6,
+      url: 'https://ap.rdcpix.com/03ac58ca286aaf8dd5b4deba9550cd84l-m1695050502od-w1024_h768_x2.webp', 
+      preview: false
+    },
+    {
+      spotId: 6,
+      url: 'https://ap.rdcpix.com/03ac58ca286aaf8dd5b4deba9550cd84l-m1695050502od-w1024_h768_x2.webp', 
+      preview: false
+    },
+    {
+      spotId: 6,
+      url: 'https://ap.rdcpix.com/03ac58ca286aaf8dd5b4deba9550cd84l-m1695050502od-w1024_h768_x2.webp', 
+      preview: false
+    },
+    {
+      spotId: 7,
+      url: 'https://nh.rdcpix.com/7efaee0ba6758e85bfa47a8d4fc0e69fe-f699763212od-w1024_h768_x2.webp', 
+      preview: true
+    },
+    {
+      spotId: 7,
+      url: 'https://nh.rdcpix.com/7efaee0ba6758e85bfa47a8d4fc0e69fi-f323317888od-w1024_h768_x2.webp', 
+      preview: false
+    },
+    {
+      spotId: 7,
+      url: 'https://nh.rdcpix.com/7efaee0ba6758e85bfa47a8d4fc0e69fi-f323317888od-w1024_h768_x2.webp', 
+      preview: false
+    },
+    {
+      spotId: 7,
+      url: 'https://nh.rdcpix.com/7efaee0ba6758e85bfa47a8d4fc0e69fi-f323317888od-w1024_h768_x2.webp', 
+      preview: false
+    },
+    {
+      spotId: 7,
+      url: 'https://nh.rdcpix.com/7efaee0ba6758e85bfa47a8d4fc0e69fi-f323317888od-w1024_h768_x2.webp', 
+      preview: false
+    },
+    {
+      spotId: 8,
+      url: 'https://ap.rdcpix.com/1ebb12a1253a648f21ab5f1897d172ecl-m1014407670od-w1024_h768_x2.webp',
+      preview:true 
+    }, 
+    {
+      spotId: 8,
+      url: 'https://ap.rdcpix.com/1ebb12a1253a648f21ab5f1897d172ecl-m2291791080od-w1024_h768_x2.webp', 
+      preview: false
+    },
+    {
+      spotId: 8,
+      url: 'https://ap.rdcpix.com/1ebb12a1253a648f21ab5f1897d172ecl-m2291791080od-w1024_h768_x2.webp', 
+      preview: false
+    },
+    {
+      spotId: 8,
+      url: 'https://ap.rdcpix.com/1ebb12a1253a648f21ab5f1897d172ecl-m2291791080od-w1024_h768_x2.webp', 
+      preview: false
+    },
+    {
+      spotId: 8,
+      url: 'https://ap.rdcpix.com/1ebb12a1253a648f21ab5f1897d172ecl-m2291791080od-w1024_h768_x2.webp', 
+      preview: false
+    },
+    {
+      spotId: 9, 
+      url: 'https://nh.rdcpix.com/4595d526af422743c5235c7537c36b94e-f2978416410od-w1024_h768_x2.webp',
+      preview: true
+    },
+    {
+      spotId: 9, 
+      url: 'https://nh.rdcpix.com/4595d526af422743c5235c7537c36b94i-f3654568770od-w1024_h768_x2.webp',
+      preview: false
+    },
+    {
+      spotId: 9, 
+      url: 'https://nh.rdcpix.com/4595d526af422743c5235c7537c36b94i-f3654568770od-w1024_h768_x2.webp',
+      preview: false
+    },
+    {
+      spotId: 9, 
+      url: 'https://nh.rdcpix.com/4595d526af422743c5235c7537c36b94i-f3654568770od-w1024_h768_x2.webp',
+      preview: false
+    },
+    {
+      spotId: 9, 
+      url: 'https://nh.rdcpix.com/4595d526af422743c5235c7537c36b94i-f3654568770od-w1024_h768_x2.webp',
+      preview: false
+    }
 
    ], {})
   },

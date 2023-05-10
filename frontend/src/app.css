@@ -1,0 +1,21 @@
+.container {
+    display: grid; 
+    height: 100vh;
+    grid-template-columns: 1fr; 
+    grid-template-rows: 1fr 6fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+      "nav"
+      "main"; 
+  }
+
+  .nav {
+    grid-area: nav;
+    background-color: lightblue;
+  }
+
+  .main {
+    grid-area: main;
+    /* background-color: lightgreen; */
+  }
+  
