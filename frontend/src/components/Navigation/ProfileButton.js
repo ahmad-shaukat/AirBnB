@@ -43,29 +43,42 @@ function ProfileButton({ user }) {
 
   return (
     <>
-    <div className="menu-container" onClick={openMenu} tabIndex="0" >
-      
-    <i className="fa-solid fa-bars"></i>
-      <button onClick={openMenu} className="menu-butt">
-      <i className="fa-solid fa-user fa-lg" style={{color:'white'}}></i>
-      </button>
+      <div className="menu-container" onClick={openMenu} tabIndex="0" >
 
-    </div>
+        <i className="fa-solid fa-bars"></i>
+        <button onClick={openMenu} className="menu-butt">
+          <i className="fa-solid fa-user fa-lg" style={{ color: 'white' }}></i>
+        </button>
+
+      </div>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.userName}</li>
-            <li>Hello{user.firstName} {user.lastName}</li>
-            <li>{user.email}</li>
-            <li>
-              <button onClick={logout}>Log Out</button>
-            </li>
-            <NavLink to={'/spots/add/newspot'}>
-               Add New Spot 
-            </NavLink> 
-            <NavLink to={'/spots/current'}>
-              Manage Spots 
-            </NavLink>
+            <div className="user-info">
+              <li>{user.userName}</li>
+              <li>Hello{user.firstName} {user.lastName}</li>
+              <li>{user.email}</li>
+            </div>
+            <div className="user-menu">
+
+              <div className="new-spot-lnk">
+
+                <NavLink to={'/spots/add/newspot'}>
+                  Add New Spot
+                </NavLink>
+              </div>
+              <div className="mng-spot-lnk">
+
+              <NavLink to={'/spots/current'}>
+                Manage Spots
+              </NavLink>
+              </div>
+              
+
+                <button onClick={logout} className="lgout-btn">Log Out</button>
+              
+            </div>
+
           </>
         ) : (
           <>

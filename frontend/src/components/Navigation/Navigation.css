@@ -1,6 +1,7 @@
 .profile-dropDown {
     /* opacity: 0; */
    /* transition: opacity 0.5s ease-in-out; */
+   position: relative;
 }
 .show {
     opacity: 1;

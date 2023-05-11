@@ -35,6 +35,14 @@ function LoginFormModal() {
     return dispatch(sessionActions.login({ credential: 'Demo-lition', password: 'password' })).then(closeModal)
   }
 
+  const checkCredentials = () => {
+    if (password.length <6 || credential.length < 4) {
+      return true
+    }
+    return false
+  }
+  console.log (checkCredentials())
+
   return (
     <>
     {Object.keys(errors).map((key) => (
@@ -54,7 +62,7 @@ function LoginFormModal() {
             type="text"
             value={credential}
             placeholder='Username or Email'
-            minLength='4'
+            // minLength='4'
             onChange={(e) => setCredential(e.target.value)}
             required
           />
@@ -69,7 +77,7 @@ function LoginFormModal() {
             required
           />
           {/* </label> */}
-          <button type="submit" className='login'>Log In</button>
+          <button type="submit" className='login' disabled ={checkCredentials()}>Log In</button>
 
         </form>
         
