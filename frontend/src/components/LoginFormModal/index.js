@@ -23,49 +23,61 @@ function LoginFormModal() {
     return dispatch(sessionActions.login({ credential, password }))
       .then(closeModal)
       .catch(async (res) => {
-        
+
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
-        
-       
+
+
       });
   }
   const demoHandle = (e) => {
     e.preventDefault()
-    return dispatch(sessionActions.login({credential:'Demo-lition', password:'password'})).then(closeModal)
+    return dispatch(sessionActions.login({ credential: 'Demo-lition', password: 'password' })).then(closeModal)
   }
 
   return (
     <>
-    <form onSubmit={handleSubmit}>
-     {Object.keys(errors).map((key) => (
-                    <li key={key}>{errors[key]}</li>
-                ))}
-      <label>
-        Username or Email
-        <input
-          type="text"
-          value={credential}
-          onChange={(e) => setCredential(e.target.value)}
-          required
-        />
-      </label>
-      <label>
-        Password
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-      </label>
-      <button type="submit">Log In</button>
-      
-    </form>
-    <div>
-      <button type = 'button' style={{background:'green'}} onClick={demoHandle}>DemoUser</button>
+    {Object.keys(errors).map((key) => (
+      <li key={key} className='errors'>{errors[key]}</li>
+    ))}
+      <div className='login-container'>
+        <div className='heading-container'>
+          <i className="fa-solid fa-xmark" onClick={closeModal}></i>
+          <p className='login-heading' >Log In</p>
+        </div>
 
-    </div>
+        <form onSubmit={handleSubmit} className='login-form'>
+          {/* <label className='credential'> */}
+
+          <p className='heading'>Welcome to Airbnb</p>
+          <input className='credential'
+            type="text"
+            value={credential}
+            placeholder='Username or Email'
+            minLength='4'
+            onChange={(e) => setCredential(e.target.value)}
+            required
+          />
+          {/* </label> */}
+          {/* <label> */}
+
+          <input className='password'
+            type="password"
+            value={password}
+            placeholder='Password'
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          {/* </label> */}
+          <button type="submit" className='login'>Log In</button>
+
+        </form>
+        
+
+      <button type='button' style={{ }} onClick={demoHandle} className='demo-button'>DemoUser</button>
+      
+      
+      </div>
     </>
   );
 }

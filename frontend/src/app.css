@@ -2,7 +2,7 @@
     display: grid; 
     height: 100vh;
     grid-template-columns: 1fr; 
-    grid-template-rows: 1fr 6fr; 
+    grid-template-rows: 190px 6fr; 
     gap: 0px 0px; 
     grid-template-areas: 
       "nav"
