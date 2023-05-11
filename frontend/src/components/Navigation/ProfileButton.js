@@ -43,9 +43,14 @@ function ProfileButton({ user }) {
 
   return (
     <>
+    <div className="menu-container" onClick={openMenu} >
+      
+    <i className="fa-solid fa-bars"></i>
       <button onClick={openMenu} className="menu-butt">
-      <i className="fa-solid fa-user fa-lg"></i>
+      <i className="fa-solid fa-user fa-lg" style={{color:'white'}}></i>
       </button>
+
+    </div>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
