@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react'
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { UserSpots } from "../../store/spots";
-import EditSpotForm from './EditSpot';
+import EditSpotForm from '../Spots/EditSpot';
 import { RemoveSpot } from '../../store/spots';
 import DeleteSpotModal from '../Modals/DeleteSpot';
+import './manageSpot.css'
 
 const ManageSpotsFunction = () => {
     const [showModal, setShowModal] = useState(false);
@@ -63,16 +64,20 @@ const ManageSpotsFunction = () => {
                         
                         <DeleteSpotModal show={showModal} handleClose={handleCloseModal}>
                                             <>
+                                            <div>
 
                                                 <h1>Confirm Delete</h1>
 
                                                 <h5>Are you sure you want to delete this review</h5>
 
                                                 <button style={{ backgroundColor: 'red', color: 'white' }} onClick={() => onDeleteHandle(spot.id)}>Delete</button>
+                                            </div>
+
                                             </>
                                         </DeleteSpotModal>
                         {/* <EditSpotForm spot={editSpot} spotId={editSpotId} /> */}
                         <button onClick={() => {
+                           
                             
                             setEditSpot(spot)
                             setEditSpotId(spot.id)
@@ -87,8 +92,10 @@ const ManageSpotsFunction = () => {
     // <button type='button' onClick={() => onDeleteHandle(spot.id)}>Delete</button>
     
     }
-if (!userSpots) {
-    <h1>No spots</h1>
+if (userSpots && userSpots.length <1 ) {
+    content = <>
+    <NavLink to='/spots/add/newspot'> Add a Spot</NavLink>
+    </>
 }
 
 

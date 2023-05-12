@@ -61,11 +61,10 @@ function ProfileButton({ user }) {
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-         
             <div className="user-info">
               <li className="test">{user.userName}</li>
-              <li>Hello{user.firstName} {user.lastName}</li>
-              <li>{user.email}</li>
+              <li className="email">{user.email}</li>
+              <li>Hello {user.firstName} {user.lastName}</li>
             </div>
             <div className="user-menu">
               <div className="mng-spot-lnk">
@@ -73,7 +72,7 @@ function ProfileButton({ user }) {
                 Manage Spots
               </NavLink>
               </div>
-                <button onClick={logout} className="lgout-btn">Log Out</button>
+                <button onClick={logout} className="lgout-btn">Log Out</button> 
               
 
               

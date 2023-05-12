@@ -7,8 +7,8 @@ import SignupFormPage from "./components/SignupFormModal";
 import Navigation from './components/Navigation'
 import SpotBrowser from "./components/landingPage";
 import SpotDetail from "./components/spotDetail/SpotDetail";
-import CreateSpotForm from "./components/Spots/CreateSpot";
-import ManageSpotsFunction from "./components/Spots/ManageSpots";
+import CreateSpotForm from "./components/createSpot/CreateSpot";
+import ManageSpotsFunction from "./components/manageSpot/ManageSpots";
 import MainComponent from "./components/Modals";
 import './app.css'
 

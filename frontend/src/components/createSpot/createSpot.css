@@ -1,0 +1,91 @@
+.create-heading {
+    text-align: center;
+}
+
+
+.location {
+    /* background-color: red; */
+    width: 500px;
+    margin: auto;
+    
+}
+.location label {
+    display: inline-block;
+    width: 150px;
+    display: flex;
+}
+.location input {
+    display: inline-block;
+}
+.text-label {
+    display: flex;
+}
+.location-input-labels {
+    /* background-color: aqua; */
+    width: 330px;
+    margin: auto;
+}
+
+/* Style for description */
+
+.description {
+    /* background-color:green; */
+    width: 500px;
+    margin: auto;
+
+}
+.description p {
+    width: 400px;
+}
+.description textarea {
+    margin: auto;
+    width: 400px;
+    height: 50px;
+}
+/* style for title Name */
+
+.name {
+    /* background-color: aqua; */
+    width: 500px;
+    margin: auto;
+}
+.name label{
+    margin: auto;
+}
+
+/* style for price */
+
+.price {
+    /* background-color: pink; */
+    width: 500px;
+    margin: auto;
+}
+.price input {
+    margin: auto;
+}
+/* style for images */
+.pics {
+    width: 500px;
+    margin: auto;
+}
+.pics div {
+    background-color: red;
+    height: 110px;
+    margin: auto;
+    width: 160px;
+}
+.pics input {
+    display: block;
+}
+/* styles for buttons */
+.buttons {
+    /* background-color: red; */
+    height: 50px;
+    width: 185px;
+    margin: auto;
+    margin-top: 30px;
+}
+button[type='submit'] {
+    /* background-color: red; */
+    margin-right: 30px;
+}
