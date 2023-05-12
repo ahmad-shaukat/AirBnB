@@ -55,7 +55,7 @@
 
 /* style for price */
 
-.price {
+.create-price {
     /* background-color: pink; */
     width: 500px;
     margin: auto;
@@ -85,7 +85,7 @@
     margin: auto;
     margin-top: 30px;
 }
-button[type='submit'] {
+.create-submit-btn {
     /* background-color: red; */
     margin-right: 30px;
 }

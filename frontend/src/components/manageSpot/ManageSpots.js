@@ -34,12 +34,15 @@ const ManageSpotsFunction = () => {
         // setErrors({});
     }
     const onDeleteHandle = (spotId) => {
-        
+
         handleCloseModal()
         dispatch(RemoveSpot(spotId))
         dispatch(UserSpots())
-    } 
+    }
     let content = null
+    // if(userSpots) {
+
+    // }
 
     if (editSpotId && editSpot && showEditSpotForm) {
         content = (
@@ -47,23 +50,54 @@ const ManageSpotsFunction = () => {
         )
     } else {
         if (userSpots) {
+            for (let items of userSpots) {
+                // console.log (items, '-----------this is spot')
+                // console.log (items.avgRating, '------------this is rating')
+
+                if (!items['avgRating']) {
+                    items['avgRating'] = 'New'
+                }
+                // if (typeof(items['avgRating']) === 'number') {
+                //     let newNumber = items['avgRating']
+                //     // newNumber = newNumber.toFixed(1)
+                //     newNumber = ((newNumber)/100).toFixed(1)
+                //     // newNumber = parseFloat(newNumber)
+
+                //     // items['avgRating'] = parseFloat(newNumber.toFixed(1))
+                //     console.log (newNumber, '---changed item--------------')
+                // } 
+            }
+
             content = (
-            <>
-                <h1>Manage Spots</h1>
-    
-                {userSpots.map((spot) => (
-                    
-                    <div key={spot.key}>
-                        <NavLink to={`/spots/${spot.id}`}>
-                            <h4>Image goes Here</h4>
-                            <h5>{spot.city}, {spot.state}</h5>
-                            <h5>stars {spot.avgRating}</h5>
-                            <h5>${spot.price} night</h5>
-                        </NavLink>
-                        <button onClick={handleShowModal}>Delete ntis</button>
-                        
-                        <DeleteSpotModal show={showModal} handleClose={handleCloseModal}>
-                                            <>
+                <>
+                    <h1 className='mng-heading'>Manage Spots</h1>
+                    <div className='mng-spot-contn'>
+
+                        {userSpots.map((spot) => (
+
+
+                            <div key={spot.key} className='mng-spot-dtl'>
+                                <NavLink to={`/spots/${spot.id}`}>
+                                    <div className='mng-img-div'>
+                                        <img className='mng-img' src={spot.previewImage} />
+
+                                    </div>
+                                    <div className='mng-ratings'>
+
+                                        <p>{spot.city}, {spot.state}</p>
+                                        <div className='mng-rating-str'>
+
+                                            <i class="fa-solid fa-star"></i><p>{spot.avgRating}</p>
+                                        </div>
+                                    </div>
+                                    <p>${spot.price} night</p>
+                                </NavLink>
+                                <div className='mng-btns'>
+
+                                    <button onClick={handleShowModal}>Delete ntis</button>
+
+                                    <DeleteSpotModal show={showModal} handleClose={handleCloseModal}>
+                                        <>
                                             <div>
 
                                                 <h1>Confirm Delete</h1>
@@ -73,48 +107,51 @@ const ManageSpotsFunction = () => {
                                                 <button style={{ backgroundColor: 'red', color: 'white' }} onClick={() => onDeleteHandle(spot.id)}>Delete</button>
                                             </div>
 
-                                            </>
-                                        </DeleteSpotModal>
-                        {/* <EditSpotForm spot={editSpot} spotId={editSpotId} /> */}
-                        <button onClick={() => {
-                           
-                            
-                            setEditSpot(spot)
-                            setEditSpotId(spot.id)
-                            setShowEditSpotForm(true)
-                            
-                        }}>Edit</button>
+
+                                        </>
+                                    </DeleteSpotModal>
+                                    {/* <EditSpotForm spot={editSpot} spotId={editSpotId} /> */}
+                                    <button onClick={() => {
+
+
+                                        setEditSpot(spot)
+                                        setEditSpotId(spot.id)
+                                        setShowEditSpotForm(true)
+
+                                    }}>Edit</button>
+                                </div>
+                            </div>
+                        ))}
                     </div>
-                ))}
-            </>
+                </>
+            )
+        }
+        // <button type='button' onClick={() => onDeleteHandle(spot.id)}>Delete</button>
+
+    }
+    if (userSpots && userSpots.length < 1) {
+        content = <>
+            <NavLink to='/spots/add/newspot'> Add a Spot</NavLink>
+        </>
+    }
+
+
+
+    if (userSpots) {
+        // console.log(userSpots)
+        return (
+            <div>
+                {content}
+            </div>
+            // <>
+
+        )
+
+    } else {
+        return (
+            <h1>Loading...</h1>
         )
     }
-    // <button type='button' onClick={() => onDeleteHandle(spot.id)}>Delete</button>
-    
-    }
-if (userSpots && userSpots.length <1 ) {
-    content = <>
-    <NavLink to='/spots/add/newspot'> Add a Spot</NavLink>
-    </>
-}
-
-
-
-if (userSpots) {
-    // console.log(userSpots)
-    return (
-        <div>
-            {content}
-        </div>
-        // <>
- 
-    )
-
-} else {
-    return (
-        <h1>Loading...</h1>
-    )
-}
 
 }
 

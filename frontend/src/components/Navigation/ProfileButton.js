@@ -62,9 +62,8 @@ function ProfileButton({ user }) {
         {user ? (
           <>
             <div className="user-info">
-              <li className="test">{user.userName}</li>
+              <li>Hello {user.firstName} </li>
               <li className="email">{user.email}</li>
-              <li>Hello {user.firstName} {user.lastName}</li>
             </div>
             <div className="user-menu">
               <div className="mng-spot-lnk">

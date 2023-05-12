@@ -53,10 +53,10 @@ const SpotBrowser = () => {
 
                             <NavLink to={`/spots/${spot.id}`}>
                                 {/* <div className='container'> */}
-                                    {/* <div className='spot'> */}
+                                {/* <div className='spot'> */}
 
                                     <div className='image-div'>
-                                    <img src={spot.previewImage} className='img' />
+                                        <img src={spot.previewImage} className='img' />
 
                                     </div>
 
@@ -65,12 +65,12 @@ const SpotBrowser = () => {
                                         <p className=''>{spot.city}, {spot.state}</p>
                                         <div className='rating-star'>
 
-                                        <i class="fa-solid fa-star"></i><p> {spot.avgRating}</p>
+                                            <i class="fa-solid fa-star"></i><p>{spot.avgRating}</p>
                                         </div>
                                     </div>
                                     <p className='price'>${spot.price} Night</p>
 
-                                    {/* </div> */}
+                                {/* </div> */}
 
 
                                 {/* </div> */}

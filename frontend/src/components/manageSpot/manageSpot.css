@@ -1,4 +1,118 @@
 .del-spt-ctner {
-    background-color: red;
+    /* background-color: red; */
     z-index: 100;
+}
+/* styles for manage spots */
+
+.mng-heading {
+    /* background-color: red; */
+    text-align: center;
+}
+.mng-spot-contn {
+    /* background-color: blue; */
+}
+.mng-spot-dtl {
+    /* background-color: green; */
+}
+.mng-spot-contn {
+    display: grid;
+    grid-auto-columns: 1fr;
+    /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;  */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-rows: 10px;
+    /* place-content: center; */
+
+    grid-template-rows: 1fr;
+    grid-column-gap: .5cm;
+    grid-row-gap: 30px;
+    /* background-color: red; */
+    padding: 25px;
+}
+.mng-spot-dtl {
+    justify-self: center;
+    /* border: 2px solid green; */
+    padding: 15px;
+    grid-gap: 0;
+    display: grid;
+    width: 290px;
+    height: 390px;
+    grid-auto-columns: 1fr;
+    grid-template-rows: 300px 50px 50px, 90px ;
+    gap: 0px 0px;
+    /* background-color: pink; */
+    grid-template-areas:
+        "img"
+        "location-rating"
+        "price"
+        "btns";
+}
+.mng-spot-dtl a {
+    text-decoration: none;
+}
+/* .mng-img-div {
+    background-color: red;
+    display: flex;
+    justify-content: center;
+
+} */
+.mng-img {
+    grid-area: img;
+    width: 300px;
+    height: 270px;
+
+    border-radius: 15px;
+    margin-right: 20px;
+    /* width: 100%; */
+    /* margin: auto; */
+}
+.mng-ratings {
+    grid-area: location-rating;
+    /* width: 100%; */
+    width: 300px;
+    margin-top: 5px;
+    /* background-color: purple; */
+    /* border: 1px solid red; */
+    /* margin: auto; */
+    height: 20px;
+    /* padding: 0px;
+    margin: 0px;
+    margin-top: 10px; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Anek Devanagari', sans-serif;
+    text-decoration: none;
+    color: black;
+    /* background-color: aqua; */
+}
+.mng-rating-str {
+    display: flex;
+    height: 20px;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+    font-size: 15px;
+    /* background-color: red; */
+}
+.mng-rating-str p {
+    font-weight:600 ;
+}
+.mng-btns {
+    /* background-color: red; */
+    grid-area: btns;
+    height: 40px;
+    width: 210px;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.mng-btns button {
+    height: 30px;
+    border-radius: 8px;
+    width: 100px;
+    border: none;
+
 }

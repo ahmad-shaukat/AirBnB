@@ -182,7 +182,7 @@ const CreateSpotForm = () => {
                     </div>
                 </div>
 
-                <div className='price'>
+                <div className='create-price'>
                     <h2>Set a base price for your spot</h2>
                     <p>"Competitive pricing can help your listing stand out and rank higher in search results."</p>
                     <div className ='text-label'>
@@ -208,7 +208,7 @@ const CreateSpotForm = () => {
                 </div>
                 <div className='buttons'>
 
-                <button type='submit'>Create Spot</button>
+                <button className= 'create-submit-btn' type='submit'>Create Spot</button>
                 <button type='button'>Cancel</button>
                 </div>
             </form>}
