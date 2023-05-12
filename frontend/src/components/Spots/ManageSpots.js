@@ -24,11 +24,6 @@ const ManageSpotsFunction = () => {
 
 
     }, [dispatch])
-    const onDeleteHandle = (spotId) => {
-        
-        dispatch(RemoveSpot(spotId))
-        dispatch(UserSpots())
-    } 
     const handleShowModal = () => {
         setShowModal(true);
     }
@@ -37,6 +32,12 @@ const ManageSpotsFunction = () => {
         setShowModal(false);
         // setErrors({});
     }
+    const onDeleteHandle = (spotId) => {
+        
+        handleCloseModal()
+        dispatch(RemoveSpot(spotId))
+        dispatch(UserSpots())
+    } 
     let content = null
 
     if (editSpotId && editSpot && showEditSpotForm) {
@@ -58,7 +59,7 @@ const ManageSpotsFunction = () => {
                             <h5>stars {spot.avgRating}</h5>
                             <h5>${spot.price} night</h5>
                         </NavLink>
-                        <button onClick={handleShowModal}>Delete</button>
+                        <button onClick={handleShowModal}>Delete ntis</button>
                         
                         <DeleteSpotModal show={showModal} handleClose={handleCloseModal}>
                                             <>
@@ -72,6 +73,7 @@ const ManageSpotsFunction = () => {
                                         </DeleteSpotModal>
                         {/* <EditSpotForm spot={editSpot} spotId={editSpotId} /> */}
                         <button onClick={() => {
+                            
                             setEditSpot(spot)
                             setEditSpotId(spot.id)
                             setShowEditSpotForm(true)

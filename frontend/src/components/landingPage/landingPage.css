@@ -11,6 +11,7 @@
     grid-row-gap: 30px;
     /* background-color: red; */
     padding: 25px;
+    z-index: 0;
 
 
 }
@@ -105,8 +106,7 @@ p {
 }
 .spot-detail {
     transition: transform .3s;
-    /* transition: .3s ease-in-out; */
-    /* -webkit-transition: .3s ease-in-out; */
+    
     color: red;
 }
 .spot-detail:hover {

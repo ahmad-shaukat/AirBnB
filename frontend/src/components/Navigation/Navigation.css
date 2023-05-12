@@ -10,8 +10,8 @@
 .open-menu {
     /* background-color: red; */
     position: absolute;
-    right: 60px;
-    top: 40px;
+    right: 0px;
+    top: 60px;
     margin-top: 5px;
     margin-right: 50px ;
     height: 60px;
@@ -21,7 +21,7 @@
     /* padding: 5px; */
     list-style: none;
     font-weight: 500;
-    box-shadow: 0px 0px 6px rgba(218, 218, 220, 0.886);
+    /* box-shadow: 0px 0px 6px rgba(218, 218, 220, 0.886); */
     border-radius: 8px;
 
 
@@ -63,14 +63,35 @@
 
 
 }
-a {
+/* a {
     color: black;
-}
+} */
 .nav-logo {
     width: 50px;
    
 }
 .profile-button {
-    margin-right: 50px;
+    /* margin-right: 50px; */
     background-color: red;
+}
+.user-menu-create {
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+    align-items: center;
+    margin-right: 10px;
+}
+.crt-btn {
+    margin-right: 20px;
+    background-color: #8ac926;
+    height: 25px;
+    padding-top: 5px;
+    border-radius: 15px;
+    width: 100px;
+    text-align: center;
+    color: white;
+
+
+
 }

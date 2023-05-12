@@ -117,6 +117,7 @@ border-radius: 8px;
     background-color: #ef476f;
     border-radius: 8px;
     color: white;
+    /* cursor: pointer; */
 
  }
 
@@ -134,6 +135,7 @@ border-radius: 8px;
     background-color: #06d6a0;
     border-radius: 8px;
     color: white;
+    cursor: pointer;
     
   }
  .errors {

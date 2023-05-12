@@ -34,12 +34,13 @@ function LoginFormModal() {
     e.preventDefault()
     return dispatch(sessionActions.login({ credential: 'Demo-lition', password: 'password' })).then(closeModal)
   }
-
+  let allowLoginCursor = ''
   const checkCredentials = () => {
     if (password.length <6 || credential.length < 4) {
       return true
     }
     return false
+    allowLoginCursor='pointer'
   }
   console.log (checkCredentials())
 
@@ -77,12 +78,12 @@ function LoginFormModal() {
             required
           />
           {/* </label> */}
-          <button type="submit" className='login' disabled ={checkCredentials()}>Log In</button>
+          <button type="submit" className='login' disabled ={checkCredentials()} style={{cursor:'pointer'}}>Log In</button>
 
         </form>
         
 
-      <button type='button' style={{ }} onClick={demoHandle} className='demo-button'>DemoUser</button>
+      <button type='button' style={{cursor:{allowLoginCursor} }} onClick={demoHandle} className='demo-button'>DemoUser</button>
       
       
       </div>

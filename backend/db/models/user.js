@@ -82,6 +82,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       userName: {
         type: DataTypes.STRING,
+        unique: true,
         allowNull: false,
         validate: {
           len: [4, 30],
@@ -94,6 +95,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       email: {
         type: DataTypes.STRING,
+        unique:true,
         allowNull: false,
         validate: {
           len: [3, 256],

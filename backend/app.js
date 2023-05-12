@@ -43,6 +43,7 @@ app.use(
 
     // catch unhandeled requests
     app.use((_req, _res, next) => {
+      console.log ('------first error handling------')
       const err = new Error("The requested resource couldn't be found.");
       err.title = "Resource Not Found";
       err.errors = { message: "The requested resource couldn't be found." };
@@ -52,6 +53,7 @@ app.use(
     // catch validation errors
     app.use((err, _req, _res, next) => {
       // check if error is a Sequelize error:
+      console.log ('-----------second-error handling --------')
       if (err instanceof ValidationError) {
         let errors = {};
         for (let error of err.errors) {
@@ -64,6 +66,8 @@ app.use(
     });
     // error formatter. This decides what the client sees. 
     app.use((err, _req, res, _next) => {
+
+      console.log ('----------------third error handlling ')
       res.status(err.status || 500);
       // console.error(err);
       res.json({
