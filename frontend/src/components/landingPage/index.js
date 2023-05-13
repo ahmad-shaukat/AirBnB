@@ -51,7 +51,8 @@ const SpotBrowser = () => {
                     {allSpots.map((spot) => (
                         // console.log (spot, '-------------------')
 
-                        <div key={spot.id} className='spot-detail'>
+                        <div key={spot.id} className='spot-detail' id='parent'>
+                            <p className='main-spot-name'>{spot.name}</p>
 
                             <NavLink to={`/spots/${spot.id}`}>
                                 
