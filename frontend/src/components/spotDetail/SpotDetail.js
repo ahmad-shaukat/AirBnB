@@ -20,6 +20,7 @@ const SpotDetail = () => {
     const [stars, setUserRating] = useState(null)
     const [errors, setErrors] = useState([]);
     const [deleteReviewId, setDeleteReviewId] = useState(null)
+    // const[modal, setModal] = useState(false)
 
 
     // these Two function handle the opeaning and closing of Review Form.
