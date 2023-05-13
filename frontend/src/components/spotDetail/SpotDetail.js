@@ -17,7 +17,7 @@ const SpotDetail = () => {
     const imageUrl = 'https://as2.ftcdn.net/v2/jpg/02/79/95/39/1000_F_279953994_TmVqT7CQhWQJRLXev4oFmv8GIZTgJF1d.jpg'
     const [showModal, setShowModal] = useState(false);
     const [review, setUserReview] = useState('')
-    const [stars, setUserRating] = useState(null)
+    const [stars, setUserRating] = useState('')
     const [errors, setErrors] = useState([]);
     const [deleteReviewId, setDeleteReviewId] = useState(null)
     // const[modal, setModal] = useState(false)
@@ -82,7 +82,7 @@ const SpotDetail = () => {
     const handleCloseModal = () => {
         setShowModal(false);
         setErrors({});
-        setUserRating(null)
+        setUserRating('')
         setUserReview('')
     }
 
@@ -159,13 +159,13 @@ const SpotDetail = () => {
                         <form onSubmit={handleNewReview}>
                             <div>
 
-                                <textarea minLength='10' placeholder='Leave your review here...' onChange={
+                                <textarea value={review}minLength='10' placeholder='Leave your review here...' onChange={
                                     (e) => setUserReview(e.target.value)}></textarea>
                             </div>
                             <div>
 
                                 <label>  Stars:
-                                    <input type='number' min='1' max='5' onChange={(e) => setUserRating(e.target.value)} />
+                                    <input value={stars}type='number' min='1' max='5' onChange={(e) => setUserRating(e.target.value)} />
                                 </label>
                             </div>
                             <button type='Submit' disabled={checkReviewLength(review, stars)}>Submit Your Review</button>

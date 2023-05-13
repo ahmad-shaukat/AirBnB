@@ -54,8 +54,7 @@ const SpotBrowser = () => {
                         <div key={spot.id} className='spot-detail'>
 
                             <NavLink to={`/spots/${spot.id}`}>
-                                {/* <div className='container'> */}
-                                {/* <div className='spot'> */}
+                                
 
                                     <div className='image-div'>
                                         <img src={spot.previewImage} className='img' />
