@@ -23,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/Ahmad-Shaukat/AirBnB/issues"
   },
-  "homepage": "https://github.com/Ahmad-Shaukat/AirBnB#readme"
+  "homepage": "https://github.com/Ahmad-Shaukat/AirBnB#readme",
+  "dependencies": {
+    "react-rating-stars-component": "^2.2.0"
+  }
 }

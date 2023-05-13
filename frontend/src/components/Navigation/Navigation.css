@@ -1,6 +1,100 @@
 .profile-dropDown {
-    /* display: none; */
+    /* opacity: 0; */
+   /* transition: opacity 0.5s ease-in-out; */
+   position: relative;
 }
 .hidden {
-    display: none;
+    /* display: none; */
+}
+.show {
+    opacity: 1;
+    transition: opacity 1s;
+}
+.open-menu {
+    /* background-color: red; */
+    position: absolute;
+    right: 0px;
+    top: 60px;
+    margin-top: 5px;
+    margin-right: 50px ;
+    height: 80px;
+    width: 100px;
+    font-family: 'Anek Devanagari', sans-serif;
+    font-size: small;
+    /* padding: 5px; */
+    list-style: none;
+    font-weight: 500;
+    /* box-shadow: 0px 0px 6px rgba(218, 218, 220, 0.886); */
+    border-radius: 8px;
+
+
+}
+/* .open-menu:active {
+
+} */
+.open-menu li {
+    /* background-color: aqua; */
+    /* border: 1px solid green; */
+    min-width: 100%;
+    padding: 0px;
+    margin-left: -40px;
+    margin-top: 5px;
+    /* margin-left: -5px; */
+    padding-left: 10px;
+}
+.open-menu li:hover {
+
+}
+.open-menu li:hover {
+    background-color: rgb(232, 232, 238);
+}
+.hidden {
+    opacity:0
+}
+.nav-ul {
+    /* background-color: teal; */
+    color: black;
+    list-style: none;
+    /* background-color: red; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav-li {
+    /* background-color: black; */
+    color: white;
+
+
+}
+/* a {
+    color: black;
+} */
+.nav-logo {
+    width: 50px;
+   
+}
+.profile-button {
+    /* margin-right: 50px; */
+    background-color: red;
+}
+.user-menu-create {
+    /* border: 2px solid red; */
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+    align-items: center;
+    margin-right: 10px;
+}
+.crt-btn {
+    margin-right: 20px;
+    background-color: #8ac926;
+    height: 25px;
+    padding-top: 5px;
+    border-radius: 15px;
+    width: 100px;
+    text-align: center;
+    color: white;
+
+
+
 }

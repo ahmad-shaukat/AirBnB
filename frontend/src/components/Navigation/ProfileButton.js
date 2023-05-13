@@ -5,8 +5,11 @@ import * as sessionActions from '../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignupFormModal from '../SignupFormModal';
+import { useHistory } from "react-router-dom";
+import './profilebutton.css';
 
 function ProfileButton({ user }) {
+  const history = useHistory()
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
@@ -24,6 +27,9 @@ function ProfileButton({ user }) {
         setShowMenu(false);
       }
     };
+    const hoverEffect = 
+
+
 
     document.addEventListener('click', closeMenu);
 
@@ -36,30 +42,41 @@ function ProfileButton({ user }) {
     e.preventDefault();
     dispatch(sessionActions.logout());
     closeMenu();
+    history.push('/')
+
   };
 
-  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+  const ulClassName = `profile-dropdown ${showMenu ? "show" : "hidden"}  open-menu`;
 
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
-      </button>
+      <div className="menu-container" onClick={openMenu} tabIndex="0" >
+
+        <i className="fa-solid fa-bars"></i>
+        <button onClick={openMenu} className="menu-butt">
+          <i className="fa-solid fa-user fa-lg" style={{ color: 'white' }}></i>
+        </button>
+
+      </div>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.userName}</li>
-            <li>Hello{user.firstName} {user.lastName}</li>
-            <li>{user.email}</li>
-            <li>
-              <button onClick={logout}>Log Out</button>
-            </li>
-            <NavLink to={'/spots/add/newspot'}>
-               Add New Spot 
-            </NavLink> 
-            <NavLink to={'/spots/current'}>
-              Manage Spots 
-            </NavLink>
+            <div className="user-info">
+              <li>Hello {user.firstName} </li>
+              <li className="email">{user.email}</li>
+            </div>
+            <div className="user-menu">
+              <div className="mng-spot-lnk">
+              <NavLink to={'/spots/current'}>
+                Manage Spots
+              </NavLink>
+              </div>
+                <button onClick={logout} className="lgout-btn">Log Out</button> 
+              
+
+              
+            </div>
+
           </>
         ) : (
           <>

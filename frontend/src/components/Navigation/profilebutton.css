@@ -1,0 +1,118 @@
+.menu-butt {
+    /* background-color: red;
+     */
+     background-color: rgb(89, 86, 86);
+    border: none;
+    height: 27px;
+    border-radius: 50px;
+    padding: 6px;
+    
+}
+.fa-user-circle {
+    /* color: pink; */
+    /* height: 40px; */
+    /* width: 30px; */
+    /* border: 2px solid black; */
+    color: #d9dee8;
+
+
+}
+.fa-bars {
+    /* justify-self: center; */
+    height: 20px;
+    align-self: center;
+    /* background-color: aqua; */
+    /* margin: auto; */
+    padding-top: 7px;
+}
+.menu-container {
+    /* background-color:; */
+    border: 1px solid rgba(156, 158, 156, 0.766);
+    width: 60px;
+    padding: 5px;
+    margin-right: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 20px;
+    height: 20px;
+    position: relative;
+   
+   
+}
+
+
+
+.user-info {
+    /* background-color: red; */
+    display: absolute;
+   
+    width: 100px;
+    bottom: 0px;
+    /* border: 2px solid red; */
+    z-index: 100; 
+    height: 60px;
+    
+}
+.test:hover {
+    background-color: red;
+}
+.user-menu {
+    /* background-color: green; */
+    width: 140px;
+    position:absolute;
+    transition: .3s;
+    left:0px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    /* background-color: red; */
+    background-color: white;
+    /* justify-content: ; */
+    margin-top: 0px;
+    border-radius: 8px;
+    z-index: 100;
+    /* padding-left: 8px; */
+}
+
+
+.mng-spot-lnk {
+    /* background-color: #70e000; */
+    padding-left: 8px;
+    height: 27px;
+    /* text-align: center; */
+    padding-top: 5px;
+    font-weight: 400;
+    transition: .2s;
+    /* border-radius: 5px; */
+    background-color: white;
+    margin-top: 10px;
+    color: blue;
+}
+.lgout-btn {
+    /* background-color: #ff0000; */
+    color: rgb(245, 8, 8);
+    background-color: white;
+    padding-left: 8px;
+    /* display: flex; */
+    height: 34px;
+    /* text-align: center; */
+    /* padding-top: px; */
+    font-weight: 400;
+    border: none;
+    text-align: left;
+    /* border-radius: 5px; */
+    cursor: pointer;
+    /* margin-top: 10px; */
+    /* width: 130px; */
+    margin-left: 0px;
+    
+}
+.mng-spot-lnk:hover, .new-spot-lnk:hover{
+    background-color: #70e000;
+}
+
+
+.email {
+    color: black;
+}

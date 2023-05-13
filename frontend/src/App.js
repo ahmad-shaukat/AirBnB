@@ -6,9 +6,9 @@ import * as sessionActions from "./store/session";
 import SignupFormPage from "./components/SignupFormModal";
 import Navigation from './components/Navigation'
 import SpotBrowser from "./components/landingPage";
-import SpotDetail from "./components/Spots/SpotDetail";
-import CreateSpotForm from "./components/Spots/CreateSpot";
-import ManageSpotsFunction from "./components/Spots/ManageSpots";
+import SpotDetail from "./components/spotDetail/SpotDetail";
+import CreateSpotForm from "./components/createSpot/CreateSpot";
+import ManageSpotsFunction from "./components/manageSpot/ManageSpots";
 import MainComponent from "./components/Modals";
 import './app.css'
 
@@ -32,7 +32,7 @@ function App() {
         <Route exact path = '/spots/current'> <ManageSpotsFunction /> </Route>
         <Route exact path ='/spots/add/newspot'> <CreateSpotForm /></Route> 
         <Route exact path='/spots/:spotId'> <SpotDetail /></Route>
-        <Route exact path='/hello/test'> <MainComponent/></Route>
+        
         </Switch>}
     </div>
     </div>

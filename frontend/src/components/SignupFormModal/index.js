@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 // import { signup } from "../../store/session";
 import * as sessionActions from '../../store/session'
 import { Redirect } from "react-router-dom";
+import { useModal } from "../../context/Modal";
 
 
 
@@ -16,8 +17,9 @@ const SignupFormPage = () => {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmedPassword] = useState('')
     const [errors, setErrors] = useState({})
+    const {closeModal} = useModal()
 
-    if (sessionUser) return <Redirect to='/' />
+    // if (sessionUser) return <Redirect to='/' />
     const onSubmit = (e) => {
         e.preventDefault();
         // setErrors([])
@@ -29,12 +31,15 @@ const SignupFormPage = () => {
                 lastName,
                 email,
                 password
-            })).catch(async (res) => {
+            }))
+            .then(closeModal)
+            .catch(async (res) => {
                 const data = await res.json();
                 if (data && data.errors) {
-                    setErrors(data.errors)
+                (setErrors(data.errors))    
                 }
-                console.log(errors)
+                
+                console.log (errors, '------signup-errors-----')
             })
         }
 
@@ -44,48 +49,58 @@ const SignupFormPage = () => {
         });
 
     }
+    let formDisabled = false
+    if ( userName === ''|| firstName===''|| lastName===''||email===''||  password===''||userName.length<4 || password.length<6 || password !== confirmPassword) formDisabled = true
 
     return (
 
         <form onSubmit={onSubmit}>
-            <ul>
+            {/* <ul>
                 {Object.keys(errors).map((key) => (
                     <li key={key}>{errors[key]}</li>
                 ))}
-            </ul>
+            </ul> */}
 
             <div>
                 <label>First Name:
-                    <input type="text" name="firstName" onChange={(e) => setFirstName(e.target.value)}></input>
+                    <input type="text" placeholder="Enter First Name" name="firstName" onChange={(e) => setFirstName(e.target.value)}></input>
                 </label>
+                {errors.firstName && <p>{errors.firstName}</p>}
             </div>
             <div>
                 <label>Last Name:
-                    <input type="text" name="lastName" onChange={(e) => setLastName(e.target.value)}></input>
+                    <input type="text" placeholder="Enter Last Name" name="lastName" onChange={(e) => setLastName(e.target.value)}></input>
                 </label>
+                {errors.lastName && <p>{errors.lastName}</p>}
             </div>
             <div>
                 <label>Email:
-                    <input type="email" name="firstName" onChange={(e) => setEmail(e.target.value)}></input>
+                    <input type="email" placeholder="Enter Email" name="firstName" onChange={(e) => setEmail(e.target.value)}></input>
                 </label>
+                {errors.email && <p>{errors.email}</p>}
             </div>
             <div>
                 <label>Password:
-                    <input type="password" name="password" onChange={(e) => setPassword(e.target.value)}></input>
+                    <input type="password" placeholder="Choose a Password" name="password" onChange={(e) => setPassword(e.target.value)}></input>
                 </label>
+                {errors.password && <p>{errors.password}</p>}
             </div>
             <div>
                 <label>Confrimed Password:
-                    <input type="password" name="confirmPassword" onChange={(e) => setConfirmedPassword(e.target.value)}></input>
+                    <input type="password" placeholder="Confirmed Password" name="confirmPassword" onChange={(e) => setConfirmedPassword(e.target.value)}></input>
                 </label>
+                {errors.confirmPassword && (
+          <p>{errors.confirmPassword}</p>
+        )}
             </div>
             <div>
                 <label>Username:
-                    <input type="text" name="userName" onChange={(e) => setUserName(e.target.value)}></input>
+                    <input type="text" placeholder="Pick a username" name="userName" onChange={(e) => setUserName(e.target.value)}></input>
                 </label>
+                {errors.userName && <p>{errors.userName}</p>}
             </div>
             <div>
-                <button type="submit">Submit</button>
+                <button type="submit" disabled={formDisabled}>Sign up</button>
             </div>
         </form>
     )

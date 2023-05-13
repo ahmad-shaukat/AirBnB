@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { CreateSpot } from '../../store/spots';
+import './createSpot.css'
 
 const CreateSpotForm = () => {
     const dispatch = useDispatch()
@@ -22,7 +23,7 @@ const CreateSpotForm = () => {
     const [Img1, setImg1] = useState('')
     const [Img2, setImg2] = useState('')
     const [Img3, setImg3] = useState('')
-    const [Img4, setImg4] = useState('')
+    // const [Img4, setImg4] = useState('')
 
     const updateAddress = (e) => setAddress(e.target.value)
     const updateCity = (e) => setCity(e.target.value)
@@ -52,7 +53,7 @@ const CreateSpotForm = () => {
             lng,
             description,
             price,
-            images:[previewImage, Img1, Img2, Img3, Img4]
+            images:[previewImage, Img1, Img2, Img3]
 
         }
         // console.log (spot)
@@ -74,66 +75,69 @@ const CreateSpotForm = () => {
 
     return (
         <>
-            <h1>Create New Spot</h1>
-            {<form onSubmit={handleSubmit}>
-                <div>
+            <h1 className='create-heading'>Create a New Spot</h1>
+            {<form onSubmit={handleSubmit} className='create-form'>
+                <div className='location'>
                     <h2>Where's is your place located?</h2>
                     <p>"Guests will only get your exact address once they booked a reservation"</p>
-                    <div>
-                        <label>
+                    <div className='location-input-labels'>
+
+                    <div className ='text-label'>
+                        <label for='cheese'>
                             Country:
+                            </label>
                             <input
+                            id="cheese"
                                 type='text'
                                 placeholder='Enter Country'
                                 onChange={updateCountry} />
-                        </label>
                         {errors && errors.country &&
         <p style={{color:"red"}}>{errors.country}</p>}
                     </div>
-                    <div>
+                    <div className ='text-label'>
                         <label>
                             Street Address:
+                            </label>
                             <input
                                 type='text'
                                 placeholder='Enter address'
                                 onChange={updateAddress} />
-                        </label>
                         {errors && errors.address &&
         <p style={{color:"red"}}>{errors.address}</p>}
                     </div>
-                    <div>
+                    <div className ='text-label'>
                         <label>
                             City:
+                            </label>
                             <input
                                 type='text'
                                 placeholder='Enter City'
                                 onChange={updateCity} />
-                        </label>
                         {errors && errors.city &&
         <p style={{color:"red"}}>{errors.city}</p>}
                     </div>
-                    <div>
+                    <div className ='text-label'>
                         <label>State:
+                            </label>
                             <input
                                 type='text'
                                 placeholder='Enter State'
                                 onChange={updateState} />
 
-                        </label>
                         {errors && errors.state &&
         <p style={{color:"red"}}>{errors.state}</p>}
                     </div>
-                    <div>
+                    <div className ='text-label'>
                         <label>Latitude(optional):
+                            </label>
                             <input
                                 type='number'
                                 placeholder='Enter Latitude'
                                 onChange={updateLat} />
-                        </label>
                         {errors && errors.lat &&
         <p style={{color:"red"}}>{errors.lat}</p>}
                     </div>
-                    <div>
+                    <div className ='text-label'>
                         <label>Longitude(optional):
                             <input
                                 type='number'
@@ -144,14 +148,15 @@ const CreateSpotForm = () => {
                         {errors && errors.longitude &&
         <p style={{color:"red"}}>{errors.longitude}</p>}
                     </div>
+                    </div>
 
                 </div>
-                <div>
+                <div className='description'>
                     <h2>Describe your place to guests</h2>
                     <p>"Mention the best features of your space, any special amentities like fast wifi or parking, and what you love about the neighborhood"
 
                     </p>
-                    <div>
+                    <div className ='text-label'>
                         <textarea
                             type='text'
                             placeholder='Please write at least 30 characters'
@@ -162,10 +167,10 @@ const CreateSpotForm = () => {
 
                 </div>
 
-                <div>
+                <div className='name'>
                     <h2>Create a title for your spot</h2>
                     <p>"Catch guests attention with a spot title that highlights what makes your place special"</p>
-                    <div>
+                    <div className ='text-label'>
                         <label>
                             <input
                                 type='text'
@@ -177,10 +182,10 @@ const CreateSpotForm = () => {
                     </div>
                 </div>
 
-                <div>
+                <div className='create-price'>
                     <h2>Set a base price for your spot</h2>
                     <p>"Competitive pricing can help your listing stand out and rank higher in search results."</p>
-                    <div>
+                    <div className ='text-label'>
                         <input
                             type='number'
                             placeholder='Price per night (USD)'
@@ -190,7 +195,7 @@ const CreateSpotForm = () => {
 
                     </div>
                 </div>
-                <div>
+                <div className='pics'>
                     <h2>Liven up your spot with photos</h2>
                     <p>"Submit a link to at least one photo to publish your spot."</p>
                     <div>
@@ -201,8 +206,11 @@ const CreateSpotForm = () => {
                         <input type='text' placeholder='Image URL'></input>
                     </div>
                 </div>
-                <button type='submit'>Create Spot</button>
+                <div className='buttons'>
+
+                <button className= 'create-submit-btn' type='submit'>Create Spot</button>
                 <button type='button'>Cancel</button>
+                </div>
             </form>}
         </>
 
