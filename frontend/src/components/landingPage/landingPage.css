@@ -32,6 +32,9 @@
         "location-rating"
         "price";
 }
+.spot-detail p{
+    font-weight: 400;
+}
 
 
 

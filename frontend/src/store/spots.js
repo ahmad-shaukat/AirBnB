@@ -156,7 +156,7 @@ export const RemoveSpot = (spotId) => async dispatch => {
 const spotsReducer = (state = initalState, action) => {
   switch (action.type) {
     case LOAD:
-      console.log (action.list, '----------------list of spots-----')
+      // console.log (action.list, '----------------list of spots-----')
       const allSpots = {};
       action.list.Spots.forEach(spot => {
         allSpots[spot.id] = spot;
@@ -169,7 +169,7 @@ const spotsReducer = (state = initalState, action) => {
     case ADD_ONE:{
       const singleSpotState = {}
     singleSpotState[action.spot.id] = action.spot
-    console.log (singleSpotState, '---------------------')
+    // console.log (singleSpotState, '---------this is spot.avgRating------------')
     return singleSpotState
     }
       
@@ -178,7 +178,7 @@ const spotsReducer = (state = initalState, action) => {
       return newState
     }
     case GET_USER_SPOTS:
-      console.log(action.list, '-------------------')
+      // console.log(action.list, '-------------------')
       const userSpots = { ...state }
       action.list.Spots.forEach(spot => {
         userSpots[spot.id] = spot

@@ -49,12 +49,12 @@ const ValidationSpot = [
   check('country')
     .exists({ checkFalsy: true })
     .withMessage('Country is required'),
-  check('lat')
-    .exists({ checkFalsy: true })
-    .withMessage('Latitude is required'),
-  check('lng')
-    .exists({ checkFalsy: true })
-    .withMessage('Longitude is required'),
+  // check('lat')
+  //   .exists({ checkFalsy: true })
+  //   .withMessage('Latitude is required'),
+  // check('lng')
+  //   .exists({ checkFalsy: true })
+  //   .withMessage('Longitude is required'),
   check('name')
   .exists({ checkFalsy: true })
   .withMessage('Name is required'),

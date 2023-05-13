@@ -34,10 +34,12 @@ const SpotBrowser = () => {
     // }
 
     if (allSpots) {
-        for (let items of allSpots) {
+        // for (let items of allSpots) {
+        //     console.log (items, '-------------------is this avgRating')
 
-            if (!items['avgRating']) items['avgRating'] = 'New'
-        }
+        //     if (!items['avgRating']) items['avgRating'] = 'New'
+        // }
+        console.log (allSpots)
 
 
 
@@ -65,7 +67,7 @@ const SpotBrowser = () => {
                                         <p className=''>{spot.city}, {spot.state}</p>
                                         <div className='rating-star'>
 
-                                            <i class="fa-solid fa-star"></i><p>{spot.avgRating}</p>
+                                            <i class="fa-solid fa-star"></i><p>{!spot.avgRating?<div>New</div>:<div>{spot.avgRating.toFixed(1)}</div> }</p>
                                         </div>
                                     </div>
                                     <p className='price'>${spot.price} Night</p>

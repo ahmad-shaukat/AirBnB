@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { getSingleSpot } from '../../store/spots'
+import spotsReducer, { getSingleSpot } from '../../store/spots'
 import { SpotReviews } from '../../store/reviews'
 import PostReviewModal from '../Modals/PostReviewModal'
 import { CreateReview } from '../../store/reviews'
@@ -81,6 +81,8 @@ const SpotDetail = () => {
     const handleCloseModal = () => {
         setShowModal(false);
         setErrors({});
+        setUserRating(null)
+        setUserReview('')
     }
 
     const handleNewReview = async (e) => {
@@ -128,10 +130,14 @@ const SpotDetail = () => {
 
     let content;
 
+    const checkReviewLength = (review, rating) => {
+        if (review.length<10 || !rating) {
+            return true
+        }
+        return false
+    }
+
     // Modal for delete 
-
-
-
 
     // here we add Modal to the current as a default value if a user is logged in
     if (current && spot) {
@@ -152,7 +158,8 @@ const SpotDetail = () => {
                         <form onSubmit={handleNewReview}>
                             <div>
 
-                                <textarea minLength='10' placeholder='Leave your review here...' onChange={(e) => setUserReview(e.target.value)}></textarea>
+                                <textarea minLength='10' placeholder='Leave your review here...' onChange={
+                                    (e) => setUserReview(e.target.value)}></textarea>
                             </div>
                             <div>
 
@@ -160,7 +167,8 @@ const SpotDetail = () => {
                                     <input type='number' min='1' max='5' onChange={(e) => setUserRating(e.target.value)} />
                                 </label>
                             </div>
-                            <button type='Submit'>Submit Your Review</button>
+                            <button type='Submit' disabled={checkReviewLength(review, stars)}>Submit Your Review</button>
+                            {/* <button onClick={handleCloseModal}>Close</button> */}
                         </form>
                     </>
                 </PostReviewModal>
@@ -184,39 +192,8 @@ const SpotDetail = () => {
         
         if (current.id === spot.ownerId) {
             content = null
-        } else {
-            content = <>
-            <div>
-                <button onClick={handleShowModal}>Post your review</button>
-                <PostReviewModal show={showModal} handleClose={handleCloseModal}>
-
-
-                    <>
-
-                        <h1>How was your stay?</h1>
-                        <ul>
-                            {Object.keys(errors).map((key) => (
-                                <li key={key}>{errors[key]}</li>
-                            ))}
-                        </ul>
-                        <form onSubmit={handleNewReview}>
-                            <div>
-
-                                <textarea minLength='10' placeholder='Leave your review here...' onChange={(e) => setUserReview(e.target.value)}></textarea>
-                            </div>
-                            <div>
-
-                                <label>  Stars:
-                                    <input type='number' min='1' max='5' onChange={(e) => setUserRating(e.target.value)} />
-                                </label>
-                            </div>
-                            <button type='Submit'>Submit Your Review</button>
-                        </form>
-                    </>
-                </PostReviewModal>
-            </div>
-        </>
-        }
+        } 
+        
     }
     
 
@@ -227,6 +204,7 @@ const SpotDetail = () => {
     // console.log (spot, spot.Owner)
 
     if (spot && spot.Owner) {
+        console.log (spot, '-----------this is spot')
         let allSpotReviews;
         let showRating
         if (reviews) {
@@ -245,12 +223,12 @@ const SpotDetail = () => {
                 reviewWord = 'New'
             }
 
-            if (spot.avgRating > 1) {
-                showRating = spot.avgRating.toFixed(1)
-            }
-            if (spot.avgRating = 'New') {
-                showRating = ''
-            }
+            // if (spot.avgRating > 0) {
+            //     showRating = spot.avgRating
+            // }
+            // if (spot.avgRating='New') {
+            //     showRating = ''
+            // }
 
         }
 
@@ -297,7 +275,7 @@ const SpotDetail = () => {
                         </div>
                         <div className='price-info'>
                             <p>${spot.price} night</p>
-                            <p>stars {showRating}</p>
+                            <p>abovestars {!spot.avgStarRating?<div>New</div>:<div>{spot.avgStarRating.toFixed(1)}</div>}</p>
                             <p>{reviewWord}</p>
                             <button onClick={comingSoon}>Reserve</button>
                         </div>
@@ -308,7 +286,7 @@ const SpotDetail = () => {
                         <div className='reviews-price-info'>
                             <p>${spot.price} night</p>
                             <p>{reviewWord}</p>
-                            <p>stars {showRating}</p>
+                            <p> below stars{!spot.avgStarRating?<div>New</div>:<div>{spot.avgStarRating.toFixed(1)}</div>}</p>
                         </div>
                     </div>
 

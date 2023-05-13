@@ -17,10 +17,10 @@ const EditSpotForm = ({ spot, hideForm }) => {
     const [lng, setLng] = useState(spot.lng)
     const [lat, setLat] = useState(spot.lat)
     const [name, setName] = useState(spot.name)
-    const [previewImage, setPreviewImage] = useState(spot.previewImage)
-    const [Img1, setImg1] = useState('')
-    const [Img2, setImg2] = useState('')
-    const [Img3, setImg3] = useState('')
+    // const [previewImage, setPreviewImage] = useState(spot.previewImage)
+    // const [Img1, setImg1] = useState('')
+    // const [Img2, setImg2] = useState('')
+    // const [Img3, setImg3] = useState('')
     // const [Img4, SetImg4] = useState(spot.Img3)
     const [errors, setErrors] = useState({})
 
@@ -72,7 +72,7 @@ const EditSpotForm = ({ spot, hideForm }) => {
             name,
             description,
             price,
-            previewImage
+           
         }
         let updatedSpot = await
             dispatch(EditSpot(payload, spot.id)).catch(async(res) => {
@@ -218,11 +218,10 @@ const EditSpotForm = ({ spot, hideForm }) => {
                     <h2>Liven up your spot with photos</h2>
                     <p>"Submit a link to at least one photo to publish your spot."</p>
                     <div>
-                        <input type='text' value={previewImage} onChange={(e) => setPreviewImage(e.target.value)}></input>
-                        <input type='text'  onChange={(e) => setImg1(e.target.value)}></input>
-                        <input type='text' onChange={(e) => setImg2(e.target.value)}></input>
-                        <input type='text'  onChange={(e) => setImg3(e.target.value)}></input>
-                        <input type='text' placeholder='Image URL'></input>
+                        <input type='text' disabled={true}></input>
+                        <input type='text' disabled={true}></input>
+                        <input type='text'disabled={true}></input>
+                        <input type='text'disabled={true}></input>
                     </div>
                 </div>
                 <button type='submit'>Update</button>

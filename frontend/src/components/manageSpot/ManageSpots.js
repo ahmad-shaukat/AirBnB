@@ -49,13 +49,17 @@ const ManageSpotsFunction = () => {
             <EditSpotForm spot={editSpot} spotId={editSpotId} hideForm={() => setShowEditSpotForm(false)} />
         )
     } else {
+        let mngRating;
         if (userSpots) {
             for (let items of userSpots) {
+                // let mngRating;
                 // console.log (items, '-----------this is spot')
                 // console.log (items.avgRating, '------------this is rating')
 
-                if (!items['avgRating']) {
-                    items['avgRating'] = 'New'
+                if (!items['avgStarRating']) {
+                    let mngRating = 'New'
+                } else {
+                    mngRating = items['avgStarRating']
                 }
                 // if (typeof(items['avgRating']) === 'number') {
                 //     let newNumber = items['avgRating']
@@ -87,14 +91,14 @@ const ManageSpotsFunction = () => {
                                         <p>{spot.city}, {spot.state}</p>
                                         <div className='mng-rating-str'>
 
-                                            <i class="fa-solid fa-star"></i><p>{spot.avgRating}</p>
+                                            <i class="fa-solid fa-star"></i><p>{!spot.avgRating ? <div>New</div>:<div>{spot.avgRating.toFixed(1)}</div> }</p>
                                         </div>
                                     </div>
                                     <p>${spot.price} night</p>
                                 </NavLink>
                                 <div className='mng-btns'>
 
-                                    <button onClick={handleShowModal}>Delete ntis</button>
+                                    <button onClick={handleShowModal} style={{cursor:'pointer'}}>Delete</button>
 
                                     <DeleteSpotModal show={showModal} handleClose={handleCloseModal}>
                                         <>
@@ -104,7 +108,7 @@ const ManageSpotsFunction = () => {
 
                                                 <h5>Are you sure you want to delete this review</h5>
 
-                                                <button style={{ backgroundColor: 'red', color: 'white' }} onClick={() => onDeleteHandle(spot.id)}>Delete</button>
+                                                <button style={{ backgroundColor: 'red', color: 'white' }} onClick={() => onDeleteHandle(spot.id)} >Delete</button>
                                             </div>
 
 
@@ -118,7 +122,7 @@ const ManageSpotsFunction = () => {
                                         setEditSpotId(spot.id)
                                         setShowEditSpotForm(true)
 
-                                    }}>Edit</button>
+                                    }} style={{cursor:'pointer'}}>Update</button>
                                 </div>
                             </div>
                         ))}
@@ -131,7 +135,7 @@ const ManageSpotsFunction = () => {
     }
     if (userSpots && userSpots.length < 1) {
         content = <>
-            <NavLink to='/spots/add/newspot'> Add a Spot</NavLink>
+            <NavLink to='/spots/add/newspot'> Create a New Spot</NavLink>
         </>
     }
 
