@@ -32,7 +32,7 @@ function App() {
         <Route exact path = '/spots/current'> <ManageSpotsFunction /> </Route>
         <Route exact path ='/spots/add/newspot'> <CreateSpotForm /></Route> 
         <Route exact path='/spots/:spotId'> <SpotDetail /></Route>
-        <Route exact path='/hello/test'> <MainComponent/></Route>
+        
         </Switch>}
     </div>
     </div>

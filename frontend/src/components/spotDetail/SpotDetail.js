@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
+import ReactStars from "react-rating-stars-component";
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -69,20 +70,27 @@ const SpotDetail = () => {
     }
     // console.log (spot.ownerId, '---------------spotOwnerId----------------')
 
-
-
-
-
+    
+    
+    
+    
     // console.log(reviews, '---------------')
     // console.log (typeof reviews)
+    const newRating = (rating) => {
+        setUserRating(rating)
+    }
     const handleShowModal = () => {
         setShowModal(true);
+        setUserRating(0)
+        // console.log (rating,'--------------in the show')
     }
-
+    
     const handleCloseModal = () => {
         setShowModal(false);
         setErrors({});
+        newRating(0)
         setUserRating('')
+        console.log (stars, '--------------in the close--------')
         setUserReview('')
     }
 
@@ -165,7 +173,14 @@ const SpotDetail = () => {
                             <div>
 
                                 <label>  Stars:
-                                    <input value={stars}type='number' min='1' max='5' onChange={(e) => setUserRating(e.target.value)} />
+                                <div>
+            <ReactStars 
+            value={stars}
+            size={15}
+            count={5}
+            
+            onChange={newRating}/>
+        </div>
                                 </label>
                             </div>
                             <button type='Submit' disabled={checkReviewLength(review, stars)}>Submit Your Review</button>
