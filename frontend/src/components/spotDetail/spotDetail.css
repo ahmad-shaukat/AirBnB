@@ -179,7 +179,18 @@
     /* display: flex;
     justify-content: center; */
   }
-  .spt-det-rev-button button {
+  /* .spt-det-rev-button button {
+    margin: auto;
+    width: 100px;
+    height: 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 500;
+    background-color: #ff006e;
+    color: white;
+    cursor: pointer;
+  } */
+  .spt-det-rev-button-btn {
     margin: auto;
     width: 100px;
     height: 20px;
@@ -283,6 +294,36 @@
   border-radius: 5px;
   background-color: #34a0a4;
   color: white;
+}
+/* styles for delete review */
+
+.del-rev-hdn {
+  /* background-color: aqua; */
+  text-align: center;
+}
+.del-rev-sub-hdn {
+  /* background-color: green; */
+  text-align: center;
+  font-size: 12px;
+}
+.rev-del-sub-btn-ctn {
+  display: flex;
+  justify-content: center;
+}
+.rev-del-sub-btn {
+  margin-top: 10px;
+  background-color:#d8cdcf;
+  color: white;
+  width: 80%;
+  height: 30px;
+  color: white;
+  font-size: 10px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  background-color: #e63946;
+  letter-spacing: 1px;
+
 }
 
 

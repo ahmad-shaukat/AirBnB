@@ -387,15 +387,17 @@ const SpotDetail = () => {
                                 // setDeleteReviewId(review.User.id)
                                 deleteReview = <>
                                     <div>
-                                        <button onClick={handleShowModal}>Delete</button>
+                                        <button onClick={handleShowModal} className='spt-det-rev-button-btn'>Delete</button>
                                         <DeleteReviewModal show={showModal} handleClose={handleCloseModal}>
                                             <>
 
-                                                <h1>Confirm Delete</h1>
+                                                <p className='del-rev-hdn'>Confirm Delete</p>
 
-                                                <h5>Are you sure you want to delete this review</h5>
+                                                <p className='del-rev-sub-hdn'>Are you sure you want to delete this review?</p>
+                                                <div className='rev-del-sub-btn-ctn'>
 
-                                                <button style={{ backgroundColor: 'red', color: 'white' }} onClick={onDeleteHandle}>Delete</button>
+                                                <button className='rev-del-sub-btn' onClick={onDeleteHandle}>Yes(Delete Review)</button>
+                                                </div>
                                             </>
                                         </DeleteReviewModal>
                                     </div>
