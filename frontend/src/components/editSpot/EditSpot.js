@@ -4,6 +4,7 @@ import { EditSpot } from "../../store/spots"
 import { useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom"
 // import spot from "../../../../backend/db/models/spot"
+import './editSpot.css'
 
 
 const EditSpotForm = ({ spot, hideForm }) => {

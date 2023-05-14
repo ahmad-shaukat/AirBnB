@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { UserSpots } from "../../store/spots";
-import EditSpotForm from '../Spots/EditSpot';
+import EditSpotForm from '../editSpot/EditSpot'
 import { RemoveSpot } from '../../store/spots';
 import DeleteSpotModal from '../Modals/DeleteSpot';
 import './manageSpot.css'
