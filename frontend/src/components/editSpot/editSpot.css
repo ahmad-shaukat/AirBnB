@@ -1,0 +1,244 @@
+.cre-spt-hdg-ctn {
+    width: 600px;
+    padding-top: 5px;
+    background-color: #ddbea9;
+    height: 50px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.create-heading {
+    width: 500px;
+    /* background-color: blue; */
+    margin: auto;
+    font-size: 30px;
+}
+
+
+
+.location {
+    /* background-color: red; */
+    width: 500px;
+    margin: auto;
+    margin-top: 5px;
+    /* background-color: red; */
+    
+}
+.location label{
+    display: block;
+    font-size: 14px;
+}
+.cre-spt-inp-err-ctn {
+    display: flex;
+    height: 25px;
+    flex-direction: row;
+    /* border: 1px solid rgb(9, 0, 128); */
+    justify-content: space-between;
+    align-items: center;
+}
+.cre-spt-country-text-label {
+    /* border: 1px solid black; */
+}
+.cre-spt-err {
+    font-size: 14px;
+}
+.cre-spt-country-text-label input {
+    /* width: 90%; */
+    height: 22px;
+    width: 492px;
+    outline-color: green;
+}
+.cre-spt-address-text-label input{
+    height: 22px;
+    width: 492px;
+    outline-color: green;
+}
+.cre-spt-cty-ste {
+    /* border: 1px solid blue; */
+    display: flex;
+    justify-content: space-between;
+}
+.cre-spt-ste-text-label{
+    /* background-color: green; */
+}
+.cre-spt-city-text-label {
+    /* background-color: aqua; */
+    width: 65%;
+    /* height: 22px; */
+}
+.state-err {
+    font-size: 13px;
+}
+.cre-spt-city-ipt {
+    outline-color: green;
+    height: 22px;
+    width: 317px;
+}
+.cre-spt-ste-int {
+    outline-color: green;
+    height: 22px;
+
+}
+.cre-spt-lng-lat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cre-spt-lat-text-label {
+    width: 47%;
+    /* background-color: aqua; */
+    margin-top: 5px;
+}
+.cre-spt-lng-text-label {
+    width: 47%;
+    /* background-color: green; */
+    margin-top: 3px;
+}
+.cre-spt-lng-text-label input {
+    width: 97%;
+    margin-top: 5px;
+    height: 22px;
+}
+.cre-spt-lat-text-label input {
+    width: 97%;
+    margin-top: 5px;
+    height: 22px;
+}
+.cre-spt-loc-des-div {
+    width: 600px;
+    margin: auto;
+    height: 2px;
+    background-color: black;
+    opacity: 0.4;
+    margin-top: 20px;
+}
+.cre-spt-description {
+    width: 500px;
+    margin: auto;
+}
+.cre-spt-des-hed-sub-hed {
+    /* background-color: aqua; */
+    border: 1ps slod black;
+}
+.cre-spt-des-hed {
+    font-size: 18px;
+} 
+.cre-spt-des-sub-hed {
+font-size: 14px;
+}
+.cre-spt-des-text{
+    width: 497px;
+    height: 150px;
+}
+.cre-spt-name{
+    width: 500px;
+    margin: auto;
+}
+.cre-spt-name-txt {
+    width: 492px;
+    height: 22px;
+}
+.cre-spt-price-text {
+    width: 500px;
+    margin: auto;
+    /* background-color: red; */
+}
+.cre-price-text-label {
+    display: flex;
+
+}
+.cre-price-text-label span {
+    margin-right: 5px;
+    padding-top: 3px;
+}
+.cre-spt-amount-txt {
+    width: 480px;
+    height: 22px;
+}
+.cre-spt-pics {
+    width: 500px;
+    margin: auto;
+}
+.cre-spt-img-lnk-ctn input{
+    display: block;
+    margin-bottom: 10px;
+    height: 22px;
+    width: 492px;
+}
+.cre-upd-sub-buttons {
+    width: 500px;
+    margin: auto;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-around ;
+    align-items: center;
+    /* background-color: red; */
+    height: 40px;
+    /* background-color: red; */
+}
+.cre-upd-sub-buttons button {
+    height: 25px;
+    width: 150px;
+    color: white;
+    /* background-color:#17c3b2; */
+    background-color:  #ddbea9;
+    color: black;
+    border: none;
+    border-radius: 4px;
+}
+.cre-upd-sub-buttons .cre-upd-can {
+    background-color: red;
+    color: white;
+}
+.
+.cre-spt-main-ctn {
+    /* background-color: #4cc9f0; */
+}
+.cre-spt-loc-main-ctn{
+    background-color: #ddbea9;
+    margin: auto;
+    width: 600px;
+    height: 360px;
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center;
+    align-items: center;
+}
+.cre-spt-desc-main-ctn{
+    width: 600px;
+    background-color: #ddbea9;
+    margin: auto;
+    height: 310px;
+    display: flex;
+    margin-top: 20px;
+}
+.cre-spt-name-main-ctn{
+    width: 600px;
+    background-color:  #ddbea9;
+    margin: auto;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+.cre-spt-prcice-main-ctn {
+    margin:auto;
+    display: flex;
+    width: 600px;
+    background-color:  #ddbea9;
+    height: 180px;
+    margin-top: 20px;
+
+}
+.cre-spt-practice-main-ctn {
+    margin:auto;
+    display: flex;
+    width: 600px;
+    background-color:  #ddbea9;
+    margin-top: 20px;
+    height: 300px;
+    margin-bottom: 15px;
+
+}

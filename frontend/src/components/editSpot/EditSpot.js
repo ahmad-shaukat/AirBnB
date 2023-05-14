@@ -94,141 +94,193 @@ const EditSpotForm = ({ spot, hideForm }) => {
     };
     return (
         <>
-            <h1>Update Spot</h1>
-            {<form onSubmit={handleSubmit}>
+        <div className='cre-spt-main-ctn'>
+
+        <div className='cre-spt-hdg-ctn'>
+
+            <p className='create-heading'>Update your spot</p>
+        </div>
+        {<form onSubmit={handleSubmit} className='create-form'>
+            <div className='cre-spt-loc-main-ctn'>
+
+                <div className='location'>
+                    <p className='cre-spt-des-hed'>Where's is your place located?</p>
+                    <p className='cre-spt-des-sub-hed'>"Guests will only get your exact address once they booked a reservation"</p>
+                    <div className='location-input-labels'>
+
+                        <div className='cre-spt-country-text-label'>
+                            <div className='cre-spt-inp-err-ctn'>
+                                <label for='cheese'>
+                                    Country:
+                                </label>
+                                {errors && errors.country &&
+                                    <p style={{ color: "red" }} className='cre-spt-err'>{errors.country}</p>}
+                            </div>
+                            <input
+                                id="cheese"
+                                type='text'
+                                value={country}
+                                // placeholder='Enter Country'
+                                onChange={updateCountry} />
+                        </div>
+                        <div className='cre-spt-address-text-label'>
+                            <div className='cre-spt-inp-err-ctn'>
+                                <label>
+                                    Street Address:
+                                </label>
+
+                                {errors && errors.address &&
+                                    <p style={{ color: "red" }} className='cre-spt-err'>{errors.address}</p>}
+                            </div>
+                            <input
+                                type='text'
+                               value={address}
+                                onChange={updateAddress} />
+                        </div>
+                        <div className='cre-spt-cty-ste'>
+
+                            <div className='cre-spt-city-text-label'>
+                                <div className='cre-spt-inp-err-ctn'>
+
+                                    <label>
+                                        City:
+                                    </label>
+                                    {errors && errors.city &&
+                                        <p style={{ color: "red" }} className='cre-spt-err'>{errors.city}</p>}
+                                </div>
+                                <input
+                                    type='text'
+                                    className='cre-spt-city-ipt'
+                                    value={city}
+                                    onChange={updateCity} />
+                            </div>
+                            <div className='cre-spt-ste-text-label'>
+                                <div className='cre-spt-inp-err-ctn'>
+
+                                    <label>State:
+                                    </label>
+                                    {errors && errors.state &&
+                                        <p style={{ color: "red" }} className='state-err'>{errors.state}</p>}
+                                </div>
+
+                                <input
+                                    type='text'
+                                    className='cre-spt-ste-int'
+                                   value={state}
+                                    onChange={updateState} />
 
 
-                <div>
-                    <h2>Where's is your place located?</h2>
-                    <p>"Guests will only get your exact address once they booked a reservation"</p>
+                            </div>
+                        </div>
+                        <div className='cre-spt-lng-lat'>
+
+                            <div className='cre-spt-lat-text-label'>
+                                <label>Latitude(optional):
+                                </label>
+                                <input
+                                    type='number'
+                                   value={lat}
+                                    onChange={updateLat} />
+                                {errors && errors.lat &&
+                                    <p style={{ color: "red" }}>{errors.lat}</p>}
+                            </div>
+                            <div className='cre-spt-lng-text-label'>
+                                <label>Longitude(optional):
+                                </label>
+                                <input
+                                    type='number'
+                                    value={lng}
+                                    onChange={updateLng} />
+
+                                {errors && errors.longitude &&
+                                    <p style={{ color: "red" }}>{errors.longitude}</p>}
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <label>
-                        Country:
-                        <input
-                            type='text'
-                            value={country}
-                            onChange={updateCountry} />
-                    </label>
-                    {errors && errors.country &&
-                            <p style={{ color: "red" }}>{errors.country}</p>}
-                </div>
 
-                <div>
-                    <label>
-                        Street Address:
-                        <input
-                            type='text'
-                            value={address}
+            </div>
+            {/* <div className='cre-spt-loc-des-div'></div> */}
+            <div className='cre-spt-desc-main-ctn'>
 
-                            onChange={updateAddress} />
-                    </label>
-                    {errors && errors.address &&
-        <p style={{color:"red"}}>{errors.address}</p>}
-                </div>
-                <div>
-                    <label>
-                        City:
-                        <input
-                            type='text'
-                            value={city}
-                            onChange={updateCity} />
+                <div className='cre-spt-description'>
+                    <div className='cre-spt-des-hed-sub-hed'>
 
-                    </label>
-                    {/* {errors && errors.city &&
-        <p style={{color:"red"}}>{errors.city}</p>} */}
-                </div>
-                <div>
-                    <label>State:
-                        <input
-                            type='text'
-                            value={state}
-                            onChange={updateState} />
+                        <p className='cre-spt-des-hed'>Describe your place to guests</p>
+                        <p className='cre-spt-des-sub-hed'>"Mention the best features of your space, any special amentities like fast wifi or parking, and what you love about the neighborhood"
 
-                    </label>
-                    {/* {errors && errors.state &&
-        <p style={{color:"red"}}>{errors.state}</p>} */}
-                </div>
-                <div>
-                    <label>Latitude(optional):
-                        <input
-                            type='number'
-                            value={lat}
-                            onChange={updateLat} />
-                    </label>
-                    {errors && errors.lat &&
-        <p style={{color:"red"}}>{errors.lat}</p>}
-                </div>
-                <div>
-                    <label>Longitude(optional):
-                        <input
-                            type='number'
-                            value={lng}
-                            onChange={updateLng} />
-
-                    </label>
-                    {errors && errors.longitude &&
-        <p style={{color:"red"}}>{errors.longitude}</p>}
-                </div>
-                <div>
-                    <h2>Describe your place to guests</h2>
-                    <p>"Mention the best features of your space, any special amentities like fast wifi or parking, and what you love about the neighborhood"
-
-                    </p>
-                    <div>
+                        </p>
+                    </div>
+                    <div className='text-label'>
                         <textarea
                             type='text'
-                            value={description}
-                            
+                            className='cre-spt-des-text'
+                          value={description}
                             onChange={updateDescription} />
                         {errors && errors.description &&
                             <p style={{ color: "red" }}>{errors.description}</p>}
                     </div>
+
                 </div>
-                <div>
-                    <h2>Create a title for your spot</h2>
-                    <p>"Catch guests attention with a spot title that highlights what makes your place special"</p>
-                    <div>
-                        <label>
+            </div>
+            {/* <div className='cre-spt-loc-des-div'></div> */}
+            <div className='cre-spt-name-main-ctn'>
+
+                <div className='cre-spt-name'>
+                    <div className='cre-spt-des-hed-sub-hed' >
+
+                        <p className='cre-spt-des-hed'>Create a title for your spot</p>
+                        <p className='cre-spt-des-sub-hed'>"Catch guests attention with a spot title that highlights what makes your place special"</p>
+                    </div>
+                    <div className='text-label'>
+                        <div>
                             <input
                                 type='text'
                                 value={name}
-                               
+                                className='cre-spt-name-txt'
                                 onChange={updateName} />
-                        </label>
-                        {errors && errors.name &&
-        <p style={{color:"red"}}>{errors.name}</p>}
+                            {errors && errors.name &&
+                                <p style={{ color: "red" }}>{errors.name}</p>}
+                        </div>
                     </div>
                 </div>
-                <div>
-                    <h2>Set a base price for your spot</h2>
-                    <p>"Competitive pricing can help your listing stand out and rank higher in search results."</p>
-                    <div>
-                        <input
-                            type='number'
-                            placeholder='Price per night (USD)'
-                            value={price}
-                            onChange={updatePrice} />
+            </div>
+
+
+            {/* <div className='cre-spt-loc-des-div'></div> */}
+            <div className='cre-spt-prcice-main-ctn'>
+
+                <div className='cre-spt-price-text'>
+                    <div className='cre-spt-des-hed-sub-hed' >
+                        <p className='cre-spt-des-hed'>Set a base price for your spot</p>
+                        <p className='cre-spt-des-sub-hed'>"Competitive pricing can help your listing stand out and rank higher in search results."</p>
+                    </div>
+                    <div className='cre-price-text-label'> <span>$</span>
+                        <div>
+
+                            <input
+                                type='number'
+                                value={price}
+                                className='cre-spt-amount-txt'
+                                onChange={updatePrice} />
                             {errors && errors.price &&
-        <p style={{color:"red"}}>{errors.price}</p>}
+                                <p style={{ color: "red" }}>{errors.price}</p>}
+                        </div>
 
                     </div>
                 </div>
-           
-                <div>
-                    <h2>Liven up your spot with photos</h2>
-                    <p>"Submit a link to at least one photo to publish your spot."</p>
-                    <div>
-                        <input type='text' disabled={true}></input>
-                        <input type='text' disabled={true}></input>
-                        <input type='text'disabled={true}></input>
-                        <input type='text'disabled={true}></input>
-                    </div>
-                </div>
-                <button type='submit'>Update</button>
-                <button type='button' onClick={handleCancelClick}>Cancel</button>
-            </form>}
-        </>
+            </div>
+            {/* <div className='cre-spt-loc-des-div'></div> */}
+            <div className='cre-upd-sub-buttons'>
+
+                <button className='rev-upd-sub-btn' type='submit'>Update</button>
+            <button type='button' onClick={handleCancelClick} className="cre-upd-can">Cancel</button>
+
+                {/* <button type='button'>Cancel</button> */}
+            </div>
+        </form>}
+    </div>
+    </>
     )
 }
 
@@ -241,3 +293,143 @@ const EditSpotForm = ({ spot, hideForm }) => {
 
 
 export default EditSpotForm
+
+
+// return (
+//     <>
+//         <h1>Update Spot</h1>
+//         {<form onSubmit={handleSubmit}>
+
+
+//             <div>
+//                 <h2>Where's is your place located?</h2>
+//                 <p>"Guests will only get your exact address once they booked a reservation"</p>
+//             </div>
+//             <div>
+//                 <label>
+//                     Country:
+//                     <input
+//                         type='text'
+//                         value={country}
+//                         onChange={updateCountry} />
+//                 </label>
+//                 {errors && errors.country &&
+//                         <p style={{ color: "red" }}>{errors.country}</p>}
+//             </div>
+
+//             <div>
+//                 <label>
+//                     Street Address:
+//                     <input
+//                         type='text'
+//                         value={address}
+
+//                         onChange={updateAddress} />
+//                 </label>
+//                 {errors && errors.address &&
+//     <p style={{color:"red"}}>{errors.address}</p>}
+//             </div>
+//             <div>
+//                 <label>
+//                     City:
+//                     <input
+//                         type='text'
+//                         value={city}
+//                         onChange={updateCity} />
+
+//                 </label>
+//                 {/* {errors && errors.city &&
+//     <p style={{color:"red"}}>{errors.city}</p>} */}
+//             </div>
+//             <div>
+//                 <label>State:
+//                     <input
+//                         type='text'
+//                         value={state}
+//                         onChange={updateState} />
+
+//                 </label>
+//                 {/* {errors && errors.state &&
+//     <p style={{color:"red"}}>{errors.state}</p>} */}
+//             </div>
+//             <div>
+//                 <label>Latitude(optional):
+//                     <input
+//                         type='number'
+//                         value={lat}
+//                         onChange={updateLat} />
+//                 </label>
+//                 {errors && errors.lat &&
+//     <p style={{color:"red"}}>{errors.lat}</p>}
+//             </div>
+//             <div>
+//                 <label>Longitude(optional):
+//                     <input
+//                         type='number'
+//                         value={lng}
+//                         onChange={updateLng} />
+
+//                 </label>
+//                 {errors && errors.longitude &&
+//     <p style={{color:"red"}}>{errors.longitude}</p>}
+//             </div>
+//             <div>
+//                 <h2>Describe your place to guests</h2>
+//                 <p>"Mention the best features of your space, any special amentities like fast wifi or parking, and what you love about the neighborhood"
+
+//                 </p>
+//                 <div>
+//                     <textarea
+//                         type='text'
+//                         value={description}
+                        
+//                         onChange={updateDescription} />
+//                     {errors && errors.description &&
+//                         <p style={{ color: "red" }}>{errors.description}</p>}
+//                 </div>
+//             </div>
+//             <div>
+//                 <h2>Create a title for your spot</h2>
+//                 <p>"Catch guests attention with a spot title that highlights what makes your place special"</p>
+//                 <div>
+//                     <label>
+//                         <input
+//                             type='text'
+//                             value={name}
+                           
+//                             onChange={updateName} />
+//                     </label>
+//                     {errors && errors.name &&
+//     <p style={{color:"red"}}>{errors.name}</p>}
+//                 </div>
+//             </div>
+//             <div>
+//                 <h2>Set a base price for your spot</h2>
+//                 <p>"Competitive pricing can help your listing stand out and rank higher in search results."</p>
+//                 <div>
+//                     <input
+//                         type='number'
+//                         placeholder='Price per night (USD)'
+//                         value={price}
+//                         onChange={updatePrice} />
+//                         {errors && errors.price &&
+//     <p style={{color:"red"}}>{errors.price}</p>}
+
+//                 </div>
+//             </div>
+       
+//             <div>
+//                 <h2>Liven up your spot with photos</h2>
+//                 <p>"Submit a link to at least one photo to publish your spot."</p>
+//                 <div>
+//                     <input type='text' disabled={true}></input>
+//                     <input type='text' disabled={true}></input>
+//                     <input type='text'disabled={true}></input>
+//                     <input type='text'disabled={true}></input>
+//                 </div>
+//             </div>
+//             <button type='submit'>Update</button>
+//             <button type='button' onClick={handleCancelClick}>Cancel</button>
+//         </form>}
+//     </>
+// )
