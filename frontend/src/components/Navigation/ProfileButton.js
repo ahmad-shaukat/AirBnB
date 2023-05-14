@@ -67,7 +67,7 @@ function ProfileButton({ user }) {
             </div>
             <div className="user-menu">
               <div className="mng-spot-lnk">
-              <NavLink to={'/spots/current'}>
+              <NavLink to={'/spots/current'} className='nav-mang-spt'>
                 Manage Spots
               </NavLink>
               </div>

@@ -72,15 +72,16 @@
 .price {
     grid-area: price;
     margin-top: 3px;
+    color: black;
 }
 .spot-detail a {
     text-decoration: none;
     /* color: green; */
 
 }
-p {
+/* p {
     color: black;
-}
+} */
 /* .location-rating p {
     color: white;
 } */

@@ -2,15 +2,16 @@
     width: 600px;
     padding-top: 5px;
     /* background-color: #ddbea9; */
-    /* background-color: red; */
     height: 50px;
     margin: auto;
     display: flex;
     justify-content: center;
+    margin-bottom: 5px;
     align-items: center;
+    color: #219ebc;
 }
 .create-heading {
-    width: 600px;
+    width: 500px;
     /* background-color: blue; */
     margin: auto;
     font-size: 30px;
@@ -167,15 +168,18 @@ font-size: 14px;
     height: 22px;
     width: 492px;
 }
-.cre-spt-sub-buttons {
+.cre-upd-sub-buttons {
     width: 500px;
     margin: auto;
     margin-bottom: 10px;
     display: flex;
-    justify-content: center ;
+    justify-content: space-around ;
+    align-items: center;
+    /* background-color: red; */
+    height: 40px;
     /* background-color: red; */
 }
-.cre-spt-sub-buttons button {
+.cre-upd-sub-buttons button {
     height: 25px;
     width: 150px;
     color: white;
@@ -185,6 +189,11 @@ font-size: 14px;
     border: none;
     border-radius: 4px;
 }
+.cre-upd-sub-buttons .cre-upd-can {
+    background-color: red;
+    color: white;
+}
+.
 .cre-spt-main-ctn {
     /* background-color: #4cc9f0; */
 }

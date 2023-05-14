@@ -65,3 +65,23 @@
     background-color: #6c757d;
     letter-spacing: 1px;
   }
+  .modal-main-delete-spot {
+    position: fixed;
+    background-color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    z-index: 85;
+    border-radius: 5px;
+    width: 300px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    /* background-color: red; */
+    background-color: white;
+  }

@@ -6,6 +6,7 @@
 
 .mng-heading {
     /* background-color: red; */
+    color: #219ebc ;
     text-align: center;
 }
 .mng-spot-contn {
@@ -114,5 +115,79 @@
     border-radius: 8px;
     width: 100px;
     border: none;
+    /* background-color: red; */
 
+}
+.del-spt-main-ctn {
+    /* border: 1px solid red; */
+    height: 180px;
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+}
+.del-spt-hed-main {
+    font-size: 18px;
+    /* background-color: red; */
+    text-align: center;
+}
+.del-spt-hed-sub {
+    font-size: 12px;
+    /* background-color: aqua; */
+    text-align: center;
+}
+.del-spt-btns {
+    /* background-color: lightblue; */
+    margin-top: 10px;
+}
+.del-spot-btns-del{
+    display: flex;
+    justify-content:center;
+    margin:auto;
+    margin-bottom: 5px;
+}
+.del-spot-btns-can {
+    display: flex;
+    justify-content:center;
+    margin:auto;
+    margin-bottom: 5px;
+}
+.del-spot-btns-del button {
+    width: 180px;
+    border-radius: 0px;
+    height: 23px;
+    font-size: 10px;
+    font-weight: 400px;
+    background-color:#d90429 ;
+    cursor: pointer;
+}
+.del-spot-btns-can button {
+    width: 180px;
+    border-radius: 0px;
+    height: 23px;
+    background-color: #adb5bd;
+    font-size: 10px;
+    font-weight: 400px;
+    cursor: pointer;
+}
+.del-spt-init-btn {
+    background-color: #ef233c ;
+    color: white;
+}
+.mng-spot-cre-spt-btn-ctn {
+    background-color: #219ebc;
+    color: white;
+    height: 25px;
+    padding-top: 5px;
+    border-radius: 15px;
+    width: 140px;
+    text-align: center;
+    color: white;
+}
+.mng-spot-cre-spt-btn {
+    text-decoration: none;
+    background-color: #219ebc;
+    color: white;
+    font-size: 12px;
+    /* margin: auto; */
+    font-weight: 500;
 }

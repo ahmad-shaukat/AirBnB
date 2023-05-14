@@ -6,9 +6,9 @@ const DeleteSpotModal = ({ handleClose, show, children }) => {
 
   return (
     <div className={showHideClassName}>
-      <section className="modal-main">
+      <section className="modal-main-delete-spot">
         {children}
-        <button onClick={handleClose}>No</button>
+        {/* <button onClick={handleClose}>No</button> */}
       </section>
     </div>
   );
