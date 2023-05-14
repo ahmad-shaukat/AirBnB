@@ -3,7 +3,7 @@
     grid-auto-columns: 1fr; 
     grid-template-columns: 1.1fr 0.9fr 1fr; 
     grid-template-rows: 1.7fr 1.4fr; 
-    background-color: red;
+    /* background-color: red; */
     width: 900px;
     height: 400px;
     gap: 0px 0px; 
@@ -15,12 +15,12 @@
  
   .spt-det-prev-img {
     grid-area: prev-img;
-    background-color: green;
+    /* background-color: green; */
     /* image-rendering: 100%;
      */
      width: 500px;
      height: 400px;
-    border: 3px solid green;
+    /* border: 3px solid green; */
   }
   .spt-det-thumb {
     width: 200px;
@@ -29,5 +29,195 @@
     width: 100%;
     height: 100%;
   }
+  .user-spot-info {
+    /* background-color: red; */
+    width: 900px;
+    margin: auto;
+    /* margin-top: 5px; */
+  }
+  .spt-det-lower-info {
+    /* background-color: green; */
+    width: 900px;
+    margin: auto;
+    display: grid;
+    margin-top: 10px;
+    grid-template-columns: 1fr 0.5fr;
+  }
+  .spt-det-lower-info-hst-des {
+    width: 100%;
+    /* background-color: purple; */
+    height: 140px;
+    /* background-color: aqua;
+    display: grid;
+    grid-template-columns: 1fr 0.5fr; */
+  }
+  .spt-det-hst {
+    /* background-color: aliceblue; */
+    margin-top: 5px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .spt-det-desc {
+      /* background-color: aqua; */
+      margin-top: -5px;
+      font-size: 10px;
+      width: 90%;
+  }
+  .spt-det-callout {
+    /* background-color: orange; */
+    height: 100px;
+    width: 200px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+  }
+  .spt-det-callout p {
+    font-size: 12px;
+  }
+  .spt-det-night-abv {
+    font-size: 6px;
+    /* background-color: red; */
+  }
+  .spt-det-price-info{
+    /* background-color: red; */
+    /* height:400px */
+  }
+  .spt-det-price-1 {
+    font-size: 15px;
+  }
+  .spt-rtn-call {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    width: 106px;
+    align-items: center;
+    height: 30px;
+    margin-top: 5px;
+    
+  }
+  .fa-star {
+    margin-right: 1px;
+  }
+  .spt-det-revs {
+    margin-left: 2px;
+  }
+  .lower-callout-box {
+    /* border: 3px solid black; */
+  }
+  .reserve-butt {
+   display: flex;
+   justify-content: center;
+   margin-top: 5px;
+  }
+  .reserve-butt button {
+    /* background-color: red; */
+    border: none;
+    background-color: white;
+    width: 200px;
+    height: 24px;
+    border-radius: 5px;
+  }
+  .spt-det-divider {
+    width: 900px;
+    height: 1px;
+    background-color:black;
+    margin: auto;
+    margin-top: 10px;
+    border-radius: 2px;
+    opacity: 0.3;
+  }
+  .reviews-price-info {
+    /* border: 1px solid blue; */
+    margin-top: ;
+    width: 900px;
+    margin:auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+  }
+  .spt-det-callout-lower {
+    /* background-color: orange; */
+    height: 100px;
+    width: 200px;
+    /* margin: auto; */
+    display: flex;
+    justify-content: start;
+    height: 40px;
+  }
+  .spt-det-callout-lower p {
+    font-size: 12px;
+  }
+  .spt-det-rev-ctn {
+    /* background-color: teal; */
+    max-width: 900px;
+    margin: auto;
+    margin-bottom: 10px;
+  }
+  .spt-det-rev-user {
+    margin-bottom: 0px;
+    /* border: 1px solid red; */
+  }
+  .spt-det-rev-date {
+    /* border: 1px solid black; */
+    margin-top: 0px;
+    font-size: 10px;
+    opacity: 0.7;
+    margin-bottom: 0px;
+  }
+  .spt-det-rev-review {
+    /* border: 1px solid green; */
+    margin-top: 5px;
+    font-size: 10px;
+    margin-bottom: 4px;
+  }
+  .spt-det-rev-button {
+    /* border: 1px solid black; */
+    margin-top: 0px;
+    /* display: flex;
+    justify-content: center; */
+  }
+  .spt-det-rev-button button {
+    margin: auto;
+    width: 100px;
+    height: 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 500;
+    background-color: #ff006e;
+    color: white;
+  }
+.spt-det-post-review-btn {
+    /* border: 1px solid red; */
+    width: 900px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+   
+}
+.spt-det-post-review-btn button {
+    height: 27px;
+    border: none;
+    border-radius: 5px;
+    background-color: #8ac926;
+    color: white;
+    font-size: 12px;
+}
+.spt-det-first-rev {
+    /* border: 1px solid teal; */
+    width: 900px;
+    margin: auto;
+
+}
+.spt-det-first-rev p {
+    font-size: 13px;
+    font-weight: 500;
+    color: #748cab;
+}
+.spt-det-night-bot {
+    margin-right: 4px;
+}
+
+
   
 

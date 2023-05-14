@@ -70,10 +70,10 @@ const SpotDetail = () => {
     }
     // console.log (spot.ownerId, '---------------spotOwnerId----------------')
 
-    
-    
-    
-    
+
+
+
+
     // console.log(reviews, '---------------')
     // console.log (typeof reviews)
     const newRating = (rating) => {
@@ -84,13 +84,13 @@ const SpotDetail = () => {
         setUserRating(0)
         // console.log (rating,'--------------in the show')
     }
-    
+
     const handleCloseModal = () => {
         setShowModal(false);
         setErrors({});
         newRating(0)
         setUserRating('')
-        console.log (stars, '--------------in the close--------')
+        console.log(stars, '--------------in the close--------')
         setUserReview('')
     }
 
@@ -123,7 +123,7 @@ const SpotDetail = () => {
         }
 
     }
-   
+
     let reviewToBeDelete;
 
     // const deleteReviewHandle = (reviewToBeDelete) => {
@@ -140,7 +140,7 @@ const SpotDetail = () => {
     let content;
 
     const checkReviewLength = (review, rating) => {
-        if (review.length<10 || !rating) {
+        if (review.length < 10 || !rating) {
             return true
         }
         return false
@@ -152,7 +152,10 @@ const SpotDetail = () => {
     if (current && spot) {
         content = <>
             <div>
+                <div className='spt-det-post-review-btn'>
+
                 <button onClick={handleShowModal}>Post your review</button>
+                </div>
                 <PostReviewModal show={showModal} handleClose={handleCloseModal}>
 
 
@@ -167,20 +170,20 @@ const SpotDetail = () => {
                         <form onSubmit={handleNewReview}>
                             <div>
 
-                                <textarea value={review}minLength='10' placeholder='Leave your review here...' onChange={
+                                <textarea value={review} minLength='10' placeholder='Leave your review here...' onChange={
                                     (e) => setUserReview(e.target.value)}></textarea>
                             </div>
                             <div>
 
                                 <label>  Stars:
-                                <div>
-            <ReactStars 
-            value={stars}
-            size={15}
-            count={5}
-            
-            onChange={newRating}/>
-        </div>
+                                    <div>
+                                        <ReactStars
+                                            value={stars}
+                                            size={15}
+                                            count={5}
+
+                                            onChange={newRating} />
+                                    </div>
                                 </label>
                             </div>
                             <button type='Submit' disabled={checkReviewLength(review, stars)}>Submit Your Review</button>
@@ -194,7 +197,7 @@ const SpotDetail = () => {
         for (let key in reviews) {
 
             // console.log (current.id, '---------user')
-            console.log (reviews[key].User.id)
+            console.log(reviews[key].User.id)
             if (current.id === reviews[key].User.id) {
                 console.log(current.id, '------------------userId')
                 // console.log(reviews[key].User.id, '----reviews user Id------')
@@ -204,14 +207,14 @@ const SpotDetail = () => {
 
 
         }
-        
-        
+
+
         if (current.id === spot.ownerId) {
             content = null
-        } 
-        
+        }
+
     }
-    
+
 
     const comingSoon = () => { // Feature coming soon funct
         alert('feature is coming soon')
@@ -220,7 +223,7 @@ const SpotDetail = () => {
     // console.log (spot, spot.Owner)
 
     if (spot && spot.Owner) {
-        console.log (spot, '-----------this is spot')
+        console.log(spot, '-----------this is spot')
         let allSpotReviews;
         let showRating
         if (reviews) {
@@ -254,149 +257,173 @@ const SpotDetail = () => {
         // console.log(spot)
         return (
             <>
-                
-
-                    <div key={spot.key} className='upper-part-spot'>
 
 
-                        <div className='user-spot-info'>
-
-                            <h3>{spot.name}</h3>
-                            <p>Location: {spot.city}, {spot.state}, {spot.country}</p>
-                        </div>
-                        <div className='spot-det-images'>
-                            {spot.SpotImages.map((image, index) => {
-                                if (image.url && image.preview) {
-                                    return (
-                                        <>
-                                        <div className='spt-det-prev-img'>
-
-                                        <img src={image.url} />
-                                        </div>
-                                        </>
-
-                                    )
-                                }
-                                // Only show images if they have a URL
-                                if (image.url && !image.preview) {
-                                    return (
-
-                                        <img src={image.url} className='spt-det-thumb'></img>
-                                    );
-                                } else {
-                                    return null;
-                                }
-                            })}
-
-                        </div>
-                        <div>
-                            
-                        <div className='lower-info'>
-
-                            <h3>Hosted by: {spot.Owner.firstName}, {spot.Owner.lastName}</h3>
-                            <p>{spot.description}</p>
-                        </div>
-                        <div className='price-info'>
-                            <p>${spot.price} night</p>
-                            <p>abovestars {!spot.avgStarRating?<div>New</div>:<div>{spot.avgStarRating.toFixed(1)}</div>}</p>
-                            <p>{reviewWord}</p>
-                            <button onClick={comingSoon}>Reserve</button>
-                        </div>
-                        </div>
+                <div key={spot.key} className='upper-part-spot'>
 
 
+                    <div className='user-spot-info'>
 
-
-                        <div className='reviews-price-info'>
-                            <p>${spot.price} night</p>
-                            <p>{reviewWord}</p>
-                            <p> below stars{!spot.avgStarRating?<div>New</div>:<div>{spot.avgStarRating.toFixed(1)}</div>}</p>
-                        </div>
+                        <h3>{spot.name}</h3>
+                        <p>Location: {spot.city}, {spot.state}, {spot.country}</p>
                     </div>
-                    
-
-                    {content}
-                   
-
-
-
-
-                    {showReview ? (
-                        // console.log (reviews[0])
-                        reviews
-                            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-                            .map((review) => {
-                                let deleteReview = null
-                                const date = new Date(review.createdAt);
-                                const options = { month: 'long', year: 'numeric' };
-                                const formattedDate = date.toLocaleString('en-US', options);
-                                // console.log (reviewToBeDelete, '----------this is before-----')
-                                // console.log (review, '-------------------------')
-                                if (current && current.id === review.User.id) {
-                                    reviewToBeDelete = review.id
-                                    // console.log (reviewUserId, '-------------')
-                                    let thisIs = review.User.id
-                                    // console.log (thisIs)
-
-
-                                    function onDeleteHandle() {
-                                        // setDeleteReviewId(review.id)
-                                        // console.log (deleteReviewId, '-------------')
-                                        // console.log (thisIs, '---this is user----')
-                                        handleCloseModal()
-                                        dispatch(DeleteReview(reviewToBeDelete))
-                                        dispatch(getSingleSpot(spotId))
-                                        dispatch(SpotReviews(spotId))
-
-                                    }
-
-                                    // console.log (review.User.id, '---------------------------')  console.log ('hello')       
-                                    // reviewToBeDelete = review.User.id
-                                    // console.log (reviewToBeDelete, '--------this is after----')
-                                    // setDeleteReviewId(review.User.id)
-                                    deleteReview = <>
-                                        <div>
-                                            <button onClick={handleShowModal}>Delete</button>
-                                            <DeleteReviewModal show={showModal} handleClose={handleCloseModal}>
-                                                <>
-
-                                                    <h1>Confirm Delete</h1>
-
-                                                    <h5>Are you sure you want to delete this review</h5>
-
-                                                    <button style={{ backgroundColor: 'red', color: 'white' }} onClick={onDeleteHandle}>Delete</button>
-                                                </>
-                                            </DeleteReviewModal>
-                                        </div>
-                                    </>
-                                }
-
+                    <div className='spot-det-images'>
+                        {spot.SpotImages.map((image, index) => {
+                            if (image.url && image.preview) {
                                 return (
                                     <>
+                                        <div className='spt-det-prev-img'>
 
-
-                                        <div key={review.id}>
-                                            <h3>{review.User.firstName}</h3>
-                                            <p>{formattedDate}</p>
-                                            <p>{review.review}</p>
-                                            <div>
-                                                {deleteReview}
-                                            </div>
+                                            <img src={image.url} />
                                         </div>
-
                                     </>
 
+                                )
+                            }
+                            // Only show images if they have a URL
+                            if (image.url && !image.preview) {
+                                return (
+
+                                    <img src={image.url} className='spt-det-thumb'></img>
                                 );
+                            } else {
+                                return null;
+                            }
+                        })}
 
-                            })
-                    ) : (<>
-                        {showFirstReviewButton ? (
-                            <p>Be the first to post a review</p>
-                        ) : null}
+                    </div>
+                    <div className='spt-det-lower-info'>
 
-                    </>
-                    )}
-                
+                        <div className='spt-det-lower-info-hst-des'>
+
+                            <p className='spt-det-hst'>Hosted by: {spot.Owner.firstName}, {spot.Owner.lastName}</p>
+                            <p className='spt-det-desc'>{spot.description}</p>
+                        </div>
+                        <div className='spt-det-price-info'>
+                            <div className='lower-callout-box'>
+
+                                <div className='spt-det-callout'>
+                                    <p className='spt-det-night-abv'><span className='spt-det-price-1'>${spot.price}</span> night</p>
+                                    <div className='spt-rtn-call'>
+
+                                        <i class="fa-solid fa-star"></i> <p> {!spot.avgStarRating ? <div></div> : <div>{spot.avgStarRating.toFixed(1)}</div>}</p>
+                                        <p className='spt-det-revs'>{reviewWord}</p>
+                                    </div>
+                                </div>
+                                <div className='reserve-butt'>
+
+                                    <button onClick={comingSoon} >Reserve</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div className='spt-det-divider'></div>
+
+
+
+
+                    <div className='reviews-price-info'>
+                        <div className='spt-det-callout-lower'>
+                            <p className='spt-det-night-abv spt-det-night-bot'><span className='spt-det-price-1'>${spot.price}</span> night</p>
+                            <div className='spt-rtn-call'>
+
+                                <i class="fa-solid fa-star"></i> <p> {!spot.avgStarRating ? <div></div> : <div>{spot.avgStarRating.toFixed(1)}</div>}</p>
+                                <p className='spt-det-revs'>{reviewWord}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                {content}
+
+
+
+
+
+                {showReview ? (
+                    // console.log (reviews[0])
+                    reviews
+                        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+                        .map((review) => {
+                            let deleteReview = null
+                            const date = new Date(review.createdAt);
+                            const options = { month: 'long', year: 'numeric' };
+                            const formattedDate = date.toLocaleString('en-US', options);
+                            // console.log (reviewToBeDelete, '----------this is before-----')
+                            // console.log (review, '-------------------------')
+                            if (current && current.id === review.User.id) {
+                                reviewToBeDelete = review.id
+                                // console.log (reviewUserId, '-------------')
+                                let thisIs = review.User.id
+                                // console.log (thisIs)
+
+
+                                function onDeleteHandle() {
+                                    // setDeleteReviewId(review.id)
+                                    // console.log (deleteReviewId, '-------------')
+                                    // console.log (thisIs, '---this is user----')
+                                    handleCloseModal()
+                                    dispatch(DeleteReview(reviewToBeDelete))
+                                    dispatch(getSingleSpot(spotId))
+                                    dispatch(SpotReviews(spotId))
+
+                                }
+
+                                // console.log (review.User.id, '---------------------------')  console.log ('hello')       
+                                // reviewToBeDelete = review.User.id
+                                // console.log (reviewToBeDelete, '--------this is after----')
+                                // setDeleteReviewId(review.User.id)
+                                deleteReview = <>
+                                    <div>
+                                        <button onClick={handleShowModal}>Delete</button>
+                                        <DeleteReviewModal show={showModal} handleClose={handleCloseModal}>
+                                            <>
+
+                                                <h1>Confirm Delete</h1>
+
+                                                <h5>Are you sure you want to delete this review</h5>
+
+                                                <button style={{ backgroundColor: 'red', color: 'white' }} onClick={onDeleteHandle}>Delete</button>
+                                            </>
+                                        </DeleteReviewModal>
+                                    </div>
+                                </>
+                            }
+
+                            return (
+                                <>
+                                <div className='spt-det-rev-ctn'>
+
+                                    <div key={review.id} >
+                                        <p className='spt-det-rev-user'>{review.User.firstName}</p>
+                                        <p className='spt-det-rev-date'>{formattedDate}</p>
+                                        <p className='spt-det-rev-review'>{review.review}</p>
+                                        <div className='spt-det-rev-button'>
+                                            {deleteReview}
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                </>
+
+                            );
+
+                        })
+                ) : (<>
+                    {showFirstReviewButton ? (
+
+                        <div className='spt-det-first-rev'>
+                            <p>Be the first to post a review!!</p>
+
+                        </div>
+                    ) : null}
+
+                </>
+                )}
+
             </>
 
 
