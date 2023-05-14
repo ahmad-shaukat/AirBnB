@@ -1,0 +1,33 @@
+.spot-det-images {
+    display: grid; 
+    grid-auto-columns: 1fr; 
+    grid-template-columns: 1.1fr 0.9fr 1fr; 
+    grid-template-rows: 1.7fr 1.4fr; 
+    background-color: red;
+    width: 900px;
+    height: 400px;
+    gap: 0px 0px; 
+    margin: auto;
+    grid-template-areas: 
+      "prev-img . ."
+      "prev-img . ."; 
+  }
+ 
+  .spt-det-prev-img {
+    grid-area: prev-img;
+    background-color: green;
+    /* image-rendering: 100%;
+     */
+     width: 500px;
+     height: 400px;
+    border: 3px solid green;
+  }
+  .spt-det-thumb {
+    width: 200px;
+  }
+  .spot-det-images img {
+    width: 100%;
+    height: 100%;
+  }
+  
+

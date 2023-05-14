@@ -9,7 +9,7 @@ import PostReviewModal from '../Modals/PostReviewModal'
 import { CreateReview } from '../../store/reviews'
 import DeleteReviewModal from '../Modals/DeleteReview'
 import { DeleteReview } from '../../store/reviews'
-// import './spotDetail.css'
+import './spotDetail.css'
 
 
 //reviews plural
@@ -254,29 +254,34 @@ const SpotDetail = () => {
         // console.log(spot)
         return (
             <>
-                <div className='container'>
+                
 
                     <div key={spot.key} className='upper-part-spot'>
 
 
                         <div className='user-spot-info'>
 
-                            <h1>{spot.name}</h1>
-                            <h2>Location: {spot.city}, {spot.state}, {spot.country}</h2>
+                            <h3>{spot.name}</h3>
+                            <p>Location: {spot.city}, {spot.state}, {spot.country}</p>
                         </div>
-                        <div className='images'>
+                        <div className='spot-det-images'>
                             {spot.SpotImages.map((image, index) => {
                                 if (image.url && image.preview) {
                                     return (
+                                        <>
+                                        <div className='spt-det-prev-img'>
 
                                         <img src={image.url} />
+                                        </div>
+                                        </>
+
                                     )
                                 }
                                 // Only show images if they have a URL
                                 if (image.url && !image.preview) {
                                     return (
 
-                                        <img src={image.url}></img>
+                                        <img src={image.url} className='spt-det-thumb'></img>
                                     );
                                 } else {
                                     return null;
@@ -284,6 +289,8 @@ const SpotDetail = () => {
                             })}
 
                         </div>
+                        <div>
+                            
                         <div className='lower-info'>
 
                             <h3>Hosted by: {spot.Owner.firstName}, {spot.Owner.lastName}</h3>
@@ -295,6 +302,7 @@ const SpotDetail = () => {
                             <p>{reviewWord}</p>
                             <button onClick={comingSoon}>Reserve</button>
                         </div>
+                        </div>
 
 
 
@@ -305,8 +313,6 @@ const SpotDetail = () => {
                             <p> below stars{!spot.avgStarRating?<div>New</div>:<div>{spot.avgStarRating.toFixed(1)}</div>}</p>
                         </div>
                     </div>
-
-                    <p>------------------------------Reviews--------------------------------------------</p>
                     
 
                     {content}
@@ -390,7 +396,7 @@ const SpotDetail = () => {
 
                     </>
                     )}
-                </div>
+                
             </>
 
 
