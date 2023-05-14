@@ -138,11 +138,14 @@ const SpotDetail = () => {
 
 
     let content;
+    
 
     const checkReviewLength = (review, rating) => {
         if (review.length < 10 || !rating) {
+           
             return true
         }
+        
         return false
     }
 
@@ -154,41 +157,48 @@ const SpotDetail = () => {
             <div>
                 <div className='spt-det-post-review-btn'>
 
-                <button onClick={handleShowModal}>Post your review</button>
+                    <button onClick={handleShowModal}>Post your review</button>
                 </div>
                 <PostReviewModal show={showModal} handleClose={handleCloseModal}>
 
 
                     <>
-
-                        <h1>How was your stay?</h1>
                         <ul>
                             {Object.keys(errors).map((key) => (
                                 <li key={key}>{errors[key]}</li>
                             ))}
                         </ul>
-                        <form onSubmit={handleNewReview}>
-                            <div>
+                        <div className='cre-rev-ctn'>
 
-                                <textarea value={review} minLength='10' placeholder='Leave your review here...' onChange={
-                                    (e) => setUserReview(e.target.value)}></textarea>
-                            </div>
-                            <div>
+                            <p className='cre-rev-heading'>How was your stay?</p>
+                            <form onSubmit={handleNewReview}>
+                                <div className='cre-rev-txt-area-ctn'>
 
-                                <label>  Stars:
-                                    <div>
+                                    <textarea value={review} minLength='10' placeholder='Leave your review here...' onChange={
+                                        (e) => setUserReview(e.target.value)} className='cre-rev-txt-area'></textarea>
+                                </div>
+                                <div className='cre-rev-rat-ctn'>
+
+
+                                    <div className='cre-rev-rat-ctn-stars'>
                                         <ReactStars
                                             value={stars}
                                             size={15}
                                             count={5}
 
-                                            onChange={newRating} />
+                                            onChange={newRating} /> <p>stars</p>
                                     </div>
-                                </label>
-                            </div>
-                            <button type='Submit' disabled={checkReviewLength(review, stars)}>Submit Your Review</button>
-                            {/* <button onClick={handleCloseModal}>Close</button> */}
-                        </form>
+                                    
+
+                                </div>
+                                <div className='cre-rev-sub-butn-ctn'>
+
+                                <button type='Submit' disabled={checkReviewLength(review, stars)}>Submit Your Review</button>
+                                </div>
+                                {/* <button onClick={handleCloseModal}>Close</button> */}
+                            </form>
+                        </div>
+
                     </>
                 </PostReviewModal>
             </div>
@@ -394,17 +404,17 @@ const SpotDetail = () => {
 
                             return (
                                 <>
-                                <div className='spt-det-rev-ctn'>
+                                    <div className='spt-det-rev-ctn'>
 
-                                    <div key={review.id} >
-                                        <p className='spt-det-rev-user'>{review.User.firstName}</p>
-                                        <p className='spt-det-rev-date'>{formattedDate}</p>
-                                        <p className='spt-det-rev-review'>{review.review}</p>
-                                        <div className='spt-det-rev-button'>
-                                            {deleteReview}
+                                        <div key={review.id} >
+                                            <p className='spt-det-rev-user'>{review.User.firstName}</p>
+                                            <p className='spt-det-rev-date'>{formattedDate}</p>
+                                            <p className='spt-det-rev-review'>{review.review}</p>
+                                            <div className='spt-det-rev-button'>
+                                                {deleteReview}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
 
                                 </>

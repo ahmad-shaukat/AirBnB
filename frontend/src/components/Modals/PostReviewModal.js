@@ -15,7 +15,7 @@ const PostReviewModal = ({ handleClose, show, children }) => {
     <div className={showHideClassName} onClick={handleOutsideClick}>
       <section className="modal-main">
         {children}
-        <button onClick={handleClose}>Close</button>
+        {/* <button onClick={handleClose}>Close</button> */}
       </section>
     </div>
   );
