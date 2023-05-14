@@ -94,7 +94,7 @@ const ManageSpotsFunction = () => {
                                             <i class="fa-solid fa-star"></i><p>{!spot.avgRating ? <div>New</div>:<div>{spot.avgRating.toFixed(1)}</div> }</p>
                                         </div>
                                     </div>
-                                    <p>${spot.price} night</p>
+                                    <p className='mng-spt-per-night'>${spot.price} night</p>
                                 </NavLink>
                                 <div className='mng-btns'>
 
