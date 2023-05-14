@@ -98,17 +98,30 @@ const ManageSpotsFunction = () => {
                                 </NavLink>
                                 <div className='mng-btns'>
 
-                                    <button onClick={handleShowModal} style={{cursor:'pointer'}}>Delete</button>
+                                    <button onClick={handleShowModal} style={{cursor:'pointer'}} className='del-spt-init-btn'>Delete</button>
 
                                     <DeleteSpotModal show={showModal} handleClose={handleCloseModal}>
                                         <>
-                                            <div>
+                                            <div className='del-spt-main-ctn'>
+                                                <div className='del-spt-hed-ctn'>
 
-                                                <h1>Confirm Delete</h1>
 
-                                                <h5>Are you sure you want to delete this review</h5>
+                                                <p className='del-spt-hed-main'>Confirm Delete</p>
 
-                                                <button style={{ backgroundColor: 'red', color: 'white' }} onClick={() => onDeleteHandle(spot.id)} >Delete</button>
+                                                <p className='del-spt-hed-sub'>Are you sure you want to delete this spot?</p>
+                                                </div>
+                                                <div className='del-spt-btns'>
+                                                    <div className='del-spot-btns-del'>
+
+                                                <button onClick={() => onDeleteHandle(spot.id)} >Yes(Delete Spot)</button>
+                                                    </div>
+                                                    <div className='del-spot-btns-can'>
+
+                                                <button onClick={handleCloseModal}>No(Keep Spot)</button>
+                                                    </div>
+
+
+                                                </div>
                                             </div>
 
 
@@ -135,7 +148,10 @@ const ManageSpotsFunction = () => {
     }
     if (userSpots && userSpots.length < 1) {
         content = <>
-            <NavLink to='/spots/add/newspot'> Create a New Spot</NavLink>
+        <div className='mng-spot-cre-spt-btn-ctn'>
+
+            <NavLink to='/spots/add/newspot' className='mng-spot-cre-spt-btn'> Create a New Spot</NavLink>
+        </div>
         </>
     }
 

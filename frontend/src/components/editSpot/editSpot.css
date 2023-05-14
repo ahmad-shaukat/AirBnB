@@ -1,12 +1,14 @@
 .cre-spt-hdg-ctn {
     width: 600px;
     padding-top: 5px;
-    background-color: #ddbea9;
+    /* background-color: #ddbea9; */
     height: 50px;
     margin: auto;
     display: flex;
     justify-content: center;
+    margin-bottom: 5px;
     align-items: center;
+    color: #219ebc;
 }
 .create-heading {
     width: 500px;

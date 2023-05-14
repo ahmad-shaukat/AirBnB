@@ -25,7 +25,7 @@ function Navigation({ isLoaded }) {
       <div>
         {sessionUser ? <div className='crt-btn'>
 
-          <NavLink to={'/spots/add/newspot'}>
+          <NavLink to={'/spots/add/newspot'} className='add-spt-login-nav'>
             Add a Spot
           </NavLink>
 
