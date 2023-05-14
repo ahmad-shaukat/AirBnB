@@ -3,10 +3,11 @@
     grid-auto-columns: 1fr; 
     grid-template-columns: 1.1fr 0.9fr 1fr; 
     grid-template-rows: 1.7fr 1.4fr; 
+
     /* background-color: red; */
     width: 900px;
     height: 400px;
-    gap: 0px 0px; 
+    gap: 5px 5px; 
     margin: auto;
     grid-template-areas: 
       "prev-img . ."
@@ -111,12 +112,14 @@
    margin-top: 5px;
   }
   .reserve-butt button {
-    /* background-color: red; */
+    background-color: #f72585;
+    color: white;
     border: none;
-    background-color: white;
+    /* background-color: white; */
     width: 200px;
     height: 24px;
     border-radius: 5px;
+    cursor: pointer;
   }
   .spt-det-divider {
     width: 900px;
@@ -186,6 +189,7 @@
     font-weight: 500;
     background-color: #ff006e;
     color: white;
+    cursor: pointer;
   }
 .spt-det-post-review-btn {
     /* border: 1px solid red; */
@@ -202,6 +206,7 @@
     background-color: #8ac926;
     color: white;
     font-size: 12px;
+    cursor: pointer;
 }
 .spt-det-first-rev {
     /* border: 1px solid teal; */
