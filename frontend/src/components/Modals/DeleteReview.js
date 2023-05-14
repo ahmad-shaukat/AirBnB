@@ -6,9 +6,12 @@ const DeleteReviewModal = ({ handleClose, show, children }) => {
 
   return (
     <div className={showHideClassName}>
-      <section className="modal-main">
+      <section className="modal-main-delete-rev">
         {children}
-        <button onClick={handleClose}>No</button>
+        <div className='rev-del-btn-ctn'>
+
+        <button onClick={handleClose} className='rev-del-btn'>No (Keep Review)</button>
+        </div>
       </section>
     </div>
   );

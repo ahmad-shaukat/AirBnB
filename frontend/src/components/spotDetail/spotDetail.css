@@ -132,7 +132,6 @@
   }
   .reviews-price-info {
     /* border: 1px solid blue; */
-    margin-top: ;
     width: 900px;
     margin:auto;
     display: flex;
@@ -180,7 +179,18 @@
     /* display: flex;
     justify-content: center; */
   }
-  .spt-det-rev-button button {
+  /* .spt-det-rev-button button {
+    margin: auto;
+    width: 100px;
+    height: 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 500;
+    background-color: #ff006e;
+    color: white;
+    cursor: pointer;
+  } */
+  .spt-det-rev-button-btn {
     margin: auto;
     width: 100px;
     height: 20px;
@@ -221,6 +231,99 @@
 }
 .spt-det-night-bot {
     margin-right: 4px;
+}
+
+
+/* Styles for Post Reviews */
+
+.cre-rev-ctn {
+  /* border: 1px solid green; */
+  width: 100%;
+  height: 100%;
+  /* margin-bottom: 10px; */
+  margin-top: -10px;
+}
+.cre-rev-heading {
+  /* border: 1px solid red; */
+  margin-top: 0px;
+  margin-bottom: 0px;
+  font-size: 15px;
+  font-weight: 500;
+  text-align: center;
+}
+.cre-rev-txt-area-ctn {
+  /* background-color: aqua; */
+  display: flex;
+  justify-content: center;
+}
+.cre-rev-txt-area {
+  width: 95%;
+  /* margin: auto; */
+  margin-top: 5px;
+  height: 130px;
+  border: 2px solid black;
+  outline: none;
+}
+.cre-rev-rat-ctn {
+  /* background-color: aqua; */
+  display: flex;
+  justify-content: center;
+  height: 30px;
+}
+.cre-rev-rat-ctn-stars {
+  /* border: 1px solid black; */
+  display: flex;
+  align-items: center;
+  outline: none;
+}
+.cre-rev-rat-ctn-stars p{
+  margin-left: 4px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.cre-rev-sub-butn-ctn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cre-rev-sub-butn-ctn button{
+  margin-top: 5px;
+  font-size: 10px;
+  width: 200px;
+  height: 25px;
+  border-radius: 5px;
+  background-color: #34a0a4;
+  color: white;
+}
+/* styles for delete review */
+
+.del-rev-hdn {
+  /* background-color: aqua; */
+  text-align: center;
+}
+.del-rev-sub-hdn {
+  /* background-color: green; */
+  text-align: center;
+  font-size: 12px;
+}
+.rev-del-sub-btn-ctn {
+  display: flex;
+  justify-content: center;
+}
+.rev-del-sub-btn {
+  margin-top: 10px;
+  background-color:#d8cdcf;
+  color: white;
+  width: 80%;
+  height: 30px;
+  color: white;
+  font-size: 10px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  background-color: #e63946;
+  letter-spacing: 1px;
+
 }
 
 
