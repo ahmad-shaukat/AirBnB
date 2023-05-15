@@ -19,7 +19,7 @@ const ManageSpotsFunction = () => {
     const userSpots = useSelector(state => {
         return state.spots?.list?.Spots
     })
-    console.log(userSpots, '---------------------userspot')
+    // console.log(userSpots, '---------------------userspot')
     useEffect(() => {
         console.log('hello')
         setShowEditSpotForm(false)
