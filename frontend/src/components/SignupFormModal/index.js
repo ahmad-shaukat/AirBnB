@@ -101,9 +101,9 @@ const SignupFormPage = () => {
                 {/* {errors.password && <p>{errors.password}</p>} */}
             </div>
             <div>
-                <label>Confrimed Password:
+                <label>Confirmed Password:
                 </label>
-                    <input type="password" placeholder="Confirmed Password" name="confirmPassword" onChange={(e) => setConfirmedPassword(e.target.value)}></input>
+                    <input type="password" placeholder="Enter Password Again" name="confirmPassword" onChange={(e) => setConfirmedPassword(e.target.value)}></input>
                 {errors.confirmPassword && (
           <p>{errors.confirmPassword}</p>
         )}

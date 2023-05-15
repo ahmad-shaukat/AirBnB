@@ -34,6 +34,7 @@
 
 }
 .sgn-frm-hdg {
+    margin-bottom: 40px;
     font-size: 16px;
     letter-spacing: -1px;
     font-weight: 500;
@@ -41,6 +42,7 @@
 }
 .sgn-up-form input::placeholder{
     font-size: 11px;
+    padding: 5px;
 }
 .sgn-up-form-btn-ctn {
     /* border: 1px solid green; */
@@ -57,6 +59,7 @@
     font-size: 12px;
     font-weight: 500;
     border-radius: 4px;
+    margin-top: 10px;
 
 }
 .sgn-up-err {

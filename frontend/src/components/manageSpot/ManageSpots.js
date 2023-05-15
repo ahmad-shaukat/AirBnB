@@ -6,6 +6,7 @@ import EditSpotForm from '../editSpot/EditSpot'
 import { RemoveSpot } from '../../store/spots';
 import DeleteSpotModal from '../Modals/DeleteSpot';
 import './manageSpot.css'
+import Modal from '../Modals/DeleteSpot';
 
 const ManageSpotsFunction = () => {
     const [showModal, setShowModal] = useState(false);
@@ -13,11 +14,12 @@ const ManageSpotsFunction = () => {
     const [editSpotId, setEditSpotId] = useState(null)
     const [showEditSpotForm, setShowEditSpotForm] = useState(false)
     const [editSpot, setEditSpot] = useState(null)
+    const [delSpot, setDelSpot] = useState(null)
     const dispatch = useDispatch()
     const userSpots = useSelector(state => {
         return state.spots?.list?.Spots
     })
-    console.log(userSpots, '---------------------')
+    console.log(userSpots, '---------------------userspot')
     useEffect(() => {
         console.log('hello')
         setShowEditSpotForm(false)
@@ -25,6 +27,7 @@ const ManageSpotsFunction = () => {
 
 
     }, [dispatch])
+
     const handleShowModal = () => {
         setShowModal(true);
     }
@@ -33,13 +36,17 @@ const ManageSpotsFunction = () => {
         setShowModal(false);
         // setErrors({});
     }
-    const onDeleteHandle = (spotId) => {
+    const onDeleteHandle = (spotIdRemove) => {
 
         handleCloseModal()
-        dispatch(RemoveSpot(spotId))
+        console.log(spotIdRemove, '-------------before dispatch')
+        dispatch(RemoveSpot(spotIdRemove))
         dispatch(UserSpots())
     }
     let content = null
+
+
+
     // if(userSpots) {
 
     // }
@@ -78,9 +85,10 @@ const ManageSpotsFunction = () => {
                     <div className='mng-spot-contn'>
 
                         {userSpots.map((spot) => (
-
-
+                            
+                                
                             <div key={spot.key} className='mng-spot-dtl'>
+                                {console.log(spot, 'test spot')}
                                 <NavLink to={`/spots/${spot.id}`}>
                                     <div className='mng-img-div'>
                                         <img className='mng-img' src={spot.previewImage} />
@@ -91,33 +99,44 @@ const ManageSpotsFunction = () => {
                                         <p>{spot.city}, {spot.state}</p>
                                         <div className='mng-rating-str'>
 
-                                            <i class="fa-solid fa-star"></i><p>{!spot.avgRating ? <div>New</div>:<div>{spot.avgRating.toFixed(1)}</div> }</p>
+                                            <i class="fa-solid fa-star"></i><p>{!spot.avgRating ? <div>New</div> : <div>{spot.avgRating.toFixed(1)}</div>}</p>
                                         </div>
                                     </div>
                                     <p className='mng-spt-per-night'>${spot.price} night</p>
                                 </NavLink>
+                                
                                 <div className='mng-btns'>
+                                    {/* <div> {spot.id}</div> */}
+                                    
+                                <Modal spotId={spot.id} />
+                                    {/* <button onClick={handleShowModal} style={{ cursor: 'pointer' }} className='del-spt-init-btn'>Delete</button> */}
 
-                                    <button onClick={handleShowModal} style={{cursor:'pointer'}} className='del-spt-init-btn'>Delete</button>
-
-                                    <DeleteSpotModal show={showModal} handleClose={handleCloseModal}>
+                                    {/* <DeleteSpotModal show={showModal} handleClose={handleCloseModal}>
                                         <>
                                             <div className='del-spt-main-ctn'>
                                                 <div className='del-spt-hed-ctn'>
 
 
-                                                <p className='del-spt-hed-main'>Confirm Delete</p>
+                                                    <p className='del-spt-hed-main'>Confirm Delete</p>
 
-                                                <p className='del-spt-hed-sub'>Are you sure you want to delete this spot?</p>
+                                                    <p className='del-spt-hed-sub'>Are you sure you want to delete this spot?</p>
                                                 </div>
                                                 <div className='del-spt-btns'>
                                                     <div className='del-spot-btns-del'>
+                                                        
 
-                                                <button onClick={() => onDeleteHandle(spot.id)} >Yes(Delete Spot)</button>
+
+                                                        <button onClick={() => {
+                                                    {console.log(spot.id, 'inside delete')}
+                                                                                        dispatch(RemoveSpot(spot.id))
+                                                                                        setShowModal(false);
+                                                            dispatch(UserSpots())
+                                                        }
+                                                        } >Yes(Delete Spot)</button>
                                                     </div>
                                                     <div className='del-spot-btns-can'>
 
-                                                <button onClick={handleCloseModal}>No(Keep Spot)</button>
+                                                        <button onClick={handleCloseModal}>No(Keep Spot)</button>
                                                     </div>
 
 
@@ -126,7 +145,7 @@ const ManageSpotsFunction = () => {
 
 
                                         </>
-                                    </DeleteSpotModal>
+                                    </DeleteSpotModal> */}
                                     {/* <EditSpotForm spot={editSpot} spotId={editSpotId} /> */}
                                     <button onClick={() => {
 
@@ -135,7 +154,7 @@ const ManageSpotsFunction = () => {
                                         setEditSpotId(spot.id)
                                         setShowEditSpotForm(true)
 
-                                    }} style={{cursor:'pointer'}}>Update</button>
+                                    }} style={{ cursor: 'pointer' }}>Update</button>
                                 </div>
                             </div>
                         ))}
@@ -148,17 +167,17 @@ const ManageSpotsFunction = () => {
     }
     if (userSpots && userSpots.length < 1) {
         content = <>
-        <div className='mng-spot-cre-spt-btn-ctn'>
+            <div className='mng-spot-cre-spt-btn-ctn'>
 
-            <NavLink to='/spots/add/newspot' className='mng-spot-cre-spt-btn'> Create a New Spot</NavLink>
-        </div>
+                <NavLink to='/spots/add/newspot' className='mng-spot-cre-spt-btn'> Create a New Spot</NavLink>
+            </div>
         </>
     }
 
 
 
     if (userSpots) {
-        // console.log(userSpots)
+        
         return (
             <div>
                 {content}

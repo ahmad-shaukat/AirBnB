@@ -1,0 +1,70 @@
+#modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #del-modal-background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgb(104, 176, 171, 0.3);
+  }
+
+  #del-modal-content {
+    position: absolute;
+    background-color: white;
+    height: 200px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+    padding: 5px;
+  }
+  .mng-mod-dele-btn {
+    background-color: red;
+    color: white;
+  }
+  .del-mod-hds-main {
+    font-size: 17px;
+    text-align: center;
+  }
+  .del-mod-hds-sub {
+    font-size: 13px;
+  }
+  .del-mod-btns {
+    /* background-color: red; */
+    margin-top: 10px;
+    width: 270px;
+    margin: auto;
+    margin-top: 7px;
+    
+  }
+  #del-mod-btns-btn1 {
+    width: 160px;
+    height: 30px;
+    /* margin-right: 4px; */
+    background-color: #ff006e;
+    margin: auto;
+    display: block;
+    border-radius: 0px;
+    margin-bottom: 10px;
+    color: white;
+    /* margin: auto; */
+  }
+  #del-mod-btns-btn2 {
+    width: 160px;
+    height: 30px;
+    margin: auto;
+    display: block;
+    border-radius: 0px;
+    background-color:#ced4da ;
+  }
+

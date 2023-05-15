@@ -336,7 +336,7 @@ const SpotDetail = () => {
                     <div className='reviews-price-info'>
                         <div className='spt-det-callout-lower'>
                             <p className='spt-det-night-abv spt-det-night-bot'><span className='spt-det-price-1'>${spot.price}</span> night</p>
-                            <div className='spt-rtn-call'>
+                            <div className='spt-rtn-call spt-rtn-call-bott'>
 
                                 <i class="fa-solid fa-star"></i> <p> {!spot.avgStarRating ? <div></div> : <div>{spot.avgStarRating.toFixed(1)}</div>}</p>
                                 <p className='spt-det-revs'>{reviewWord}</p>
