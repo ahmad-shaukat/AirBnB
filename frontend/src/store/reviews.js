@@ -35,7 +35,7 @@ export const SpotReviews = (spotId) => async dispatch => {
 //thunk for adding review
 
 export const CreateReview = (review, spotId) => async dispatch => {
-    console.log (review, spotId)
+    // console.log (review, spotId)
     const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
         method:'POST',
         headers:{
@@ -53,7 +53,7 @@ export const CreateReview = (review, spotId) => async dispatch => {
 // thunk for removing reviews
 
 export const DeleteReview = (reviewId) => async disaptch => {
-    console.log ('in the delete------------------------')
+    // console.log ('in the delete------------------------')
     const response = await csrfFetch(`/api/reviews/${reviewId}`, {
         method:'DELETE',
         headers: {

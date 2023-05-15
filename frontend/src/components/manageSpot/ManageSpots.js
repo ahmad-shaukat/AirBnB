@@ -17,7 +17,7 @@ const ManageSpotsFunction = () => {
     const [delSpot, setDelSpot] = useState(null)
     const dispatch = useDispatch()
     const userSpots = useSelector(state => {
-        return state.spots?.list?.Spots
+        return state.spots.list?.Spots
     })
     // console.log(userSpots, '---------------------userspot')
     useEffect(() => {
@@ -27,6 +27,11 @@ const ManageSpotsFunction = () => {
 
 
     }, [dispatch])
+    // if (!userSpots) {
+    //     return (
+    //         <h1>Loading...</h1>
+    //     )
+    // }
 
     const handleShowModal = () => {
         setShowModal(true);
@@ -39,7 +44,7 @@ const ManageSpotsFunction = () => {
     const onDeleteHandle = (spotIdRemove) => {
 
         handleCloseModal()
-        console.log(spotIdRemove, '-------------before dispatch')
+        // console.log(spotIdRemove, '-------------before dispatch')
         dispatch(RemoveSpot(spotIdRemove))
         dispatch(UserSpots())
     }
@@ -88,7 +93,7 @@ const ManageSpotsFunction = () => {
                             
                                 
                             <div key={spot.key} className='mng-spot-dtl'>
-                                {console.log(spot, 'test spot')}
+                                {/* {console.log(spot, 'test spot')} */}
                                 <NavLink to={`/spots/${spot.id}`}>
                                     <div className='mng-img-div'>
                                         <img className='mng-img' src={spot.previewImage} />
@@ -186,12 +191,14 @@ const ManageSpotsFunction = () => {
 
         )
 
-    } else {
-        return (
-            <h1>Loading...</h1>
-        )
-    }
-
+    } 
+    
+    
+    // if (!userSpots) {
+    //     return (
+    //         <h1>Loading...</h1>
+    //     )
+    // }
 }
 
 

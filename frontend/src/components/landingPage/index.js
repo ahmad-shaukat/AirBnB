@@ -39,7 +39,7 @@ const SpotBrowser = () => {
 
         //     if (!items['avgRating']) items['avgRating'] = 'New'
         // }
-        console.log (allSpots)
+        // console.log (allSpots)
 
 
 
