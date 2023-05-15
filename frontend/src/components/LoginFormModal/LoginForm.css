@@ -38,7 +38,8 @@
     "star heading"; 
 background-color:rgb(255, 255, 255);
 border-bottom: 1px solid rgb(218, 216, 216);
-border-radius: 8px;
+border-top-right-radius: 8px;
+border-top-left-radius: 8px;
 /* border-radius: 12px; */
 
 }
@@ -60,7 +61,7 @@ border-radius: 8px;
     align-items: start;
     margin-top: 8px;
     margin-left: -30px;
-    font-size: 13px;
+    font-size: 17px;
     font-weight: 600;
     height: 40px;
     border-radius: 12px;
@@ -86,7 +87,7 @@ border-radius: 8px;
   .heading { 
     
     grid-area: heading; 
-    padding-left: 12px;
+    padding-left: 16px;
     /* font-size: ; */
 
 }
@@ -94,6 +95,7 @@ border-radius: 8px;
     width: 373px; 
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
+    outline: none;
     margin: auto;
     height: 35px;
     border: 1px solid rgb(207, 206, 206);
@@ -105,6 +107,7 @@ border-radius: 8px;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
     border: 1px solid rgb(207, 206, 206);
+    outline: none;
     border-top: none;
 
     margin: auto; 

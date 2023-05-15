@@ -113,8 +113,9 @@
 .mng-btns button {
     height: 30px;
     border-radius: 8px;
-    width: 100px;
+    width: 90px;
     border: none;
+    cursor: pointer;
     /* background-color: red; */
 
 }
