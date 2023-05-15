@@ -42,7 +42,7 @@ function LoginFormModal() {
     return false
     allowLoginCursor='pointer'
   }
-  console.log (checkCredentials())
+  // console.log (checkCredentials())
 
   return (
     <>

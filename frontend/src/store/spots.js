@@ -95,7 +95,7 @@ export const CreateSpot = (newSpot) => async dispatch => {
         } else {
           imageInfo.preview = false
         }
-        console.log (spot.id)
+        // console.log (spot.id)
         const imageResponse = await csrfFetch(`/api/spots/${spot.id}/images`, {
           method: 'POST',
           headers: {
@@ -138,7 +138,7 @@ export const EditSpot = (spot, id) => async dispatch => {
 
 // Thunk for removing spot
 export const RemoveSpot = (spotId) => async dispatch => {
-  console.log (spotId, '---------------this is spot id')
+  // console.log (spotId, '---------------this is spot id')
   const response = await csrfFetch(`/api/spots/${spotId}`, {
     method: 'DELETE',
     headers: {
@@ -194,8 +194,8 @@ const spotsReducer = (state = initalState, action) => {
       newState[action.spot.id] = action.pokemon
       return newState
     case REMOVE_SPOT:
-      console.log(state)
-      console.log(state.list.Spots)
+      // console.log(state)
+      // console.log(state.list.Spots)
       let newList = []
       state.list.Spots.forEach(spot => {
         if (spot.id !== action.spotId) {

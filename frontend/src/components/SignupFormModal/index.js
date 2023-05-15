@@ -40,7 +40,7 @@ const SignupFormPage = () => {
                 (setErrors(data.errors))    
                 }
                 
-                console.log (errors, '------signup-errors-----')
+                // console.log (errors, '------signup-errors-----')
             })
         }
 
