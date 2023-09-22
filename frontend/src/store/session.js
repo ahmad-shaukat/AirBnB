@@ -23,7 +23,6 @@ const removeUser =  () => {
 
 
 export const login = (user) => async dispatch => {
-    // console.log (user)
     const {credential, password} = user;
     const response = await csrfFetch(`/api/session`, {
         method: 'POST',
@@ -56,7 +55,6 @@ export const restoreUser = () => async dispatch => {
 
 
 export const signup = (user) => async (dispatch) => {
-    // console.log (user)
     const { userName, firstName, lastName, email, password } = user;
     const response = await csrfFetch("/api/users", {
       method: "POST",

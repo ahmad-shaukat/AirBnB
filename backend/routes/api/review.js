@@ -106,51 +106,6 @@ router.get('/current',
 
 
 
-// router.get('/current', restoreUser, async (req, res) => {
-//     const userId = req.user.dataValues.id;
-//     console.log(userId, '-----');
-//     const allReviews = await Review.findAll({
-//         where: {
-//             userId: userId
-//         },
-//         include: [
-//             {
-//                 model: User,
-//                 attributes: ['id', 'firstName', 'lastName']
-//             },
-//             {
-//                 model: Spot,
-//                 attributes: [
-//                     'id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price',
-//                     [
-//                         sequelize.literal(
-//                             `(SELECT url FROM "SpotImages" WHERE "SpotImages"."spotId" = "Spot"."id" LIMIT 1)`
-//                         ),
-//                         'previewImage'
-//                     ]
-//                 ]
-//             },
-//             {
-//                 model: ReviewImage,
-//                 attributes: ['id', 'url']
-//             }
-//         ],
-
-//     });
-//     res.json({Reviews: allReviews});
-// });
-
-// get all reviews by spot id this is in the spot route file
-
-
-// create a review for a spot based on spots id in spot routes 
-
-
-
-
-
-// Add an image to a review based on the review's id
-
 
 router.post('/:reviewId/images', restoreUser, async (req, res) => {
     const reviewId = req.params.reviewId
@@ -183,7 +138,6 @@ router.post('/:reviewId/images', restoreUser, async (req, res) => {
     })
     // consol
     let imageLength = JSON.stringify(reviewImages["ReviewImages"].length)
-    console.log(imageLength)
     if (imageLength < 10) {
         const newReviewImage = await ReviewImage.create({
             reviewId, url
@@ -207,7 +161,6 @@ router.post('/:reviewId/images', restoreUser, async (req, res) => {
 router.put('/:reviewId', restoreUser, reviewEditValidations, async (req, res) => {
     const reivewId = req.params.reviewId
     const { review, stars } = req.body
-    console.log(review, stars)
     const editReview = await Review.findByPk(reivewId)
     if (!editReview) {
         return res.status(404).json({

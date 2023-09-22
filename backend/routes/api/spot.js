@@ -15,7 +15,6 @@ const { validationResult } = require('express-validator');
 const handleValidationErrors = (req, res, next) => {
 
   const validationErrors = validationResult(req);
-  // console.log (validationErrors)
 
   if (!validationErrors.isEmpty()) {
 
@@ -200,7 +199,6 @@ router.get('/', restoreUser, queryValidations, async (req, res) => {
     // offset: offset,
 
   };
-  console.log(options.where)
 
 
   if (minLat) {
@@ -227,7 +225,7 @@ router.get('/', restoreUser, queryValidations, async (req, res) => {
     options.where.price = {
       [Op.gte]: Number(minPrice)
     }
-    // console.log (options.where)
+   
   };
   if (maxPrice) {
     options.where.price = {
@@ -238,7 +236,6 @@ router.get('/', restoreUser, queryValidations, async (req, res) => {
 
 
   const allSpots = await Spot.findAll(options);
-  // console.log (allSpots)
   allSpots.forEach(spots => {         
     const spotImages = []
   
@@ -290,51 +287,6 @@ router.get('/', restoreUser, queryValidations, async (req, res) => {
 
 })
 
-// router.get('/current', restoreUser, async (req, res) => {
-  //   console.log(req.user.dataValues.id)
-  //   const allSpots = await Spot.findAll({
-//     where: {
-//       ownerId: req.user.dataValues.id
-//     },
-//     attributes: [
-//       'id',
-//       'ownerId',
-//       'address',
-//       'city',
-//       'state',
-//       'country',
-//       'lat',
-//       'lng',
-//       'name',
-//       'description',
-//       'price',
-//       'createdAt',
-//       'updatedAt',
-//       [
-//         fn('AVG', literal('Reviews.stars')),
-//         'avgRating'
-//       ],
-//       [col('SpotImages.url'), 'previewImage']
-//     ],
-//     include: [
-//       {
-//         model: Review,
-//         attributes: []
-//       },
-//       {
-//         model: SpotImage,
-//         attributes: []
-//       }
-//     ],
-//     // group: ['Spot.id']
-//   });
-//   allSpots.forEach(spot => {
-//     if (spot.dataValues.avgRating === null) {
-//       spot.dataValues.avgRating = 0;
-//     }
-//   });
-//   res.status(200).json({ "Spots": allSpots })
-// })
 
 
 // get all spots belong to current user with done with loops
@@ -389,7 +341,6 @@ router.get('/current',
       spotObj.Spots.push(spots.dataValues)
     })
     res.status(200).json(spotObj)
-    // console.log (spotObj)
   })
 
 
@@ -414,51 +365,7 @@ router.get('/current',
 
 
 
-// get details of spot based on spot id 
 
-
-
-// router.get('/:spotId', restoreUser, async (req, res) => {
-//   let spotId = req.params.spotId
-//   let checkSpot = await Spot.findByPk(spotId)
-//   if (!checkSpot) {
-//     return res.status(404).json({
-//       "message": "Spot couldn't be found",
-//       "statusCode": 404
-//     })
-//   }
-//   let spot = await Spot.findByPk((spotId), {
-//     include: [{
-//       model: SpotImage,
-//       attributes: ['id', 'url', 'preview'],
-
-//       limit: 10000
-
-//     },
-//     {
-//       model: Review,
-//       attributes: [],
-//       // duplicating: false
-//     },
-//     {
-//       model: User,
-//       attributes: ['id', 'firstName', 'lastName'],
-//       as: 'Owner'
-//     }
-//     ],
-//     attributes: {
-//       include: [[Sequelize.fn('COUNT', Sequelize.col('Reviews.id')), 'numReviews'], [Sequelize.fn('AVG', Sequelize.col('Reviews.stars')), 'avgStarRating']]
-
-//     }
-
-//   })
-
-//   group
-
-
-//   console.log(spot)
-//   res.json(spot)
-// })
 
 // get detailed spot from spot id done without aggregate functions
 router.get('/:spotId',
@@ -525,44 +432,7 @@ async (req, res) => {
 })
 
 
-// router.get('/', restoreUser, async (req, res) => {
 
-//   const allSpots = await Spot.findAll({
-//     attributes: [
-//       'id',
-//       'ownerId',
-//       'address',
-//       'city',
-//       'state',
-//       'country',
-//       'lat',
-//       'lng',
-//       'name',
-//       'description',
-//       'price',
-//       'createdAt',
-//       'updatedAt'
-
-//     ],
-//     include: [
-//       {
-//         model: Review,
-//         attributes: []
-//       },
-//       {
-//         model: SpotImage,
-//         attributes: []
-//       }
-//     ],
-//     group: ['Spot.id']
-//   });
-//   allSpots.forEach(spot => {
-//     if (spot.dataValues.avgRating === null) {
-//       spot.dataValues.avgRating = 0;
-//     }
-//   });
-//   res.status(200).json({ "Spots": allSpots })
-// })
 
 
 
@@ -599,11 +469,9 @@ async (req, res) => {
 
 
 router.post('/', requireAuth, ValidationSpot, async (req, res) => {
-  // console.log (res.body)
   let { address, city, state, country, lat, lng, name, description, price } = req.body
   let ownerId = req.user.dataValues.id
-  // console.log (userId)
-  // console.log (typeof lat, '-------------------')
+  
 
   const newSpot = await Spot.create({
     ownerId, address, city, state, country, lat, lng, name, description, price,
@@ -638,19 +506,7 @@ router.put('/:spotId', requireAuth, ValidationSpot, async (req, res) => {
 
 
 
-  //-------this is more simpilar way but i think increases big o-------//
-  // spot.address = address
-  // spot.city = city
-  // spot.state = state
-  // spot.country = country
-  // spot.lat = lat
-  // spot.lng = lng
-  // spot.name = name
-  // spot.description = description
-  // spot.price = price
-  // spot.updatedAt = Sequelize.literal('CURRENT_TIMESTAMP')
-  // await spot.save(spot)
-  // res.json (spot)
+  
 
   spot.set({
     address, city, state, country, lat, lng, name, description, price, updatedAt: Sequelize.literal('CURRENT_TIMESTAMP')
@@ -694,7 +550,6 @@ router.delete('/:spotId', requireAuth, async (req, res) => {
 
 router.post('/:spotId/images', requireAuth, async (req, res) => {
   let { url, preview } = req.body
-  // console.log (req.user)
   const userId = req.user.dataValues.id
   let spotId = Number(req.params.spotId)
   let spot = await Spot.findByPk(spotId)
@@ -730,7 +585,6 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
 
 // create a review for a spot based on spots id
 router.post('/:spotId/reviews', requireAuth, reviewValidations, async (req, res) => {
-  // console.log (req.param, '---------params------------')
   const { Op } = require('sequelize')
   let userId = req.user.dataValues.id
   const spotId = Number(req.params.spotId)
@@ -763,7 +617,6 @@ router.post('/:spotId/reviews', requireAuth, reviewValidations, async (req, res)
   })
 
 
-  // console.log (req.user.dataValues)
   res.json(newReview)
 })
 

@@ -19,27 +19,16 @@ const SpotBrowser = () => {
     });
 
 
-    // console.log (typeof allSpots)
-    // console.log (allSpots)
     useEffect(() => {
 
-        // console.log('in the effect')
+       
         dispatch(getAllSpots())
 
     }, [dispatch])
-    // let allSpots;
-
-    // if (spots && spots.Spots)  {
-    //     let allSpots = spots.Spots
-    // }
+   
 
     if (allSpots) {
-        // for (let items of allSpots) {
-        //     console.log (items, '-------------------is this avgRating')
-
-        //     if (!items['avgRating']) items['avgRating'] = 'New'
-        // }
-        // console.log (allSpots)
+        
 
 
 
@@ -49,7 +38,6 @@ const SpotBrowser = () => {
                 <div className='spot'>
 
                     {allSpots.map((spot) => (
-                        // console.log (spot, '-------------------')
 
                         <div key={spot.id} className='spot-detail' id='parent'>
                             <p className='main-spot-name'>{spot.name}</p>

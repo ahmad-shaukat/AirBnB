@@ -30,18 +30,13 @@ const SpotDetail = () => {
     const { spotId } = useParams()
 
     const current = useSelector(state => state.session.user)
-    // console.log (current, '------------------this is current')
     const detailState = useSelector(state => state)
 
-    // console.log (detailState, '----------------------detail state')
     const spot = useSelector(state => state.spots[spotId])
-    // console.log (spot, '------------this is spot')
-    // console.log(spot, '------------this is spot')
 
 
     const reviews = useSelector(state => state.reviews.list.Reviews)
 
-    // console.log (reviews, '---------------this is reviews')
 
 
     useEffect(() => {
@@ -60,29 +55,25 @@ const SpotDetail = () => {
     }
 
     let showFirstReviewButton = false
-    // console.log (spot)
 
     if (current && spot) {
-        // console.log (current.id, '------------------userId------')
         if (current.id !== spot.ownerId) {
             showFirstReviewButton = true
         }
     }
-    // console.log (spot.ownerId, '---------------spotOwnerId----------------')
 
 
 
 
 
-    // console.log(reviews, '---------------')
-    // console.log (typeof reviews)
+    
     const newRating = (rating) => {
         setUserRating(rating)
     }
     const handleShowModal = () => {
         setShowModal(true);
         setUserRating(0)
-        // console.log (rating,'--------------in the show')
+     
     }
 
     const handleCloseModal = () => {
@@ -90,7 +81,7 @@ const SpotDetail = () => {
         setErrors({});
         newRating(0)
         setUserRating('')
-        console.log(stars, '--------------in the close--------')
+        
         setUserReview('')
     }
 
@@ -102,7 +93,7 @@ const SpotDetail = () => {
             review,
             stars
         }
-        // console.log(payload, '-------------------this is payload')
+        
 
         try {
             let newCreatedReview = await
@@ -119,21 +110,13 @@ const SpotDetail = () => {
             if (data && data.errors) {
                 setErrors(data.errors)
             }
-            console.log(data.errors)
         }
 
     }
 
     let reviewToBeDelete;
 
-    // const deleteReviewHandle = (reviewToBeDelete) => {
-    //     console.log (reviewToBeDelete, '----------in the function----------')
-    //     dispatch(DeleteReview(review.id))
-    // }
-
-    // console.log (current.id, '-----------current user id-----------')
-    // console.log (spot.ownerId, '-------------current spot owner id')
-    // console.log ()
+    
 
 
 
@@ -206,11 +189,8 @@ const SpotDetail = () => {
         // here we check if the current user ownes the spot and if not do they already have a review for this spot. if any correct the post review button will stay hidden. 
         for (let key in reviews) {
 
-            // console.log (current.id, '---------user')
-            console.log(reviews[key].User.id)
             if (current.id === reviews[key].User.id) {
-                console.log(current.id, '------------------userId')
-                // console.log(reviews[key].User.id, '----reviews user Id------')
+                
                 content = null
 
             }
@@ -230,10 +210,8 @@ const SpotDetail = () => {
         alert('feature is coming soon')
     }
 
-    // console.log (spot, spot.Owner)
 
     if (spot && spot.Owner) {
-        console.log(spot, '-----------this is spot')
         let allSpotReviews;
         let showRating
         if (reviews) {
@@ -252,19 +230,13 @@ const SpotDetail = () => {
                 reviewWord = 'New'
             }
 
-            // if (spot.avgRating > 0) {
-            //     showRating = spot.avgRating
-            // }
-            // if (spot.avgRating='New') {
-            //     showRating = ''
-            // }
+           
 
         }
 
 
 
         reviewPlural()
-        // console.log(spot)
         return (
             <>
 
@@ -353,7 +325,6 @@ const SpotDetail = () => {
 
 
                 {showReview ? (
-                    // console.log (reviews[0])
                     reviews
                         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
                         .map((review) => {
@@ -361,19 +332,14 @@ const SpotDetail = () => {
                             const date = new Date(review.createdAt);
                             const options = { month: 'long', year: 'numeric' };
                             const formattedDate = date.toLocaleString('en-US', options);
-                            // console.log (reviewToBeDelete, '----------this is before-----')
-                            // console.log (review, '-------------------------')
+                         
                             if (current && current.id === review.User.id) {
                                 reviewToBeDelete = review.id
-                                // console.log (reviewUserId, '-------------')
                                 let thisIs = review.User.id
-                                // console.log (thisIs)
 
 
                                 function onDeleteHandle() {
-                                    // setDeleteReviewId(review.id)
-                                    // console.log (deleteReviewId, '-------------')
-                                    // console.log (thisIs, '---this is user----')
+                                    
                                     handleCloseModal()
                                     dispatch(DeleteReview(reviewToBeDelete))
                                     dispatch(getSingleSpot(spotId))
@@ -381,10 +347,7 @@ const SpotDetail = () => {
 
                                 }
 
-                                // console.log (review.User.id, '---------------------------')  console.log ('hello')       
-                                // reviewToBeDelete = review.User.id
-                                // console.log (reviewToBeDelete, '--------this is after----')
-                                // setDeleteReviewId(review.User.id)
+                               
                                 deleteReview = <>
                                     <div>
                                         <button onClick={handleShowModal} className='spt-det-rev-button-btn'>Delete</button>

@@ -19,32 +19,24 @@ const ManageSpotsFunction = () => {
     const userSpots = useSelector(state => {
         return state.spots.list?.Spots
     })
-    // console.log(userSpots, '---------------------userspot')
     useEffect(() => {
-        console.log('hello')
         setShowEditSpotForm(false)
         dispatch(UserSpots())
 
 
     }, [dispatch])
-    // if (!userSpots) {
-    //     return (
-    //         <h1>Loading...</h1>
-    //     )
-    // }
-
+ 
     const handleShowModal = () => {
         setShowModal(true);
     }
 
     const handleCloseModal = () => {
         setShowModal(false);
-        // setErrors({});
+        
     }
     const onDeleteHandle = (spotIdRemove) => {
 
         handleCloseModal()
-        // console.log(spotIdRemove, '-------------before dispatch')
         dispatch(RemoveSpot(spotIdRemove))
         dispatch(UserSpots())
     }
@@ -52,9 +44,6 @@ const ManageSpotsFunction = () => {
 
 
 
-    // if(userSpots) {
-
-    // }
 
     if (editSpotId && editSpot && showEditSpotForm) {
         content = (
@@ -64,24 +53,14 @@ const ManageSpotsFunction = () => {
         let mngRating;
         if (userSpots) {
             for (let items of userSpots) {
-                // let mngRating;
-                // console.log (items, '-----------this is spot')
-                // console.log (items.avgRating, '------------this is rating')
+                
 
                 if (!items['avgStarRating']) {
                     let mngRating = 'New'
                 } else {
                     mngRating = items['avgStarRating']
                 }
-                // if (typeof(items['avgRating']) === 'number') {
-                //     let newNumber = items['avgRating']
-                //     // newNumber = newNumber.toFixed(1)
-                //     newNumber = ((newNumber)/100).toFixed(1)
-                //     // newNumber = parseFloat(newNumber)
-
-                //     // items['avgRating'] = parseFloat(newNumber.toFixed(1))
-                //     console.log (newNumber, '---changed item--------------')
-                // } 
+                
             }
 
             content = (
@@ -93,7 +72,6 @@ const ManageSpotsFunction = () => {
                             
                                 
                             <div key={spot.key} className='mng-spot-dtl'>
-                                {/* {console.log(spot, 'test spot')} */}
                                 <NavLink to={`/spots/${spot.id}`}>
                                     <div className='mng-img-div'>
                                         <img className='mng-img' src={spot.previewImage} />
@@ -111,47 +89,10 @@ const ManageSpotsFunction = () => {
                                 </NavLink>
                                 
                                 <div className='mng-btns'>
-                                    {/* <div> {spot.id}</div> */}
                                     
                                 <Modal spotId={spot.id} />
-                                    {/* <button onClick={handleShowModal} style={{ cursor: 'pointer' }} className='del-spt-init-btn'>Delete</button> */}
-
-                                    {/* <DeleteSpotModal show={showModal} handleClose={handleCloseModal}>
-                                        <>
-                                            <div className='del-spt-main-ctn'>
-                                                <div className='del-spt-hed-ctn'>
-
-
-                                                    <p className='del-spt-hed-main'>Confirm Delete</p>
-
-                                                    <p className='del-spt-hed-sub'>Are you sure you want to delete this spot?</p>
-                                                </div>
-                                                <div className='del-spt-btns'>
-                                                    <div className='del-spot-btns-del'>
-                                                        
-
-
-                                                        <button onClick={() => {
-                                                    {console.log(spot.id, 'inside delete')}
-                                                                                        dispatch(RemoveSpot(spot.id))
-                                                                                        setShowModal(false);
-                                                            dispatch(UserSpots())
-                                                        }
-                                                        } >Yes(Delete Spot)</button>
-                                                    </div>
-                                                    <div className='del-spot-btns-can'>
-
-                                                        <button onClick={handleCloseModal}>No(Keep Spot)</button>
-                                                    </div>
-
-
-                                                </div>
-                                            </div>
-
-
-                                        </>
-                                    </DeleteSpotModal> */}
-                                    {/* <EditSpotForm spot={editSpot} spotId={editSpotId} /> */}
+                                    
+                                  
                                     <button onClick={() => {
 
 
@@ -167,7 +108,6 @@ const ManageSpotsFunction = () => {
                 </>
             )
         }
-        // <button type='button' onClick={() => onDeleteHandle(spot.id)}>Delete</button>
 
     }
     if (userSpots && userSpots.length < 1) {
@@ -187,18 +127,14 @@ const ManageSpotsFunction = () => {
             <div>
                 {content}
             </div>
-            // <>
+            
 
         )
 
     } 
     
     
-    // if (!userSpots) {
-    //     return (
-    //         <h1>Loading...</h1>
-    //     )
-    // }
+    
 }
 
 

@@ -8,7 +8,6 @@ import logo from '../../assets/images/nav-logo.png'
 
 function Navigation({ isLoaded }) {
   const [showNewSpot, setShowNewSpot] = useState(false)
-  // console.log (isLoaded) 
   const sessionUser = useSelector(state => state?.session?.user);
   
 
