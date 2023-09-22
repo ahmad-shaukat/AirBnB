@@ -56,17 +56,14 @@ const CreateSpotForm = () => {
             images: [previewImage, Img1, Img2, Img3]
 
         }
-        // console.log (spot)
 
         let createdSpot = await dispatch(CreateSpot(spot)).catch(async (res) => {
             const data = await res.json();
             if (data && data.errors) {
                 setErrors(data.errors)
             }
-            // console.log(errors, '------------------')
         })
         if (createdSpot) {
-            // console.log(createdSpot.id, '----------------------')
             history.push(`/spots/${createdSpot.id}`)
         }
 

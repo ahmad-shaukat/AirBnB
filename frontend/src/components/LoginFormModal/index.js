@@ -13,10 +13,7 @@ function LoginFormModal() {
   const [errors, setErrors] = useState([]);
   const { closeModal } = useModal();
 
-  // if (sessionUser) return (
-  //   <Redirect to="/" />
-  // );
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
@@ -42,7 +39,6 @@ function LoginFormModal() {
     return false
     allowLoginCursor='pointer'
   }
-  // console.log (checkCredentials())
 
   return (
     <>

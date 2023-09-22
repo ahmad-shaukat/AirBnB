@@ -58,7 +58,6 @@ export const getAllSpots = () => async dispatch => {
   if (response.ok) {
     const list = await response.json()
     dispatch(load(list))
-    // console.log(list, '-----------this is list---')
   }
 }
 
@@ -74,7 +73,6 @@ export const getSingleSpot = (id) => async dispatch => {
 // thunk for adding new spot 
 
 export const CreateSpot = (newSpot) => async dispatch => {
-  console.log(newSpot, '-----------------this is spot------')
   const response = await csrfFetch('/api/spots', {
     method: 'POST',
     headers: {
@@ -95,7 +93,6 @@ export const CreateSpot = (newSpot) => async dispatch => {
         } else {
           imageInfo.preview = false
         }
-        // console.log (spot.id)
         const imageResponse = await csrfFetch(`/api/spots/${spot.id}/images`, {
           method: 'POST',
           headers: {
@@ -138,7 +135,6 @@ export const EditSpot = (spot, id) => async dispatch => {
 
 // Thunk for removing spot
 export const RemoveSpot = (spotId) => async dispatch => {
-  // console.log (spotId, '---------------this is spot id')
   const response = await csrfFetch(`/api/spots/${spotId}`, {
     method: 'DELETE',
     headers: {
@@ -157,7 +153,6 @@ export const RemoveSpot = (spotId) => async dispatch => {
 const spotsReducer = (state = initalState, action) => {
   switch (action.type) {
     case LOAD:
-      // console.log (action.list, '----------------list of spots-----')
       const allSpots = {};
       action.list.Spots.forEach(spot => {
         allSpots[spot.id] = spot;
@@ -170,7 +165,6 @@ const spotsReducer = (state = initalState, action) => {
     case ADD_ONE:{
       const singleSpotState = {}
     singleSpotState[action.spot.id] = action.spot
-    // console.log (singleSpotState, '---------this is spot.avgRating------------')
     return singleSpotState
     }
       
@@ -179,7 +173,6 @@ const spotsReducer = (state = initalState, action) => {
       return newState
     }
     case GET_USER_SPOTS:
-      // console.log(action.list, '-------------------')
       const userSpots = { ...state }
       action.list.Spots.forEach(spot => {
         userSpots[spot.id] = spot
@@ -188,14 +181,12 @@ const spotsReducer = (state = initalState, action) => {
       return userSpots
 
     case EDIT_SPOT:
-      // console.log (action.spot)
       const newState = {}
       newState = { ...state }
       newState[action.spot.id] = action.pokemon
       return newState
     case REMOVE_SPOT:
-      // console.log(state)
-      // console.log(state.list.Spots)
+      
       let newList = []
       state.list.Spots.forEach(spot => {
         if (spot.id !== action.spotId) {

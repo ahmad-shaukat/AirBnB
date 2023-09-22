@@ -20,9 +20,7 @@ router.delete('/:imageId', restoreUser, async(req, res) => {
             "statusCode": 404
         })
     }
-    // console.log (reviewUserId)
-    // console.log(currentUser)
-    // console.log(deleteReviewImage.dataValues.Review.userId)
+
     const reviewUserId = deleteReviewImage.dataValues.Review.userId;
 
     if (reviewUserId === currentUser) {
@@ -36,10 +34,7 @@ router.delete('/:imageId', restoreUser, async(req, res) => {
         "message": "User is not authorized to delete this review image",
         "statusCode": 403
     })
-    // console.log (imageId)
-    // console.log (currentUser)
-    // console.log (reviewUserId)
-    // res.json(deleteReviewImage)
+  
 })
 
 module.exports = router

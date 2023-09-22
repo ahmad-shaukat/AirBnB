@@ -172,10 +172,7 @@ router.delete ('/:bookingId', restoreUser, async(req, res) => {
             attributes: ['ownerId']
         }
     })
-    // console.log(deleteBooking.dataValues.startDate)
-    // console.log (currentDate)
-    // console.log (bookingStartDate>=currentDate)
-    // console.log (bookingStartDate)
+    
     if (!deleteBooking) {
       return res.status(404).json({
         "message": "Booking couldn't be found",

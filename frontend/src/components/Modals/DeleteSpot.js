@@ -14,19 +14,15 @@
 //   );
 // };
 
-// export default DeleteSpotModal;
 import './deleteModel.css'
 import React from "react"
 import { useState } from "react";
-// import "./DeleteModal.css"
 import { useDispatch } from "react-redux";
-// import { CurrentUserSpots, DeleteSpotId } from "../../store/spots";
 import { RemoveSpot } from "../../store/spots";
 import { UserSpots } from "../../store/spots";
 
 
 export default function Modal ({spotId}) {
-    // console.log(spotId, 'Modal Delete spotId------')
     const dispatch = useDispatch()
 
     const [modal, setModal] = useState(false);
