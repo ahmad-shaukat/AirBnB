@@ -24,7 +24,7 @@ const SpotBrowser = () => {
        
         dispatch(getAllSpots())
 
-    }, [dispatch])
+    }, [])
    
 
     if (allSpots) {
@@ -46,7 +46,7 @@ const SpotBrowser = () => {
                                 
 
                                     <div className='image-div'>
-                                        <img src={spot.previewImage} className='img' />
+                                        <img src={spot.previewImage} className='img' onError={(e) => e.target.src = 'http://www.staticwhich.co.uk/static/images/products/no-image/no-image-available.png'}/>
 
                                     </div>
 
