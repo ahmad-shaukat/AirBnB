@@ -2,20 +2,20 @@ const express = require('express');
 const router = express.Router();
 const apiRouter = require('./api');
 const { error } = require('console');
-
-
-router.get('/api/csrf/restore', (req, res) => {
-    const csrfToken = req.csrfToken()
-    res.cookie('XSRF-TOKEN', csrfToken)
-    res.status(200).json({
-        'XSRF-TOKEN': csrfToken
-    })
-})
-
-
-
-
 router.use('/api', apiRouter)
+
+
+// router.get('/api/csrf/restore', (req, res) => {
+//     const csrfToken = req.csrfToken()
+//     res.cookie('XSRF-TOKEN', csrfToken)
+//     res.status(200).json({
+//         'XSRF-TOKEN': csrfToken
+//     })
+// })
+
+
+
+
 
 // static Route
 // serve react build files in production
