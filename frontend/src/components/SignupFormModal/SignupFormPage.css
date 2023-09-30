@@ -5,7 +5,7 @@
     height: 340px;
     display: flex;
     flex-direction: column;
-    justify-content: end;
+    justify-content: flex-end;
 }
 .sgn-up-form {
     /* border: 2px solid green; */
