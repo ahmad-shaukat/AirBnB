@@ -256,7 +256,7 @@ const SpotDetail = () => {
                                     <>
                                         <div className='spt-det-prev-img'>
 
-                                            <img src={image.url} />
+                                            <img src={image.url}onError={(e) => e.target.src = 'http://www.staticwhich.co.uk/static/images/products/no-image/no-image-available.png'} />
                                         </div>
                                     </>
 
@@ -266,7 +266,7 @@ const SpotDetail = () => {
                             if (image.url && !image.preview) {
                                 return (
 
-                                    <img src={image.url} className='spt-det-thumb'></img>
+                                    <img src={image.url} className='spt-det-thumb' onError={(e) => e.target.src = 'http://www.staticwhich.co.uk/static/images/products/no-image/no-image-available.png'}></img>
                                 );
                             } else {
                                 return null;
